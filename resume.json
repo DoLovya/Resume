@@ -21,7 +21,7 @@
   },
   "educationList": [
     {
-      "edu_time": ["2019.09.01", "2023.06.30"],
+      "edu_time": ["2019.09", "2023.06"],
       "school": "鲁东大学",
       "major": "计算机科学与技术",
       "academic_degree": "本科",

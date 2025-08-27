@@ -34,7 +34,7 @@
 
   // 布局位置
   .basic-info {
-    padding: 24px 18px 24px 24px;
+    padding: 24px;
   }
 
   .main-info {
@@ -185,10 +185,10 @@
   .basic-info .education-item {
     &:not(:first-of-type) {
       margin-top: 8px;
-
-
-
-      
+    }
+    
+    > div {
+      overflow: hidden;
     }
   }
 
@@ -278,5 +278,7 @@
 
   .section-aboutme > div {
     margin: 6px 0;
+    text-align: justify;
+    line-height: 1.6;
   }
 }
