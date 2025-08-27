@@ -1,0 +1,123 @@
+{
+  "titleNameMap": {
+    "educationList": "教育背景",
+    "workExpList": "工作经历",
+    "projectList": "项目经历",
+    "skillList": "个人技能",
+    "awardList": "更多信息",
+    "workList": "个人作品",
+    "aboutme": "自我介绍"
+  },
+  "avatar": { "hidden": false, "shape": "square" },
+  "profile": {
+    "name": "张欢",
+    "email": "doido.z@qq.com",
+    "mobile": "13521462824",
+    "github": "",
+    "zhihu": "",
+    "workExpYear": "2年",
+    "workPlace": "",
+    "positionTitle": "软件开发工程师"
+  },
+  "educationList": [
+    {
+      "edu_time": ["2019.09.01", "2023.06.30"],
+      "school": "鲁东大学",
+      "major": "计算机科学与技术",
+      "academic_degree": "本科",
+      "dataIndex": 0
+    }
+  ],
+  "awardList": [
+    {
+      "award_info": "蓝桥杯国赛（C/C++）",
+      "award_time": "2021",
+      "dataIndex": 0,
+      "award_rank": "一等奖"
+    },
+    {
+      "award_info": "算法设计与编程挑战赛",
+      "award_time": "2021",
+      "dataIndex": 1,
+      "award_rank": "二等奖"
+    },
+    {
+      "award_info": "团队天梯赛全国总决赛",
+      "award_time": "2021",
+      "dataIndex": 2,
+      "award_rank": "二等奖"
+    },
+    {
+      "award_info": "ACM-CCPC程序设计竞赛",
+      "award_time": "2021",
+      "dataIndex": 3,
+      "award_rank": "三等奖"
+    }
+  ],
+  "workExpList": [
+    {
+      "company_name": "阿丘科技",
+      "department_name": "软件产品部",
+      "work_time": ["2022.12", ""],
+      "work_desc": "主导视觉算法平台AIDI的研发与日常维护，独立完成智能图像生成系统AIDG的核心设计与功能实现，后成功转型参与AQVision的全流程开发，并自主开发多个实用工具软件提升团队调试效率。",
+      "dataIndex": 0
+    },
+    {
+      "company_name": "铁牛科技",
+      "department_name": "C/C++软件开发",
+      "work_time": ["2022.08", "2022.12"],
+      "work_desc": "主导网关功能定制与综合能源云平台接入项目，基于Libevent+QT开发定制网络协议插件，实现Windows与Linux高效通信；采用多线程优化数据处理，通过SQLite完成数据管理；设计JSON封装方案，基于MQTT协议实现主题发布与订阅，保障数据传输稳定性和扩展性。",
+      "dataIndex": 1
+    }
+  ],
+  "skillList": [
+    {
+      "skill_name": "",
+      "skill_desc": "熟悉C/C++、C#、Python、Go等语言",
+      "skill_level": null,
+      "dataIndex": 0
+    },
+    {
+      "skill_name": "",
+      "skill_level": null,
+      "dataIndex": 1,
+      "skill_desc": "熟悉QT、WPF、Winform等框架"
+    },
+    {
+      "skill_name": "",
+      "skill_level": null,
+      "skill_desc": "具有一定的算法软件开发经验"
+    }
+  ],
+  "projectList": [
+    {
+      "project_name": "AIDI视觉算法平台",
+      "project_role": "核心开发者",
+      "project_time": "2019.04 - 2020.06",
+      "project_desc": "",
+      "project_content": "",
+      "dataIndex": 0
+    },
+    {
+      "project_time": "1,1",
+      "project_name": "AIDG智能图像生成系统",
+      "dataIndex": 1
+    },
+    {
+      "project_name": "AQVision",
+      "project_role": "产品负责人",
+      "project_time": "2020.07 - 至今",
+      "project_desc": "",
+      "project_content": "",
+      "dataIndex": 1
+    }
+  ],
+  "workList": [],
+  "aboutme": {
+    "aboutme_desc": "热爱技术，乐于钻研，对客户端开发、机器视觉等⽅向均有⼀定的了解与实践经验，具有独⽴跟进和推动项⽬进度的能⼒。"
+  },
+  "theme": {
+    "color": "rgba(11, 55, 109, 1)",
+    "tagColor": "rgba(62, 109, 10, 1)"
+  }
+}
