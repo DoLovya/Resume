@@ -111,11 +111,15 @@ export type ResumeConfig = {
 };
 
 /**
- * 主题配置，暂时只支持主题色
+ * 主题配置，支持主题色和图标颜色
  */
 export type ThemeConfig = {
   /** 主题色 */
   color: string;
   /** Tag 标签色 */
   tagColor: string;
+  /** 个人技能图标颜色 */
+  skillIconColor: string;
+  /** 更多信息奖项图标颜色 */
+  awardIconColor: string;
 };

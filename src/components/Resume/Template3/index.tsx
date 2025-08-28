@@ -248,7 +248,7 @@ export const Template3: React.FC<Props> = props => {
                 <div className="skill-item" key={idx.toString()}>
                   <span>
                     <CheckCircleFilled
-                      style={{ color: '#ffc107', marginRight: '8px' }}
+                      style={{ color: theme.skillIconColor, marginRight: '8px' }}
                     />
                     {skills}
                   </span>
@@ -276,7 +276,7 @@ export const Template3: React.FC<Props> = props => {
               return (
                 <div key={idx.toString()}>
                   <TrophyFilled
-                    style={{ color: '#ffc107', marginRight: '8px' }}
+                    style={{ color: theme.awardIconColor, marginRight: '8px' }}
                   />
                   <b className="info-name">{award.award_info}</b>
                   {award.award_time && (

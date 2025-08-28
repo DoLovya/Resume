@@ -10,7 +10,7 @@ export const Avatar = ({
   size = 'default',
 }) => {
   return (
-    <div className={`avatar ${!avatarSrc ? 'avatar-hidden' : ''}`}>
+    <div className="avatar">
       {avatarSrc ? (
         // @ts-ignore
         <AntdAvatar

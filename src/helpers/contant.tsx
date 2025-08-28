@@ -301,7 +301,7 @@ export const CONTENT_OF_MODULE = ({ intl }) => {
         type: 'input',
         attributeId: 'award_time',
         displayName: intl.formatMessage({ id: '获奖时间' }),
-        formItemProps: { rules: [{ required: true }] },
+        formItemProps: { rules: [{ required: false }] },
         // cfg: { picker: 'month' },
       },
       {

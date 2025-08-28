@@ -25,36 +25,62 @@ export const ConfigTheme: React.FC<Props> = props => {
       :root {
         --primary-color: ${props.color};
         --tag-color: ${props.tagColor};
+        --skill-icon-color: ${props.skillIconColor};
+        --award-icon-color: ${props.awardIconColor};
       }
     `;
     $style.innerHTML = styles;
-  }, [props.color, props.tagColor]);
+  }, [props.color, props.tagColor, props.skillIconColor, props.awardIconColor]);
 
   return (
     <div
       style={{
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        flexDirection: 'column',
+        gap: '12px',
       }}
     >
-      <div style={FormItemStyle}>
-        <span style={{ marginRight: '4px' }}>
-          <FormattedMessage id="主题色" />
-        </span>
-        <ColorPicker
-          value={props.color}
-          onChange={v => props.onChange({ color: v })}
-        />
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
+        <div style={FormItemStyle}>
+          <span style={{ marginRight: '4px' }}>
+            <FormattedMessage id="主题色" />
+          </span>
+          <ColorPicker
+            value={props.color}
+            onChange={v => props.onChange({ color: v })}
+          />
+        </div>
+        <div style={FormItemStyle}>
+          <span style={{ marginRight: '4px' }}>
+            <FormattedMessage id="Tag 标签色" />
+          </span>
+          <ColorPicker
+            value={props.tagColor}
+            onChange={v => props.onChange({ tagColor: v })}
+          />
+        </div>
       </div>
-      <div style={FormItemStyle}>
-        <span style={{ marginRight: '4px' }}>
-          <FormattedMessage id="Tag 标签色" />
-        </span>
-        <ColorPicker
-          value={props.tagColor}
-          onChange={v => props.onChange({ tagColor: v })}
-        />
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
+        <div style={FormItemStyle}>
+          <span style={{ marginRight: '4px' }}>
+            <FormattedMessage id="技能图标色" />
+          </span>
+          <ColorPicker
+            label={<FormattedMessage id="技能图标色" />}
+            value={props.skillIconColor}
+            onChange={v => props.onChange({ skillIconColor: v })}
+          />
+        </div>
+        <div style={FormItemStyle}>
+          <span style={{ marginRight: '4px' }}>
+            <FormattedMessage id="奖项图标色" />
+          </span>
+          <ColorPicker
+            label={<FormattedMessage id="奖项图标色" />}
+            value={props.awardIconColor}
+            onChange={v => props.onChange({ awardIconColor: v })}
+          />
+        </div>
       </div>
     </div>
   );

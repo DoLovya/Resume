@@ -37,6 +37,8 @@ export const Page: React.FC = () => {
   const [theme, setTheme] = useState<ThemeConfig>({
     color: '#2f5785',
     tagColor: '#8bc34a',
+    skillIconColor: '#ffc107',
+    awardIconColor: '#ffc107',
   });
 
   useEffect(() => {
@@ -233,7 +235,8 @@ export const Page: React.FC = () => {
   return (
     <React.Fragment>
       <Spin spinning={loading}>
-        {mode === 'edit' && (
+        {/* 已注释掉编辑提示弹窗，避免影响打印效果 */}
+        {/* {mode === 'edit' && (
           <Alert
             showIcon={false}
             message={
@@ -268,7 +271,7 @@ export const Page: React.FC = () => {
             banner
             closable
           />
-        )}
+        )} */}
         <div className="page">
           {config && (
             <Resume

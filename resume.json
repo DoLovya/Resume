@@ -30,26 +30,38 @@
   ],
   "awardList": [
     {
-      "award_info": "蓝桥杯国赛（C/C++）",
-      "award_time": "2021",
+      "award_info": "第十二届蓝桥杯软件类省赛",
+      "award_time": "",
       "dataIndex": 0,
       "award_rank": "一等奖"
     },
     {
-      "award_info": "算法设计与编程挑战赛",
-      "award_time": "2021",
+      "award_info": "第十二届蓝桥杯软件类国赛",
+      "award_time": "",
+      "dataIndex": 0,
+      "award_rank": "一等奖"
+    },
+    {
+      "award_info": "第十三届蓝桥杯软件类省赛",
+      "award_time": "",
+      "dataIndex": 0,
+      "award_rank": "一等奖"
+    },
+    {
+      "award_info": "算法程序设计与编程挑战赛",
+      "award_time": "",
       "dataIndex": 1,
       "award_rank": "二等奖"
     },
     {
-      "award_info": "团队天梯赛全国总决赛",
-      "award_time": "2021",
+      "award_info": "团队程序设计天梯赛国赛",
+      "award_time": "",
       "dataIndex": 2,
       "award_rank": "二等奖"
     },
     {
       "award_info": "ACM-CCPC程序设计竞赛",
-      "award_time": "2021",
+      "award_time": "",
       "dataIndex": 3,
       "award_rank": "三等奖"
     }
@@ -59,7 +71,7 @@
       "company_name": "阿丘科技",
       "department_name": "软件产品部",
       "work_time": ["2022.12", ""],
-      "work_desc": "主导视觉算法平台AIDI的研发与日常维护，独立完成智能图像生成系统AIDG的核心设计与功能实现，后成功转型参与AQVision的全流程开发，并自主开发多个实用工具软件提升团队调试效率。",
+      "work_desc": "前期负责AIDI视觉算法平台的研发与日常维护，后续主导完成AIDG智能图像生成系统的核心设计与功能实现，后成功转型参与AQVision的全流程开发，并自主开发多个实用工具软件提升团队开发与调试效率。",
       "dataIndex": 0
     },
     {
@@ -73,7 +85,7 @@
   "skillList": [
     {
       "skill_name": "",
-      "skill_desc": "熟悉C/C++、C#、Python、Go等语言",
+      "skill_desc": "熟悉C/C++、C#、Python等语言",
       "skill_level": null,
       "dataIndex": 0
     },
@@ -86,7 +98,15 @@
     {
       "skill_name": "",
       "skill_level": null,
-      "skill_desc": "具有一定的算法软件开发经验"
+      "skill_desc": "具有一定的视觉算法软件开发经验"
+    },
+    {
+      "skill_name": "",
+      "skill_desc": "熟练使用Git进行代码管理，熟悉分支策略和团队协作开发"
+    },
+    {
+      "skill_name": "",
+      "skill_desc": "具有系统性能优化经验，包括资源管理和效率提升"
     }
   ],
   "projectList": [
@@ -114,10 +134,12 @@
   ],
   "workList": [],
   "aboutme": {
-    "aboutme_desc": "热爱技术，乐于钻研，对客户端开发、机器视觉等⽅向均有⼀定的了解与实践经验，具有独⽴跟进和推动项⽬进度的能⼒。"
+    "aboutme_desc": "热爱技术，乐于钻研，对客户端开发、机器视觉等⽅向有⼀定的了解与实践经验，具有独⽴跟进和推动项⽬进度的能⼒。"
   },
   "theme": {
     "color": "rgba(11, 55, 109, 1)",
-    "tagColor": "rgba(62, 109, 10, 1)"
+    "tagColor": "rgba(62, 109, 10, 1)",
+    "skillIconColor": "rgba(30, 146, 35, 1)",
+    "awardIconColor": "rgba(253, 189, 0, 1)"
   }
 }

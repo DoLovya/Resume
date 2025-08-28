@@ -246,7 +246,7 @@ export const Template2: React.FC<Props> = props => {
                 <div className="skill-item" key={idx.toString()}>
                   <span>
                     <CheckCircleFilled
-                      style={{ color: '#ffc107', marginRight: '8px' }}
+                      style={{ color: theme.skillIconColor, marginRight: '8px' }}
                     />
                     {skills}
                   </span>

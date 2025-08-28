@@ -243,7 +243,7 @@ export const Template1: React.FC<Props> = props => {
                     }}
                     key={`${idx}`}
                   >
-                    <b className="info-name">{skill.skill_name}</b>
+                    {/* <b className="info-name">{skill.skill_name}</b> */}
                     {/* <Rate
                       allowHalf
                       disabled
@@ -255,7 +255,7 @@ export const Template1: React.FC<Props> = props => {
                     d ? (
                       <div className="skill-detail-item" key={`${idx}`}>
                         <CheckCircleFilled
-                          style={{ color: '#ffc107', marginRight: '8px' }}
+                          style={{ color: theme.skillIconColor, marginRight: '4px' }}
                         />
                         {d}
                       </div>
@@ -277,17 +277,25 @@ export const Template1: React.FC<Props> = props => {
                 {awardList.map((award, idx) => (
                   <tr key={idx.toString()}>
                     <td className="icon-col">
-                      <TrophyFilled style={{ color: '#ffc107' }} />
+                      <TrophyFilled style={{ color: theme.awardIconColor }} />
                     </td>
                     <td className="name-col">
                       <b>{award.award_info}</b>
                     </td>
-                    <td className="rank-col">
-                      {award.award_rank}
-                    </td>
-                    <td className="time-col">
-                      {award.award_time && `(${award.award_time})`}
-                    </td>
+                    {award.award_time ? (
+                      <>
+                        <td className="rank-col">
+                          {award.award_rank}
+                        </td>
+                        <td className="time-col">
+                          {`(${award.award_time})`}
+                        </td>
+                      </>
+                    ) : (
+                      <td className="rank-col-full" style={{ textAlign: 'right' }}>
+                        {award.award_rank}
+                      </td>
+                    )}
                   </tr>
                 ))}
               </tbody>
