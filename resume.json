@@ -78,7 +78,7 @@
       "company_name": "铁牛科技",
       "department_name": "C/C++软件开发",
       "work_time": ["2022.08", "2022.12"],
-      "work_desc": "主导网关功能定制与综合能源云平台接入项目，基于Libevent+QT开发定制网络协议插件，实现Windows与Linux高效通信；采用多线程优化数据处理，通过SQLite完成数据管理；设计JSON封装方案，基于MQTT协议实现主题发布与订阅，保障数据传输稳定性和扩展性。",
+      "work_desc": "主导网关功能定制与能源云平台接入项目，基于Libevent+QT开发网络协议插件，实现跨平台高效通信；采用多线程优化数据处理，结合SQLite管理数据；设计JSON封装方案，基于MQTT实现主题发布与订阅，保障数据传输稳定性。",
       "dataIndex": 1
     }
   ],
@@ -111,24 +111,27 @@
   ],
   "projectList": [
     {
-      "project_name": "AIDI视觉算法平台",
-      "project_role": "核心开发者",
-      "project_time": "2019.04 - 2020.06",
-      "project_desc": "",
-      "project_content": "",
+      "project_name": "视觉算法平台",
+      "project_role": "开发者",
+      "project_time": "2022.12 - 2023.04",
+      "project_desc": "高精度工业视觉模型开发平台，集标注、训练、推理于一体，解决缺陷定位、检测、分类及字符识别等复杂问题，具备强大检出能力。",
+      "project_content": "开发标注数据导入模块，支持LabelMe、LabelImg格式；使用SWIG封装核心库，实现与C#平台高效集成，提供稳定可靠的接口。",
       "dataIndex": 0
     },
     {
-      "project_time": "1,1",
-      "project_name": "AIDG智能图像生成系统",
+      "project_name": "智能图像生成系统",
+      "project_role": "主要负责人",
+      "project_time": "2023.05 - 2023.12",
+      "project_desc": "基于生成式AI技术开发的智能样本生成软件，专门解决AI工业检测领域中缺陷图像数据不足的关键问题。",
+      "project_content": "负责设计并实现缺陷库系统、软件打开流程、属性系统和全球化多语言系统。优化缺陷生成软件的数据交互方式：由命令行进程间交互改为基于算法库接口的进程内交互。重构项目构建系统，将QMake迁移至CMake，提升构建效率与跨平台支持。",
       "dataIndex": 1
     },
     {
-      "project_name": "AQVision",
-      "project_role": "产品负责人",
-      "project_time": "2020.07 - 至今",
-      "project_desc": "",
-      "project_content": "",
+      "project_name": "视觉应用开发平台",
+      "project_role": "主要负责人",
+      "project_time": "2023.01 - 2025.07",
+      "project_desc": "面向视觉工程师的开发平台，便捷接入AI算法，支持流程配置、硬件配置等功能，内置工具模块，支持低代码开发，满足工业质检需求，与AIDI协同提升检测效率。",
+      "project_content": "重构项目，引入Nuget管理引用依赖并部署Nuget服务；开发通信模块、数据判定、内存读写、IO板卡、C#脚本、并行块、Halcon脚本、N点标定、UI设计器等核心功能；搭建高效的CICD流程，覆盖编译、代码检查、单元测试及软件打包发布；设计并优化组件库，提升系统稳定性与扩展性。",
       "dataIndex": 1
     }
   ],
