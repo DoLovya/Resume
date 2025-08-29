@@ -1,5 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 import React, { useEffect } from 'react';
+import { Input } from 'antd';
 import { ColorPicker } from '../../FormCreator/ColorPicker';
 import type { ThemeConfig } from '../../types';
 
@@ -80,6 +81,56 @@ export const ConfigTheme: React.FC<Props> = props => {
             value={props.awardIconColor}
             onChange={v => props.onChange({ awardIconColor: v })}
           />
+        </div>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
+          <div style={FormItemStyle}>
+            <span style={{ marginRight: '4px' }}>
+              <FormattedMessage id="上边距" />
+            </span>
+            <Input
+              value={props.margin?.top}
+              onChange={e => props.onChange({ margin: { ...props.margin, top: e.target.value } })}
+              placeholder="20px"
+              style={{ width: '80px' }}
+            />
+          </div>
+          <div style={FormItemStyle}>
+            <span style={{ marginRight: '4px' }}>
+              <FormattedMessage id="下边距" />
+            </span>
+            <Input
+              value={props.margin?.bottom}
+              onChange={e => props.onChange({ margin: { ...props.margin, bottom: e.target.value } })}
+              placeholder="20px"
+              style={{ width: '80px' }}
+            />
+          </div>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
+          <div style={FormItemStyle}>
+            <span style={{ marginRight: '4px' }}>
+              <FormattedMessage id="左边距" />
+            </span>
+            <Input
+              value={props.margin?.left}
+              onChange={e => props.onChange({ margin: { ...props.margin, left: e.target.value } })}
+              placeholder="20px"
+              style={{ width: '80px' }}
+            />
+          </div>
+          <div style={FormItemStyle}>
+            <span style={{ marginRight: '4px' }}>
+              <FormattedMessage id="右边距" />
+            </span>
+            <Input
+              value={props.margin?.right}
+              onChange={e => props.onChange({ margin: { ...props.margin, right: e.target.value } })}
+              placeholder="20px"
+              style={{ width: '80px' }}
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -74,7 +74,12 @@ export const Template2: React.FC<Props> = props => {
   const aboutme = _.split(_.get(value, ['aboutme', 'aboutme_desc']), '\n');
 
   return (
-    <div className="template2-resume resume-content">
+    <div className="template2-resume resume-content" style={{ 
+      paddingTop: theme.margin?.top,
+      paddingRight: theme.margin?.right,
+      paddingBottom: theme.margin?.bottom,
+      paddingLeft: theme.margin?.left
+    }}>
       <div className="basic-info">
         <div className="profile">
           <div className="profile-info">

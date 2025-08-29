@@ -122,4 +122,11 @@ export type ThemeConfig = {
   skillIconColor: string;
   /** 更多信息奖项图标颜色 */
   awardIconColor: string;
+  /** 页面内边距配置 */
+  margin?: {
+    top?: string;
+    right?: string;
+    bottom?: string;
+    left?: string;
+  };
 };

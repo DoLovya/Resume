@@ -88,7 +88,12 @@ export const Template3: React.FC<Props> = props => {
   const aboutme = _.split(_.get(value, ['aboutme', 'aboutme_desc']), '\n');
 
   return (
-    <div className="template3-resume resume-content">
+    <div className="template3-resume resume-content" style={{ 
+      paddingTop: theme.margin?.top,
+      paddingRight: theme.margin?.right,
+      paddingBottom: theme.margin?.bottom,
+      paddingLeft: theme.margin?.left
+    }}>
       <div className="basic-info">
         {/* <CardWrapper title="个人信息" className="profile" color={theme.color}> */}
         <div className="profile">

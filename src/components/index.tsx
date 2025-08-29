@@ -203,22 +203,24 @@ export const Page: React.FC = () => {
     return false;
   };
 
-  function getConfigJson() {
+  function getConfigJson(formatted = false) {
     let fullConfig = config;
     if (lang !== 'zh-CN') {
       fullConfig = customAssign({}, originalConfig?.current, {
         locales: { [lang]: config },
       });
     }
-    return JSON.stringify({ ...fullConfig, theme });
+    return formatted 
+      ? JSON.stringify({ ...fullConfig, theme }, null, 2)
+      : JSON.stringify({ ...fullConfig, theme });
   }
 
   const copyConfig = () => {
-    copyToClipboard(getConfigJson());
+    copyToClipboard(getConfigJson(true));
   };
 
   const exportConfig = () => {
-    exportDataToLocal(getConfigJson(), `${user}'s resume info`);
+    exportDataToLocal(getConfigJson(true), `${user}'s resume info`);
   };
 
   const handleSharing = () => {

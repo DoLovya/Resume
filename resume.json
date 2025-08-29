@@ -143,6 +143,7 @@
     "color": "rgba(11, 55, 109, 1)",
     "tagColor": "rgba(62, 109, 10, 1)",
     "skillIconColor": "rgba(30, 146, 35, 1)",
-    "awardIconColor": "rgba(253, 189, 0, 1)"
+    "awardIconColor": "rgba(253, 189, 0, 1)",
+    "margin": { "top": "8mm", "right": "8mm", "bottom": "8mm", "left": "6mm" }
   }
 }
