@@ -35,7 +35,7 @@ export async function getConfig(
   });
 }
 
-export const saveToLocalStorage = _.throttle(
+export const saveToLocalStorage: (user: string, config: ResumeConfig) => void = _.throttle(
   (user: string, config: ResumeConfig) => {
     const intl = useIntl();
 
