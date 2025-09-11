@@ -76,12 +76,15 @@ export const Template1: React.FC<Props> = props => {
   const aboutme = _.split(_.get(value, ['aboutme', 'aboutme_desc']), '\n');
 
   return (
-    <div className="template1-resume resume-content" style={{ 
-      paddingTop: theme.margin?.top,
-      paddingRight: theme.margin?.right,
-      paddingBottom: theme.margin?.bottom,
-      paddingLeft: theme.margin?.left
-    }}>
+    <div
+      className="template1-resume resume-content"
+      style={{
+        paddingTop: theme.margin?.top,
+        paddingRight: theme.margin?.right,
+        paddingBottom: theme.margin?.bottom,
+        paddingLeft: theme.margin?.left,
+      }}
+    >
       <div className="basic-info">
         {/* 头像 */}
         {!value?.avatar?.hidden && (
@@ -260,7 +263,10 @@ export const Template1: React.FC<Props> = props => {
                     d ? (
                       <div className="skill-detail-item" key={`${idx}`}>
                         <CheckCircleFilled
-                          style={{ color: theme.skillIconColor, marginRight: '4px' }}
+                          style={{
+                            color: theme.skillIconColor,
+                            marginRight: '4px',
+                          }}
                         />
                         {d}
                       </div>
@@ -289,15 +295,14 @@ export const Template1: React.FC<Props> = props => {
                     </td>
                     {award.award_time ? (
                       <>
-                        <td className="rank-col">
-                          {award.award_rank}
-                        </td>
-                        <td className="time-col">
-                          {`(${award.award_time})`}
-                        </td>
+                        <td className="rank-col">{award.award_rank}</td>
+                        <td className="time-col">{`(${award.award_time})`}</td>
                       </>
                     ) : (
-                      <td className="rank-col-full" style={{ textAlign: 'right' }}>
+                      <td
+                        className="rank-col-full"
+                        style={{ textAlign: 'right' }}
+                      >
                         {award.award_rank}
                       </td>
                     )}
@@ -372,6 +377,14 @@ export const Template1: React.FC<Props> = props => {
                         </b>
                         <span>{project.project_desc}</span>
                       </div>
+                      {project.project_tech_stack && (
+                        <div className="section-detail">
+                          <b>
+                            <FormattedMessage id="技术栈" />：
+                          </b>
+                          <span>{project.project_tech_stack}</span>
+                        </div>
+                      )}
                       <div className="section-detail">
                         <b>
                           <FormattedMessage id="主要工作" />：

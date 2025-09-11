@@ -8,20 +8,26 @@
     "workList": "个人作品",
     "aboutme": "自我介绍"
   },
-  "avatar": { "hidden": false, "shape": "square" },
+  "avatar": {
+    "hidden": false,
+    "shape": "square"
+  },
   "profile": {
     "name": "张欢",
     "email": "doido.z@qq.com",
     "mobile": "13521462824",
     "github": "",
     "zhihu": "",
-    "workExpYear": "3年",
+    "workExpYear": "2年",
     "workPlace": "",
     "positionTitle": "软件开发工程师"
   },
   "educationList": [
     {
-      "edu_time": ["2019.09", "2023.06"],
+      "edu_time": [
+        "2019.09",
+        "2023.06"
+      ],
       "school": "鲁东大学",
       "major": "计算机科学与技术",
       "academic_degree": "本科",
@@ -70,16 +76,12 @@
     {
       "company_name": "阿丘科技",
       "department_name": "软件产品部",
-      "work_time": ["2022.12", "至今"],
-      "work_desc": "前期负责AIDI视觉算法平台的研发与日常维护，后续主导完成AIDG智能图像生成系统的核心设计与功能实现，后成功转型参与AQVision视觉应用开发平台的全流程开发，并自主开发多个实用工具软件提升团队开发与调试效率。",
+      "work_time": [
+        "2022.12",
+        "至今"
+      ],
+      "work_desc": "前期负责视觉算法平台的研发与日常维护，后续主导完成智能图像生成系统的核心设计与实现，后期转型参与视觉应用开发平台的架构设计与实现，并自主开发多个实用工具提升团队效率。",
       "dataIndex": 0
-    },
-    {
-      "company_name": "铁牛科技",
-      "department_name": "C/C++软件开发",
-      "work_time": ["2022.08", "2022.12"],
-      "work_desc": "主导网关功能定制与能源云平台接入项目，基于Libevent开发网络协议插件，实现跨平台高效通信；通过多线程优化数据处理，结合SQLite进行数据管理；设计JSON封装方案，基于MQTT实现主题发布与订阅，确保数据传输稳定高效。",
-      "dataIndex": 1
     }
   ],
   "skillList": [
@@ -99,6 +101,12 @@
       "skill_name": "",
       "skill_level": null,
       "dataIndex": 1,
+      "skill_desc": "熟悉Linux与Windows操作系统"
+    },
+    {
+      "skill_name": "",
+      "skill_level": null,
+      "dataIndex": 1,
       "skill_desc": "熟悉CMake、QMake等构建系统"
     },
     {
@@ -107,11 +115,9 @@
       "dataIndex": 1,
       "skill_desc": "熟练使用Visual Studio等开发工具"
     },
-    { "skill_name": "", "skill_desc": "精通Git，掌握分支策略与协作开发" },
     {
       "skill_name": "",
-      "skill_level": null,
-      "skill_desc": "具有一定的视觉算法软件开发经验"
+      "skill_desc": "精通Git，掌握分支策略与协作开发"
     },
     {
       "skill_name": "",
@@ -123,8 +129,9 @@
       "project_name": "视觉算法平台",
       "project_role": "开发者",
       "project_time": "2022.12 - 2023.04",
-      "project_desc": "高精度工业视觉模型开发平台，集标注、训练、推理于一体，解决缺陷定位、检测、分类及字符识别等复杂问题，具备强大检出能力。",
-      "project_content": "设计并实现第三方标注导入模块，支持LabelMe、LabelImg格式；使用SWIG封装核心库，实现与C#平台高效集成，提供稳定可靠的接口。",
+      "project_desc": "高精度工业视觉模型开发平台，集标注、训练、推理于一体，解决缺陷检测、分类及字符识别等复杂问题。",
+      "project_tech_stack": "C++, Qt, C#, SWIG, CMake",
+      "project_content": "开发矩形/圆形/自由画笔等标注工具，支持像素级精度调整与实时渲染。支持第三方标注导入功能。使用SWIG封装核心库，实现与C#平台高效集成。",
       "dataIndex": 0
     },
     {
@@ -132,15 +139,26 @@
       "project_role": "负责人",
       "project_time": "2023.05 - 2023.12",
       "project_desc": "基于生成式AI技术开发的智能样本生成软件，专门解决AI工业检测领域中缺陷图像数据不足的关键问题。",
-      "project_content": "负责设计并实现缺陷库系统、软件打开流程、属性系统和全球化多语言系统。优化缺陷生成软件的数据交互方式：由命令行进程间交互改为基于算法库接口的进程内交互。重构项目构建系统，将QMake迁移至CMake，提升构建效率与跨平台支持。",
+      "project_tech_stack": "C++, Qt, QMake, CMake, Python, Sqlite",
+      "project_content": "负责设计并实现缺陷库系统、软件打开流程、属性系统和全球化多语言系统。将项目构建系统从QMake迁移至CMake，显著提升编译效率并增强跨平台兼容性。",
       "dataIndex": 1
     },
     {
       "project_name": "视觉应用开发平台",
       "project_role": "负责人",
-      "project_time": "2023.01 - 2025.07",
-      "project_desc": "面向视觉工程师的开发平台，便捷接入AI算法，支持流程配置、硬件配置等功能，内置工具模块，支持低代码开发，满足工业质检需求，与AIDI协同提升检测效率。",
-      "project_content": "重构项目，引入Nuget管理引用依赖并部署Nuget服务。开发通信模块、内存读写、IO板卡、C#脚本、Halcon脚本、N点标定、UI设计器等核心模块。搭建高效的CICD流程，覆盖编译、代码检查、单元测试及软件打包发布。设计并优化组件库，提升系统稳定性与扩展性。",
+      "project_time": "2024.01 - 2025.07",
+      "project_desc": "面向视觉工程师的开发平台，便捷接入AI算法，支持传统图像算法、硬件配置等功能，满足工业质检需求。",
+      "project_tech_stack": "C#, WPF, Nuget, Prism, NSIS, Winform",
+      "project_content": "采用NuGet包管理重构依赖体系，并搭建CI/CD流程实现自动化构建部署。Prism框架的模块化设计，使用RegionManager管理动态UI布局，通过IoC容器进行核心组件依赖注入，结合EventAggregator实现松耦合通信。开发IO板卡、C#脚本、9点标定, 图像预处理等核心模块。",
+      "dataIndex": 1
+    },
+    {
+      "project_name": "智能门控助手",
+      "project_role": "个人项目",
+      "project_time": "",
+      "project_desc": "自主研发物联网门禁控制系统，通过Web界面远程控制舵机模拟物理按键，实现单元门的无接触开启。",
+      "project_tech_stack": "Python, Flask, Arduino, MQTT",
+      "project_content": "Flask搭建后端服务器, 基于MQTT与ESP8266通信, 控制舵机实现开门功能。",
       "dataIndex": 1
     }
   ],
@@ -153,6 +171,11 @@
     "tagColor": "rgba(62, 109, 10, 1)",
     "skillIconColor": "rgba(30, 146, 35, 1)",
     "awardIconColor": "rgba(253, 189, 0, 1)",
-    "margin": { "top": "11mm", "right": "8mm", "bottom": "11mm", "left": "6mm" }
+    "margin": {
+      "top": "11mm",
+      "right": "8mm",
+      "bottom": "11mm",
+      "left": "6mm"
+    }
   }
 }
