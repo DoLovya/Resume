@@ -19,15 +19,11 @@
     "github": "",
     "zhihu": "",
     "workExpYear": "3年",
-    "workPlace": "",
     "positionTitle": "软件开发工程师"
   },
   "educationList": [
     {
-      "edu_time": [
-        "2019.09",
-        "2023.06"
-      ],
+      "edu_time": ["2019.09", "2023.06"],
       "school": "鲁东大学",
       "major": "计算机科学与技术",
       "academic_degree": "本科",
@@ -69,17 +65,14 @@
       "award_info": "ACM-CCPC程序设计竞赛",
       "award_time": "",
       "dataIndex": 3,
-      "award_rank": "三等奖"
+      "award_rank": "铜牌"
     }
   ],
   "workExpList": [
     {
       "company_name": "阿丘科技",
       "department_name": "软件产品部",
-      "work_time": [
-        "2022.12",
-        "至今"
-      ],
+      "work_time": ["2022.12", "至今"],
       "work_desc": "前期负责视觉算法平台的研发与日常维护，后续主导完成智能图像生成系统的核心设计与实现，后期转型参与视觉应用开发平台的架构设计与实现，并自主开发多个实用工具提升团队效率。",
       "dataIndex": 0
     }
@@ -113,7 +106,7 @@
       "skill_name": "",
       "skill_level": null,
       "dataIndex": 1,
-      "skill_desc": "熟练使用Visual Studio等开发工具"
+      "skill_desc": "熟练使用vs、vscode等开发工具"
     },
     {
       "skill_name": "",
@@ -128,16 +121,16 @@
     {
       "project_name": "视觉算法平台",
       "project_role": "开发者",
-      "project_time": "2022.12 - 2023.04",
+      "project_time": "2022.12 - 2023.08",
       "project_desc": "高精度工业视觉模型开发平台，集标注、训练、推理于一体，解决缺陷检测、分类及字符识别等复杂问题。",
-      "project_tech_stack": "C++, Qt, C#, SWIG, CMake",
-      "project_content": "开发矩形/圆形/自由画笔等标注工具，支持像素级精度调整与实时渲染。支持第三方标注导入功能。使用SWIG封装核心库，实现与C#平台高效集成。",
+      "project_tech_stack": "C++, Qt，QGraphicsView，Boost.Geometry",
+      "project_content": "开发矩形/圆形/自由画笔等标注工具，支持像素级精度调整与实时渲染；开发流程树形控件，组合不同模块。",
       "dataIndex": 0
     },
     {
       "project_name": "智能图像生成系统",
       "project_role": "负责人",
-      "project_time": "2023.05 - 2023.12",
+      "project_time": "2023.09 - 2024.05",
       "project_desc": "基于生成式AI技术开发的智能样本生成软件，专门解决AI工业检测领域中缺陷图像数据不足的关键问题。",
       "project_tech_stack": "C++, Qt, QMake, CMake, Python, Sqlite",
       "project_content": "负责设计并实现缺陷库系统、软件打开流程、属性系统和全球化多语言系统。将项目构建系统从QMake迁移至CMake，显著提升编译效率并增强跨平台兼容性。",
@@ -146,19 +139,18 @@
     {
       "project_name": "视觉应用开发平台",
       "project_role": "负责人",
-      "project_time": "2024.01 - 2025.07",
+      "project_time": "2024.06 - 至今",
       "project_desc": "面向视觉工程师的开发平台，便捷接入AI算法，支持传统图像算法、硬件配置等功能，满足工业质检需求。",
       "project_tech_stack": "C#, WPF, Nuget, Prism, NSIS, Winform",
       "project_content": "采用NuGet包管理重构依赖体系，并搭建CI/CD流程实现自动化构建部署。Prism框架的模块化设计，使用RegionManager管理动态UI布局，通过IoC容器进行核心组件依赖注入，结合EventAggregator实现松耦合通信。开发IO板卡、C#脚本、9点标定, 图像预处理等核心模块。",
       "dataIndex": 1
     },
     {
-      "project_name": "智能门控助手",
+      "project_name": "DoImageViewer",
       "project_role": "个人项目",
-      "project_time": "",
-      "project_desc": "自主研发物联网门禁控制系统，通过Web界面远程控制舵机模拟物理按键，实现单元门的无接触开启。",
-      "project_tech_stack": "Python, Flask, Arduino, MQTT",
-      "project_content": "Flask搭建后端服务器, 基于MQTT与ESP8266通信, 控制舵机实现开门功能。",
+      "project_desc": "高性能图像查看器，支持多格式图像快速加载与实时处理，提供流畅用户体验。",
+      "project_tech_stack": "OpenCV, 多线程, 图像处理算法",
+      "project_content": "实现基于OpenCV的处理引擎，采用多线程异步加载优化渲染性能，支持缩放、旋转等功能。优化内存管理使大图像加载速度提升80%。",
       "dataIndex": 1
     }
   ],
