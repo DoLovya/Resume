@@ -19,7 +19,7 @@
     "github": "",
     "zhihu": "",
     "workExpYear": "3年",
-    "positionTitle": "软件开发工程师"
+    "positionTitle": "工业视觉客户端工程师"
   },
   "educationList": [
     {
@@ -32,39 +32,39 @@
   ],
   "awardList": [
     {
-      "award_info": "第十二届蓝桥杯软件类省赛",
-      "award_time": "",
-      "dataIndex": 0,
-      "award_rank": "一等奖"
-    },
-    {
       "award_info": "第十二届蓝桥杯软件类国赛",
       "award_time": "",
       "dataIndex": 0,
       "award_rank": "一等奖"
     },
     {
+      "award_info": "第十二届蓝桥杯软件类省赛",
+      "award_time": "",
+      "dataIndex": 1,
+      "award_rank": "一等奖"
+    },
+    {
       "award_info": "第十三届蓝桥杯软件类省赛",
       "award_time": "",
-      "dataIndex": 0,
+      "dataIndex": 2,
       "award_rank": "一等奖"
     },
     {
       "award_info": "算法程序设计与编程挑战赛",
       "award_time": "",
-      "dataIndex": 1,
+      "dataIndex": 3,
       "award_rank": "二等奖"
     },
     {
       "award_info": "团队程序设计天梯赛国赛",
       "award_time": "",
-      "dataIndex": 2,
+      "dataIndex": 4,
       "award_rank": "二等奖"
     },
     {
       "award_info": "ACM-CCPC程序设计竞赛",
       "award_time": "",
-      "dataIndex": 3,
+      "dataIndex": 5,
       "award_rank": "铜牌"
     }
   ],
@@ -73,48 +73,34 @@
       "company_name": "阿丘科技",
       "department_name": "软件产品部",
       "work_time": ["2022.12", "至今"],
-      "work_desc": "前期负责视觉算法平台的研发与日常维护，后续主导完成智能图像生成系统的核心设计与实现，后期转型参与视觉应用开发平台的架构设计与实现，并自主开发多个实用工具提升团队效率。",
+      "work_desc": "参与客户端与工业视觉相关产品研发，负责视觉算法平台迭代和日常维护，优化标注与模型配置流程。主导智能图像生成系统与视觉应用开发平台的核心架构与基础能力建设，并自研工具改进构建、发布与运维效率。",
       "dataIndex": 0
     }
   ],
   "skillList": [
     {
-      "skill_name": "",
-      "skill_desc": "熟悉C/C++、C#、Python等语言",
+      "skill_name": "编程语言",
+      "skill_desc": "C/C++、C# 使用较多，Python 用于工具与脚本开发",
       "skill_level": null,
       "dataIndex": 0
     },
     {
-      "skill_name": "",
+      "skill_name": "客户端框架",
       "skill_level": null,
       "dataIndex": 1,
-      "skill_desc": "熟悉QT、WPF、Winform等框架"
+      "skill_desc": "熟悉 Qt (含 QGraphicsView)、WPF、WinForm 等客户端开发框架"
     },
     {
-      "skill_name": "",
+      "skill_name": "平台与构建",
       "skill_level": null,
-      "dataIndex": 1,
-      "skill_desc": "熟悉Linux与Windows操作系统"
+      "dataIndex": 2,
+      "skill_desc": "熟悉 Linux 与 Windows 操作系统，了解 CMake/QMake、NuGet 等构建与包管理"
     },
     {
-      "skill_name": "",
+      "skill_name": "工程实践",
       "skill_level": null,
-      "dataIndex": 1,
-      "skill_desc": "熟悉CMake、QMake等构建系统"
-    },
-    {
-      "skill_name": "",
-      "skill_level": null,
-      "dataIndex": 1,
-      "skill_desc": "熟练使用vs、vscode等开发工具"
-    },
-    {
-      "skill_name": "",
-      "skill_desc": "精通Git，掌握分支策略与协作开发"
-    },
-    {
-      "skill_name": "",
-      "skill_desc": "擅长系统性能优化，提升资源与效率"
+      "dataIndex": 3,
+      "skill_desc": "熟练使用 Git 进行分支协作开发，有多线程与图像处理性能优化及工具链建设经验"
     }
   ],
   "projectList": [
@@ -123,8 +109,8 @@
       "project_role": "开发者",
       "project_time": "2022.12 - 2023.08",
       "project_desc": "高精度工业视觉模型开发平台，集标注、训练、推理于一体，解决缺陷检测、分类及字符识别等复杂问题。",
-      "project_tech_stack": "C++, Qt，QGraphicsView，Boost.Geometry",
-      "project_content": "开发矩形/圆形/自由画笔等标注工具，支持像素级精度调整与实时渲染；开发流程树形控件，组合不同模块。",
+      "project_tech_stack": "C++, Qt, QGraphicsView, Boost.Geometry",
+      "project_content": "负责基于 QGraphicsView 的标注子系统，支持多种标注工具并提供像素级实时标注体验；设计流程树形控件，方便视觉算法模块的可视化组合与参数配置，提升算法工程师建模与调试效率。",
       "dataIndex": 0
     },
     {
@@ -133,7 +119,7 @@
       "project_time": "2023.09 - 2024.05",
       "project_desc": "基于生成式AI技术开发的智能样本生成软件，专门解决AI工业检测领域中缺陷图像数据不足的关键问题。",
       "project_tech_stack": "C++, Qt, QMake, CMake, Python, Sqlite",
-      "project_content": "负责设计并实现缺陷库系统、软件打开流程、属性系统和全球化多语言系统。将项目构建系统从QMake迁移至CMake，显著提升编译效率并增强跨平台兼容性。",
+      "project_content": "围绕缺陷库、属性、多语言等核心能力完成系统基础架构与底层组件建设；主导将构建系统从 QMake 迁移至 CMake，完善构建发布链路，为后续 CI/CD 与多项目复用提供基础设施。",
       "dataIndex": 1
     },
     {
@@ -141,8 +127,8 @@
       "project_role": "负责人",
       "project_time": "2024.06 - 至今",
       "project_desc": "面向视觉工程师的开发平台，便捷接入AI算法，支持传统图像算法、硬件配置等功能，满足工业质检需求。",
-      "project_tech_stack": "C#, WPF, Nuget, Prism, NSIS, Winform",
-      "project_content": "采用NuGet包管理重构依赖体系，并搭建CI/CD流程实现自动化构建部署。Prism框架的模块化设计，使用RegionManager管理动态UI布局，通过IoC容器进行核心组件依赖注入，结合EventAggregator实现松耦合通信。开发IO板卡、C#脚本、9点标定, 图像预处理等核心模块。",
+      "project_tech_stack": "C#, WPF, NuGet, Prism, NSIS, WinForm",
+      "project_content": "基于 C#/WPF 设计 Prism + MVVM + IoC 模块化架构，通过 RegionManager 与 EventAggregator 实现动态布局和松耦合通信；搭建 NuGet 依赖管理与 CI/CD 流程，结合 NSIS 自动化打包发布；独立实现 IO 板卡、脚本、标定与图像预处理等核心模块，支撑工业质检场景。",
       "dataIndex": 1
     },
     {
@@ -150,13 +136,13 @@
       "project_role": "个人项目",
       "project_desc": "高性能图像查看器，支持多格式图像快速加载与实时处理，提供流畅用户体验。",
       "project_tech_stack": "OpenCV, 多线程, 图像处理算法",
-      "project_content": "实现基于OpenCV的处理引擎，采用多线程异步加载优化渲染性能，支持缩放、旋转等功能。优化内存管理使大图像加载速度提升80%。",
+      "project_content": "基于 OpenCV 自研图像处理引擎，采用多线程异步加载与分块渲染，支持缩放与旋转等操作；通过优化内存管理与缓存策略，使大图像加载速度提升约 80%。",
       "dataIndex": 1
     }
   ],
   "workList": [],
   "aboutme": {
-    "aboutme_desc": "热爱技术，乐于钻研，对客户端开发、机器视觉等⽅向有⼀定的了解与实践经验，具有独⽴跟进和推动项⽬进度的能⼒。"
+    "aboutme_desc": "专注客户端与工业视觉平台/基础设施建设，具备从零搭建到落地的能力。"
   },
   "theme": {
     "color": "rgba(11, 55, 109, 1)",
