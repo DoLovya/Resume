@@ -73,7 +73,7 @@
       "company_name": "阿丘科技",
       "department_name": "软件产品部",
       "work_time": ["2022.12", "至今"],
-      "work_desc": "参与客户端与工业视觉相关产品研发，负责视觉算法平台迭代和日常维护，优化标注与模型配置流程。主导智能图像生成系统与视觉应用开发平台的核心架构与基础能力建设，并自研工具改进构建、发布与运维效率。",
+      "work_desc": "负责视觉算法平台迭代与标注/配置优化，主导智能图像生成系统和视觉应用平台的架构及基础能力建设，提升算法研发与交付效率。",
       "dataIndex": 0
     }
   ],
@@ -94,13 +94,13 @@
       "skill_name": "平台与构建",
       "skill_level": null,
       "dataIndex": 2,
-      "skill_desc": "熟悉 Linux 与 Windows 操作系统，了解 CMake/QMake、NuGet 等构建与包管理"
+      "skill_desc": "熟悉 Linux 与 Windows 操作系统，了解 CMake/QMake、NuGet 构建与包管理"
     },
     {
       "skill_name": "工程实践",
       "skill_level": null,
       "dataIndex": 3,
-      "skill_desc": "熟练使用 Git 进行分支协作开发，有多线程与图像处理性能优化及工具链建设经验"
+      "skill_desc": "熟练使用 Git 进行分支协作开发，有多线程与图像处理性能优化经验"
     }
   ],
   "projectList": [
@@ -108,9 +108,9 @@
       "project_name": "视觉算法平台",
       "project_role": "开发者",
       "project_time": "2022.12 - 2023.08",
-      "project_desc": "高精度工业视觉模型开发平台，集标注、训练、推理于一体，解决缺陷检测、分类及字符识别等复杂问题。",
+      "project_desc": "工业视觉模型开发平台，集标注、训练、推理于一体，解决缺陷检测与分类等问题。",
       "project_tech_stack": "C++, Qt, QGraphicsView, Boost.Geometry",
-      "project_content": "负责基于 QGraphicsView 的标注子系统，支持多种标注工具并提供像素级实时标注体验；设计流程树形控件，方便视觉算法模块的可视化组合与参数配置，提升算法工程师建模与调试效率。",
+      "project_content": "负责基于 QGraphicsView 的标注子系统和流程树形控件，实现多种标注工具及算法流程的可视化配置。",
       "dataIndex": 0
     },
     {
@@ -119,7 +119,7 @@
       "project_time": "2023.09 - 2024.05",
       "project_desc": "基于生成式AI技术开发的智能样本生成软件，专门解决AI工业检测领域中缺陷图像数据不足的关键问题。",
       "project_tech_stack": "C++, Qt, QMake, CMake, Python, Sqlite",
-      "project_content": "围绕缺陷库、属性、多语言等核心能力完成系统基础架构与底层组件建设；主导将构建系统从 QMake 迁移至 CMake，完善构建发布链路，为后续 CI/CD 与多项目复用提供基础设施。",
+      "project_content": "负责缺陷库、属性、多语言等基础能力和整体架构建设，并完成 QMake 向 CMake 的构建迁移。",
       "dataIndex": 1
     },
     {
@@ -128,7 +128,7 @@
       "project_time": "2024.06 - 至今",
       "project_desc": "面向视觉工程师的开发平台，便捷接入AI算法，支持传统图像算法、硬件配置等功能，满足工业质检需求。",
       "project_tech_stack": "C#, WPF, NuGet, Prism, NSIS, WinForm",
-      "project_content": "基于 C#/WPF 设计 Prism + MVVM + IoC 模块化架构，通过 RegionManager 与 EventAggregator 实现动态布局和松耦合通信；搭建 NuGet 依赖管理与 CI/CD 流程，结合 NSIS 自动化打包发布；独立实现 IO 板卡、脚本、标定与图像预处理等核心模块，支撑工业质检场景。",
+      "project_content": "负责平台架构设计和 NuGet + CI/CD + NSIS 发布流程，开发 IO 板卡、脚本、标定和图像预处理等核心模块，支撑工业质检场景。",
       "dataIndex": 1
     },
     {
@@ -136,7 +136,7 @@
       "project_role": "个人项目",
       "project_desc": "高性能图像查看器，支持多格式图像快速加载与实时处理，提供流畅用户体验。",
       "project_tech_stack": "OpenCV, 多线程, 图像处理算法",
-      "project_content": "基于 OpenCV 自研图像处理引擎，采用多线程异步加载与分块渲染，支持缩放与旋转等操作；通过优化内存管理与缓存策略，使大图像加载速度提升约 80%。",
+      "project_content": "基于 OpenCV 与多线程优化大图加载与渲染，支持缩放/旋转，加载速度提升约 80%。",
       "dataIndex": 1
     }
   ],
