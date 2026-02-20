@@ -2,7 +2,7 @@
 // 内容
 .template1-resume {
   width: 794px;
-  height: 1123px;
+  min-height: 1123px;
   margin-bottom: 60px;
   display: grid;
   grid-template-columns: 300px 1fr;
@@ -177,9 +177,10 @@
       
       .name-col {
         min-width: 150px;
-        white-space: nowrap;
         text-align: left;
         vertical-align: middle;
+        white-space: normal;
+        word-break: break-all;
       }
       
       .rank-col {
