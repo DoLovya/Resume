@@ -129,7 +129,7 @@
       "project_desc": "面向视觉工程师的开发平台，便捷接入AI算法，支持传统图像算法、硬件配置等功能，满足工业质检需求。",
       "project_tech_stack": "C#, WPF, NuGet, Prism, NSIS, WinForm",
       "project_content": "负责平台架构设计和 NuGet + CI/CD + NSIS 发布流程，开发 IO 板卡、脚本、标定和图像预处理等核心模块，支撑工业质检场景。",
-      "dataIndex": 1
+      "dataIndex": 2
     },
     {
       "project_name": "DoImageViewer",
@@ -137,10 +137,25 @@
       "project_desc": "高性能图像查看器，支持多格式图像快速加载与实时处理，提供流畅用户体验。",
       "project_tech_stack": "OpenCV, 多线程, 图像处理算法",
       "project_content": "基于 OpenCV 与多线程优化大图加载与渲染，支持缩放/旋转，加载速度提升约 80%。",
-      "dataIndex": 1
+      "dataIndex": 3
+    },
+    {
+      "project_name": "EverythingToolbar 开源项目",
+      "project_role": "开源贡献者",
+      "project_desc": "Everything 文件搜索工具的任务栏集成开源项目。",
+      "project_tech_stack": "C#, .NET, Windows 桌面开发",
+      "project_content": "参与问题修复与功能改进，提交若干 PR 并参与讨论。",
+      "dataIndex": 4
     }
   ],
-  "workList": [],
+  "workList": [
+    {
+      "work_name": "EverythingToolbar 开源项目贡献",
+      "visit_link": "https://github.com/srwi/EverythingToolbar",
+      "work_desc": "",
+      "dataIndex": 0
+    }
+  ],
   "aboutme": {
     "aboutme_desc": "专注客户端与工业视觉平台/基础设施建设，具备从零搭建到落地的能力。"
   },
@@ -150,10 +165,10 @@
     "skillIconColor": "rgba(30, 146, 35, 1)",
     "awardIconColor": "rgba(253, 189, 0, 1)",
     "margin": {
-      "top": "11mm",
-      "right": "8mm",
-      "bottom": "11mm",
-      "left": "6mm"
+      "top": "4mm",
+      "right": "2mm",
+      "bottom": "4mm",
+      "left": "2mm"
     }
   }
 }

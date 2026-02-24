@@ -220,12 +220,21 @@ export const Template1: React.FC<Props> = props => {
                 <div key={idx.toString()}>
                   <div>
                     <CrownFilled
-                      style={{ color: '#ffc107', marginRight: '8px' }}
+                      style={{ color: '#ffc107', marginRight: '4px' }}
                     />
-                    <b className="info-name">{work.work_name}</b>
-                    <a className="sub-info" href={work.visit_link}>
-                      <FormattedMessage id="访问链接" />
-                    </a>
+                    <b className="info-name">
+                      {work.visit_link ? (
+                        <a
+                          href={work.visit_link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {work.work_name}
+                        </a>
+                      ) : (
+                        work.work_name
+                      )}
+                    </b>
                   </div>
                   {work.work_desc && <div>{work.work_desc}</div>}
                 </div>
