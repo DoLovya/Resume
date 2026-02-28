@@ -47,7 +47,7 @@ export const Template1: React.FC<Props> = props => {
 
   /** 个人基础信息 */
   const profile = _.get(value, 'profile');
-
+  
   const titleNameMap = _.get(
     value,
     'titleNameMap',
@@ -109,6 +109,12 @@ export const Template1: React.FC<Props> = props => {
               <div className="email">
                 <MailFilled style={{ color: theme.color, opacity: 0.85 }} />
                 {profile.email}
+              </div>
+            )}
+            {profile?.age && (
+              <div className="age">
+                 <CheckCircleFilled style={{ color: theme.color, opacity: 0.85 }} />
+                {profile.age}
               </div>
             )}
             {profile?.github && (

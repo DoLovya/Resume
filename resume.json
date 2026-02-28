@@ -16,7 +16,7 @@
     "name": "张欢",
     "email": "doido.z@qq.com",
     "mobile": "13521462824",
-    "github": "",
+    "github": "https://github.com/DoLovya",
     "zhihu": "",
     "workExpYear": "3年",
     "positionTitle": "工业视觉客户端工程师"
@@ -73,7 +73,7 @@
       "company_name": "阿丘科技",
       "department_name": "软件产品部",
       "work_time": ["2022.12", "至今"],
-      "work_desc": "负责视觉算法平台迭代与标注/配置优化，主导智能图像生成系统和视觉应用平台的架构及基础能力建设，提升算法研发与交付效率。",
+      "work_desc": "负责视觉算法平台迭代与配置优化，主导智能图像生成系统和视觉应用平台的架构及基础能力建设；开发核心脚本与工具链，解决构建与性能瓶颈，支撑工业质检高效落地。",
       "dataIndex": 0
     }
   ],
