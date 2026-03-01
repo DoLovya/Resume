@@ -29,7 +29,16 @@ const wrapper = ({ id, title, color }) => WrappedComponent => {
     <section>
       <div className="section-header">
         {id && (
-          <img src={`images/${id}.png`} alt="" width="26px" height="26px" />
+          <img
+            src={`images/${id}.png`}
+            alt=""
+            width="22px"
+            height="22px"
+            style={{
+              position: 'relative',
+              top: '2px',
+            }}
+          />
         )}
         <h1 style={{ background: color }}>{title}</h1>
       </div>
