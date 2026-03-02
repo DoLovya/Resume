@@ -267,31 +267,28 @@ export const Template1: React.FC<Props> = props => {
             {skillList.map((skill, idx) => {
               return skill ? (
                 <React.Fragment key={`${idx}`}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      marginTop: '8px',
-                    }}
-                    key={`${idx}`}
-                  >
-                    {/* <b className="info-name">{skill.skill_name}</b> */}
-                    {/* <Rate
-                      allowHalf
-                      disabled
-                      value={skill.skill_level / 20}
-                      className="skill-rate"
-                    /> */}
-                  </div>
-                  {_.split(skill.skill_desc, '\n').map((d, idx) =>
+                  {_.split(skill.skill_desc, '\n').map((d, i) =>
                     d ? (
-                      <div className="skill-detail-item" key={`${idx}`}>
+                      <div
+                        className="skill-detail-item"
+                        key={`${i}`}
+                        style={{ marginTop: i === 0 ? '8px' : '0px' }}
+                      >
                         <CheckCircleFilled
                           style={{
                             color: theme.skillIconColor,
                             marginRight: '4px',
                           }}
                         />
+                        {i === 0 && (
+                          <b
+                            className="info-name"
+                            style={{ marginRight: '4px' }}
+                          >
+                            {skill.skill_name}
+                            <span style={{ marginRight: '4px' }}>:</span>
+                          </b>
+                        )}
                         {d}
                       </div>
                     ) : null

@@ -8,10 +8,7 @@
     "workList": "个人作品",
     "aboutme": "自我介绍"
   },
-  "avatar": {
-    "hidden": false,
-    "shape": "square"
-  },
+  "avatar": { "hidden": false, "shape": "square" },
   "profile": {
     "name": "张欢",
     "email": "doido.z@qq.com",
@@ -42,18 +39,6 @@
       "award_time": "",
       "dataIndex": 1,
       "award_rank": "一等奖"
-    },
-    {
-      "award_info": "第十三届蓝桥杯软件类省赛",
-      "award_time": "",
-      "dataIndex": 2,
-      "award_rank": "一等奖"
-    },
-    {
-      "award_info": "算法程序设计与编程挑战赛",
-      "award_time": "",
-      "dataIndex": 3,
-      "award_rank": "二等奖"
     },
     {
       "award_info": "团队程序设计天梯赛国赛",
@@ -164,11 +149,6 @@
     "tagColor": "rgba(62, 109, 10, 1)",
     "skillIconColor": "rgba(30, 146, 35, 1)",
     "awardIconColor": "rgba(253, 189, 0, 1)",
-    "margin": {
-      "top": "4mm",
-      "right": "2mm",
-      "bottom": "4mm",
-      "left": "2mm"
-    }
+    "margin": { "top": "0", "right": "0", "bottom": "0", "left": "0" }
   }
 }
