@@ -278,14 +278,66 @@
   // 非通用
   .main-info .section-project,
   .main-info .section-work-exp {
+    .section-info .ant-tag,
+    .section-info .project-role-text {
+      flex-shrink: 0;
+    }
+
     .section-info .ant-tag {
-      line-height: 20px;
-      height: 20px;
-      border: none;
+      line-height: 18px;
+      height: 18px;
+      padding: 0 6px;
+      border-radius: 9px;
+      border-width: 1px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-inline-end: 0;
+    }
+
+    .section-info .project-role-text {
+      color: rgba(0, 0, 0, 0.5);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 18px;
     }
 
     .section-item:not(:first-of-type) {
       margin-top: 18px;
+    }
+
+    .section-item-primary,
+    .section-item-secondary {
+      .section-detail-compact {
+        margin-top: 2px;
+      }
+    }
+
+    .section-item-secondary {
+      .section-info {
+        margin-bottom: 6px;
+      }
+
+      .section-detail {
+        letter-spacing: 0.4px;
+      }
+    }
+
+    .section-item-supplemental {
+      margin-top: 14px;
+
+      .section-info {
+        margin-bottom: 4px;
+      }
+
+      .info-name {
+        font-size: 16px;
+      }
+
+      .section-detail-lite {
+        color: rgba(0, 0, 0, 0.72);
+        letter-spacing: 0;
+        line-height: 1.6;
+      }
     }
 
     .section-info .sub-info,

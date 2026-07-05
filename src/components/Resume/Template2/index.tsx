@@ -23,6 +23,49 @@ type Props = {
   theme: ThemeConfig;
 };
 
+const formatProfileLinkText = (url?: string, label?: string) => {
+  if (!url) return '';
+  try {
+    const parsed = new URL(url);
+    const segments = parsed.pathname.split('/').filter(Boolean);
+    if (segments[0]) return `${label} / ${segments[0]}`;
+    return label || url;
+  } catch {
+    return url;
+  }
+};
+
+const toAlphaColor = (color?: string, alpha = 1) => {
+  if (!color) return undefined;
+  const hexMatch = color.match(/^#([\da-f]{3}|[\da-f]{6})$/i);
+  if (hexMatch) {
+    const hex = hexMatch[1];
+    const normalized =
+      hex.length === 3
+        ? hex
+            .split('')
+            .map(char => char + char)
+            .join('')
+        : hex;
+    const r = parseInt(normalized.slice(0, 2), 16);
+    const g = parseInt(normalized.slice(2, 4), 16);
+    const b = parseInt(normalized.slice(4, 6), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
+  const rgbaMatch = color.match(
+    /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*[\d.]+)?\s*\)/i
+  );
+  if (!rgbaMatch) return color;
+  const [, r, g, b] = rgbaMatch;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
+const getProjectLevel = (index: number) => {
+  if (index < 2) return 'primary';
+  if (index === 2) return 'secondary';
+  return 'supplemental';
+};
+
 const Wrapper = ({ className, title, color, children }) => {
   return (
     <div className={cx('section', className)}>
@@ -68,6 +111,7 @@ export const Template2: React.FC<Props> = props => {
 
   /** 自我介绍 */
   const aboutme = _.split(_.get(value, ['aboutme', 'aboutme_desc']), '\n');
+  const githubText = formatProfileLinkText(profile?.github, 'GitHub');
 
   return (
     <div className="template2-resume resume-content" style={{ 
@@ -102,7 +146,7 @@ export const Template2: React.FC<Props> = props => {
                       window.open(profile.github);
                     }}
                   >
-                    {profile.github}
+                    {githubText}
                   </span>
                 </div>
               )}
@@ -307,7 +351,12 @@ export const Template2: React.FC<Props> = props => {
             <div className="section section-project">
               {_.map(projectList, (project, idx) =>
                 project ? (
-                  <div className="section-item" key={idx.toString()}>
+                  <div
+                    className={`section-item section-item-${getProjectLevel(
+                      idx
+                    )}`}
+                    key={idx.toString()}
+                  >
                     <div className="section-info">
                       <b className="info-name">
                         {project.project_name}
@@ -315,24 +364,60 @@ export const Template2: React.FC<Props> = props => {
                           {project.project_time}
                         </span>
                       </b>
-                      {project.project_role && (
-                        <Tag color={theme.tagColor}>{project.project_role}</Tag>
-                      )}
+                      {project.project_role &&
+                        (idx < 3 ? (
+                          <Tag
+                            className="project-role-tag"
+                            style={{
+                              color: toAlphaColor(theme.tagColor, 0.95),
+                              backgroundColor: toAlphaColor(
+                                theme.tagColor,
+                                0.12
+                              ),
+                              borderColor: toAlphaColor(theme.tagColor, 0.22),
+                            }}
+                          >
+                            {project.project_role}
+                          </Tag>
+                        ) : (
+                          <span className="project-role-text">
+                            {project.project_role}
+                          </span>
+                        ))}
                     </div>
-                    <div className="section-detail">
-                      <span>
-                        <FormattedMessage id="项目描述" />：
-                      </span>
-                      <span>{project.project_desc}</span>
-                    </div>
-                    <div className="section-detail">
-                      <span>
-                        <FormattedMessage id="主要工作" />：
-                      </span>
-                      <span className="project-content">
-                        {project.project_content}
-                      </span>
-                    </div>
+                    {idx < 2 ? (
+                      <>
+                        <div className="section-detail">
+                          <span>
+                            <FormattedMessage id="项目描述" />：
+                          </span>
+                          <span>{project.project_desc}</span>
+                        </div>
+                        <div className="section-detail">
+                          <span>
+                            <FormattedMessage id="主要工作" />：
+                          </span>
+                          <span className="project-content">
+                            {project.project_content}
+                          </span>
+                        </div>
+                      </>
+                    ) : idx === 2 ? (
+                      <div className="section-detail section-detail-compact">
+                        <span>
+                          <FormattedMessage id="主要工作" />：
+                        </span>
+                        <span className="project-content">
+                          {project.project_content}
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="section-detail section-detail-lite">
+                        <span className="project-content">
+                          {project.project_content}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 ) : null
               )}

@@ -23,17 +23,45 @@ body {
   margin: 0 !important;
 
   .page {
-    display: flex;
     padding: 12px;
+    display: flex;
     justify-content: center;
 
+    .page-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      width: 100%;
+      max-width: 1450px;
+    }
+
+    .page-main {
+      position: relative;
+      flex: 1 1 auto;
+      min-width: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .editor-side {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-self: flex-start;
+      position: sticky;
+      top: 12px;
+    }
+
     .btn-group {
-      margin-left: 12px;
-      display: block;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
 
       .ant-btn {
-        display: block;
-        margin-top: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         padding: 4px 8px;
         width: 106px;
         border-radius: 0 !important;
@@ -41,22 +69,29 @@ body {
     }
   }
 
+  @media (max-width: 1280px) {
+    .page {
+      .page-content {
+        flex-direction: column;
+      }
+
+      .page-main {
+        width: 100%;
+      }
+
+      .editor-side {
+        position: static;
+        width: 100%;
+      }
+    }
+  }
+
   @media (max-width: 768px) {
     .page {
-      flex-direction: column-reverse;
-
       .btn-group {
-        margin-left: 0px;
-
         .ant-btn {
-          margin-top: 0;
-          margin-bottom: 8px;
-          margin-right: 8px;
-          display: inline-block;
-
-          &:not(.btn-upload):last-of-type {
-            margin-right: 0px;
-          }
+          width: auto;
+          min-width: 106px;
         }
       }
     }
@@ -66,7 +101,7 @@ body {
   @media (max-width: 414px) {
     .page {
       padding: 0;
-      .btn-group,
+      .editor-side,
       .box-size-info {
         display: none;
       }
@@ -75,7 +110,7 @@ body {
 
   .box-size-info {
     position: absolute;
-    transform: translate(-100%, 50%);
+    transform: translate(8px, 50%);
     font-size: 12px;
     line-height: 15px;
     background: rgba(139, 195, 74, 0.39);
@@ -104,6 +139,7 @@ body {
   }
 
   .resume-alert,
+  .editor-side,
   .btn-group,
   .box-size-info {
     display: none !important;

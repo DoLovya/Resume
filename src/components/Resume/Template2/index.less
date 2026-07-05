@@ -2,7 +2,7 @@
 // 内容
 .template2-resume {
   width: 794px;
-  height: 942px;
+  min-height: 1123px;
   margin-bottom: 60px;
   box-sizing: border-box;
 
@@ -30,11 +30,11 @@
 
   // 布局位置
   .basic-info {
-    padding: 18px 24px 12px 24px;
+    padding: 18px 24px 10px 24px;
   }
 
   .main-info {
-    padding: 0 24px 24px;
+    padding: 2px 24px 24px;
     background: #fff;
   }
 
@@ -100,8 +100,8 @@
   .basic-info .avatar {
     margin: 0 auto;
     display: block;
-    width: 84px;
-    height: 84px;
+    width: 78px;
+    height: 78px;
   }
 
   .basic-info .name {
@@ -116,7 +116,7 @@
     align-items: center;
     flex-wrap: wrap-reverse;
 
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 
     > div:first-of-type {
       flex: 1;
@@ -139,7 +139,7 @@
       }
 
       .anticon {
-        margin-right: 8px;
+        margin-right: 6px;
       }
     }
   }
@@ -218,14 +218,56 @@
   // 非通用
   .main-info .section-project,
   .main-info .section-work-exp {
+    .section-info .ant-tag,
+    .section-info .project-role-text {
+      flex-shrink: 0;
+    }
+
     .section-info .ant-tag {
-      line-height: 20px;
-      height: 20px;
-      border: none;
+      line-height: 18px;
+      height: 18px;
+      padding: 0 6px;
+      border-radius: 9px;
+      border-width: 1px;
+      border-style: solid;
+      font-size: 12px;
+      font-weight: 500;
+      margin-inline-end: 0;
+    }
+
+    .section-info .project-role-text {
+      color: rgba(0, 0, 0, 0.5);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 18px;
     }
 
     .section-item:not(:first-of-type) {
       margin-top: 10px;
+    }
+
+    .section-item-secondary {
+      .section-info {
+        margin-bottom: 4px;
+      }
+    }
+
+    .section-item-supplemental {
+      margin-top: 8px;
+
+      .section-info {
+        margin-bottom: 2px;
+      }
+
+      .info-name {
+        font-size: 16px;
+      }
+
+      .section-detail-lite {
+        color: rgba(0, 0, 0, 0.72);
+        letter-spacing: 0;
+        line-height: 1.5;
+      }
     }
 
     .section-info .sub-info,

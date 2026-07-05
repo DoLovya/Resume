@@ -35,6 +35,37 @@ const formatProfileLinkText = (url?: string, label?: string) => {
   }
 };
 
+const toAlphaColor = (color?: string, alpha = 1) => {
+  if (!color) return undefined;
+  const hexMatch = color.match(/^#([\da-f]{3}|[\da-f]{6})$/i);
+  if (hexMatch) {
+    const hex = hexMatch[1];
+    const normalized =
+      hex.length === 3
+        ? hex
+            .split('')
+            .map(char => char + char)
+            .join('')
+        : hex;
+    const r = parseInt(normalized.slice(0, 2), 16);
+    const g = parseInt(normalized.slice(2, 4), 16);
+    const b = parseInt(normalized.slice(4, 6), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
+  const rgbaMatch = color.match(
+    /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*[\d.]+)?\s*\)/i
+  );
+  if (!rgbaMatch) return color;
+  const [, r, g, b] = rgbaMatch;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
+const getProjectLevel = (index: number) => {
+  if (index < 2) return 'primary';
+  if (index === 2) return 'secondary';
+  return 'supplemental';
+};
+
 const wrapper = ({ id, title, color }) => WrappedComponent => {
   return (
     <section>
@@ -354,7 +385,12 @@ export const Template1: React.FC<Props> = props => {
               <div className="section section-project">
                 {_.map(projectList, (project, idx) =>
                   project ? (
-                    <div className="section-item" key={idx.toString()}>
+                    <div
+                      className={`section-item section-item-${getProjectLevel(
+                        idx
+                      )}`}
+                      key={idx.toString()}
+                    >
                       <div className="section-info">
                         <b className="info-name">
                           {project.project_name}
@@ -362,34 +398,78 @@ export const Template1: React.FC<Props> = props => {
                             {project.project_time}
                           </span>
                         </b>
-                        {project.project_role && (
-                          <Tag color={theme.tagColor}>
-                            {project.project_role}
-                          </Tag>
-                        )}
+                        {project.project_role &&
+                          (idx < 3 ? (
+                            <Tag
+                              className="project-role-tag"
+                              style={{
+                                color: toAlphaColor(theme.tagColor, 0.95),
+                                backgroundColor: toAlphaColor(
+                                  theme.tagColor,
+                                  0.12
+                                ),
+                                borderColor: toAlphaColor(theme.tagColor, 0.22),
+                              }}
+                            >
+                              {project.project_role}
+                            </Tag>
+                          ) : (
+                            <span className="project-role-text">
+                              {project.project_role}
+                            </span>
+                          ))}
                       </div>
-                      <div className="section-detail">
-                        <b>
-                          <FormattedMessage id="项目描述" />：
-                        </b>
-                        <span>{project.project_desc}</span>
-                      </div>
-                      {project.project_tech_stack && (
-                        <div className="section-detail">
-                          <b>
-                            <FormattedMessage id="技术栈" />：
-                          </b>
-                          <span>{project.project_tech_stack}</span>
+                      {idx < 2 ? (
+                        <>
+                          <div className="section-detail">
+                            <b>
+                              <FormattedMessage id="项目描述" />：
+                            </b>
+                            <span>{project.project_desc}</span>
+                          </div>
+                          {project.project_tech_stack && (
+                            <div className="section-detail">
+                              <b>
+                                <FormattedMessage id="技术栈" />：
+                              </b>
+                              <span>{project.project_tech_stack}</span>
+                            </div>
+                          )}
+                          <div className="section-detail">
+                            <b>
+                              <FormattedMessage id="主要工作" />：
+                            </b>
+                            <span className="project-content">
+                              {project.project_content}
+                            </span>
+                          </div>
+                        </>
+                      ) : idx === 2 ? (
+                        <>
+                          {project.project_tech_stack && (
+                            <div className="section-detail section-detail-compact">
+                              <b>
+                                <FormattedMessage id="技术栈" />：
+                              </b>
+                              <span>{project.project_tech_stack}</span>
+                            </div>
+                          )}
+                          <div className="section-detail section-detail-compact">
+                            <b>
+                              <FormattedMessage id="主要工作" />：
+                            </b>
+                            <span className="project-content">
+                              {project.project_content}
+                            </span>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="section-detail section-detail-lite">
+                          <span className="project-content">
+                            {project.project_content}
+                          </span>
                         </div>
                       )}
-                      <div className="section-detail">
-                        <b>
-                          <FormattedMessage id="主要工作" />：
-                        </b>
-                        <span className="project-content">
-                          {project.project_content}
-                        </span>
-                      </div>
                     </div>
                   ) : null
                 )}

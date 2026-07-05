@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react';
-import { Button, Affix, Upload, Spin, message, Alert, Modal } from 'antd';
+import { Button, Upload, Spin, message, Modal } from 'antd';
 import type { RcFile } from 'antd/lib/upload';
 import _ from 'lodash-es';
 import qs from 'query-string';
@@ -32,6 +32,9 @@ export const Page: React.FC = () => {
 
   const originalConfig = useRef<ResumeConfig>();
   const query = getSearchObj();
+  const [currentTemplate, setCurrentTemplate] = useState(
+    (query.template as string) || 'template1'
+  );
   const [config, setConfig] = useState<ResumeConfig>();
   const [loading, updateLoading] = useState<boolean>(true);
   const [theme, setTheme] = useState<ThemeConfig>({
@@ -51,12 +54,12 @@ export const Page: React.FC = () => {
     const searchObj = qs.parse(currentSearch);
     if (!searchObj.template) {
       const search = qs.stringify({
-        template: config?.template || 'template1',
+        template: currentTemplate,
         ...qs.parse(currentSearch),
       });
-      window.location.href = `${pathname}?${search}${hash}`;
+      window.history.replaceState({}, '', `${pathname}?${search}${hash}`);
     }
-  }, [config]);
+  }, [currentTemplate]);
 
   const updateTemplate = (value: string) => {
     const {
@@ -69,8 +72,8 @@ export const Page: React.FC = () => {
       ...qs.parse(currentSearch),
       template: value,
     });
-
-    window.location.href = `${pathname}?${search}${hash}`;
+    setCurrentTemplate(value);
+    window.history.replaceState({}, '', `${pathname}?${search}${hash}`);
   };
 
   const changeConfig = (v: Partial<ResumeConfig>) => {
@@ -275,26 +278,30 @@ export const Page: React.FC = () => {
           />
         )} */}
         <div className="page">
-          {config && (
-            <Resume
-              value={config}
-              theme={theme}
-              template={query.template || 'template1'}
-            />
-          )}
-          {mode === 'edit' && (
-            <React.Fragment>
-              <Affix offsetTop={0}>
+          <div className="page-content">
+            <div className="page-main">
+              {config && (
+                <Resume
+                  value={config}
+                  theme={theme}
+                  template={currentTemplate}
+                />
+              )}
+              {mode === 'edit' && (
+                <div
+                  className="box-size-info"
+                  style={{
+                    top: `${box.height + 4}px`,
+                    left: `${box.width}px`,
+                  }}
+                >
+                  ({box.width}, {box.height})
+                </div>
+              )}
+            </div>
+            {mode === 'edit' && (
+              <div className="editor-side">
                 <Button.Group className="btn-group">
-                  <Drawer
-                    value={config}
-                    onValueChange={onConfigChange}
-                    theme={theme}
-                    onThemeChange={onThemeChange}
-                    // @ts-ignore
-                    template={query.template || 'template1'}
-                    onTemplateChange={updateTemplate}
-                  />
                   <Button type="primary" onClick={copyConfig}>
                     <FormattedMessage id="复制配置" />
                   </Button>
@@ -317,18 +324,17 @@ export const Page: React.FC = () => {
                     <FormattedMessage id="分享" />
                   </Button>
                 </Button.Group>
-              </Affix>
-              <div
-                className="box-size-info"
-                style={{
-                  top: `${box.height + 4}px`,
-                  left: `${box.width + box.left}px`,
-                }}
-              >
-                ({box.width}, {box.height})
+                <Drawer
+                  value={config}
+                  onValueChange={onConfigChange}
+                  theme={theme}
+                  onThemeChange={onThemeChange}
+                  template={currentTemplate}
+                  onTemplateChange={updateTemplate}
+                />
               </div>
-            </React.Fragment>
-          )}
+            )}
+          </div>
         </div>
       </Spin>
     </React.Fragment>

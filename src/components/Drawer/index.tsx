@@ -1,6 +1,5 @@
 import React, { useState, useRef, useMemo } from 'react';
 import {
-  Drawer as AntdDrawer,
   Button,
   Collapse,
   Modal,
@@ -8,7 +7,12 @@ import {
   Popover,
   Input,
 } from 'antd';
-import { DeleteFilled, InfoCircleFilled } from '@ant-design/icons';
+import {
+  DeleteFilled,
+  InfoCircleFilled,
+  LeftOutlined,
+  RightOutlined,
+} from '@ant-design/icons';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import _ from 'lodash-es';
@@ -84,7 +88,7 @@ const DragableRow = ({ index, moveRow, ...restProps }) => {
 export const Drawer: React.FC<Props> = props => {
   const intl = useIntl();
 
-  const [visible, setVisible] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [childrenDrawer, setChildrenDrawer] = useState(null);
   const [currentContent, updateCurrentContent] = useState(null);
 
@@ -245,73 +249,111 @@ export const Drawer: React.FC<Props> = props => {
 
   const moduleContent = (
     <DndProvider backend={HTML5Backend}>
-      <div className="module-list">
-        {modules.map((module, idx) => {
-          if (!_.endsWith(module.key, 'List')) {
-            return renderModuleListItem(module);
-          }
-          const values = _.get(props.value, module.key, []);
-          return renderModuleList(module, idx, values);
-        })}
-      </div>
-      <AntdDrawer
-        title={modules.find(m => m.key === childrenDrawer)?.name}
-        width={450}
-        onClose={() => setChildrenDrawer(null)}
-        visible={!!childrenDrawer}
-      >
-        <FormCreator
-          config={contentOfModule[childrenDrawer]}
-          value={currentContent}
-          isList={isList}
-          onChange={v => {
-            if (isList) {
-              const newValue = _.get(props.value, childrenDrawer, []);
-              if (currentContent) {
-                newValue[currentContent.dataIndex] = _.merge(
-                  {},
-                  currentContent,
-                  v
-                );
-              } else {
-                newValue.push(v);
-              }
-              props.onValueChange({
-                [childrenDrawer]: newValue,
-              });
-              // 关闭抽屉
-              setChildrenDrawer(null);
-              // 清空当前选中内容
-              updateCurrentContent(null);
-            } else {
-              updateContent(v);
+      <div className="module-layout">
+        <div className="module-list">
+          {modules.map((module, idx) => {
+            if (!_.endsWith(module.key, 'List')) {
+              return renderModuleListItem(module);
             }
-          }}
-        />
-      </AntdDrawer>
+            const values = _.get(props.value, module.key, []);
+            return renderModuleList(module, idx, values);
+          })}
+        </div>
+        <div className="module-editor">
+          {childrenDrawer ? (
+            <>
+              <div className="module-editor-header">
+                <span className="module-editor-title">
+                  {modules.find(m => m.key === childrenDrawer)?.name}
+                </span>
+                <Button
+                  type="text"
+                  size="small"
+                  onClick={() => {
+                    setChildrenDrawer(null);
+                    updateCurrentContent(null);
+                  }}
+                >
+                  关闭
+                </Button>
+              </div>
+              <FormCreator
+                config={contentOfModule[childrenDrawer]}
+                value={currentContent}
+                isList={isList}
+                onChange={v => {
+                  if (isList) {
+                    const newValue = _.get(props.value, childrenDrawer, []);
+                    if (currentContent) {
+                      newValue[currentContent.dataIndex] = _.merge(
+                        {},
+                        currentContent,
+                        v
+                      );
+                    } else {
+                      newValue.push(v);
+                    }
+                    props.onValueChange({
+                      [childrenDrawer]: newValue,
+                    });
+                    updateCurrentContent(null);
+                  } else {
+                    updateContent(v);
+                  }
+                }}
+              />
+            </>
+          ) : (
+            <div className="module-editor-placeholder">
+              请选择左侧模块进行配置
+            </div>
+          )}
+        </div>
+      </div>
     </DndProvider>
   );
 
   // #endregion
 
   return (
-    <>
-      <Button
-        type="primary"
-        onClick={() => setVisible(true)}
-        style={props.style}
-      >
-        <FormattedMessage id="进行配置" />
+    <div
+      className={`resume-config-sidebar${
+        collapsed ? ' is-collapsed' : ''
+      }`}
+      style={props.style}
+    >
+      <div className="resume-config-sidebar__rail">
         <Popover
           content={
             <FormattedMessage id="移动端模式下，只支持预览，不支持配置" />
           }
         >
-          <InfoCircleFilled style={{ marginLeft: '4px' }} />
+          <Button
+            type="primary"
+            className="resume-config-sidebar__trigger"
+            onClick={() => setCollapsed(v => !v)}
+          >
+            {collapsed ? (
+              <>
+                <RightOutlined />
+                <span className="resume-config-sidebar__trigger-text">
+                  <FormattedMessage id="进行配置" />
+                </span>
+              </>
+            ) : (
+              <>
+                <LeftOutlined />
+                <span className="resume-config-sidebar__trigger-text">
+                  <FormattedMessage id="收起" />
+                </span>
+                <InfoCircleFilled />
+              </>
+            )}
+          </Button>
         </Popover>
-      </Button>
-      <AntdDrawer
-        title={
+      </div>
+      <div className="resume-config-panel">
+        <div className="resume-config-panel__header">
           <Radio.Group value={type} onChange={e => setType(e.target.value)}>
             <Radio.Button value="template">
               <FormattedMessage id="选择模板" />
@@ -320,28 +362,30 @@ export const Drawer: React.FC<Props> = props => {
               <FormattedMessage id="配置简历" />
             </Radio.Button>
           </Radio.Group>
-        }
-        width={480}
-        closable={false}
-        onClose={() => setVisible(false)}
-        visible={visible}
-      >
-        {type === 'module' ? (
-          moduleContent
-        ) : (
-          // type === 'theme'
-          <>
-            <ConfigTheme
-              {...props.theme}
-              onChange={v => props.onThemeChange(v)}
-            />
-            <Templates
-              template={props.template}
-              onChange={v => props.onTemplateChange(v)}
-            />
-          </>
-        )}
-      </AntdDrawer>
-    </>
+          <Button
+            type="text"
+            size="small"
+            icon={<LeftOutlined />}
+            onClick={() => setCollapsed(true)}
+          />
+        </div>
+        <div className="resume-config-panel__body">
+          {type === 'module' ? (
+            moduleContent
+          ) : (
+            <>
+              <ConfigTheme
+                {...props.theme}
+                onChange={v => props.onThemeChange(v)}
+              />
+              <Templates
+                template={props.template}
+                onChange={v => props.onTemplateChange(v)}
+              />
+            </>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
