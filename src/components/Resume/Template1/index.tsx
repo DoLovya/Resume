@@ -8,7 +8,6 @@ import {
   TrophyFilled,
   CheckCircleFilled,
   ScheduleFilled,
-  CrownFilled,
   EnvironmentFilled,
   HeartFilled,
 } from '@ant-design/icons';
@@ -22,6 +21,18 @@ import './index.less';
 type Props = {
   value: ResumeConfig;
   theme: ThemeConfig;
+};
+
+const formatProfileLinkText = (url?: string, label?: string) => {
+  if (!url) return '';
+  try {
+    const parsed = new URL(url);
+    const segments = parsed.pathname.split('/').filter(Boolean);
+    if (segments[0]) return `${label} / ${segments[0]}`;
+    return label || url;
+  } catch {
+    return url;
+  }
 };
 
 const wrapper = ({ id, title, color }) => WrappedComponent => {
@@ -78,11 +89,9 @@ export const Template1: React.FC<Props> = props => {
   /** 更多信息 */
   const awardList = _.get(value, 'awardList');
 
-  /** 作品 */
-  const workList = _.get(value, 'workList');
-
   /** 自我介绍 */
   const aboutme = _.split(_.get(value, ['aboutme', 'aboutme_desc']), '\n');
+  const githubText = formatProfileLinkText(profile?.github, 'GitHub');
 
   return (
     <div
@@ -135,7 +144,7 @@ export const Template1: React.FC<Props> = props => {
                     window.open(profile.github);
                   }}
                 >
-                  {profile.github}
+                  {githubText}
                 </span>
               </div>
             )}
@@ -219,39 +228,6 @@ export const Template1: React.FC<Props> = props => {
                       </span>
                     )}
                   </div>
-                </div>
-              );
-            })}
-          </section>
-        ) : null}
-        {workList?.length ? (
-          <section className="section section-work">
-            <div className="section-title" style={{ color: theme.color }}>
-              {/* <FormattedMessage id="个人作品" /> */}
-              {titleNameMap?.workList}
-            </div>
-            {workList.map((work, idx) => {
-              return (
-                <div key={idx.toString()}>
-                  <div>
-                    <CrownFilled
-                      style={{ color: '#ffc107', marginRight: '4px' }}
-                    />
-                    <b className="info-name">
-                      {work.visit_link ? (
-                        <a
-                          href={work.visit_link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {work.work_name}
-                        </a>
-                      ) : (
-                        work.work_name
-                      )}
-                    </b>
-                  </div>
-                  {work.work_desc && <div>{work.work_desc}</div>}
                 </div>
               );
             })}

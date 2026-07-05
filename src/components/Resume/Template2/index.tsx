@@ -9,7 +9,6 @@ import {
   ScheduleFilled,
   EnvironmentFilled,
   HeartFilled,
-  CrownFilled,
 } from '@ant-design/icons';
 import cx from 'classnames';
 import _ from 'lodash-es';
@@ -66,9 +65,6 @@ export const Template2: React.FC<Props> = props => {
 
   /** 更多信息 */
   const awardList = _.get(value, 'awardList');
-
-  /** 作品 */
-  const workList = _.get(value, 'workList');
 
   /** 自我介绍 */
   const aboutme = _.split(_.get(value, ['aboutme', 'aboutme_desc']), '\n');
@@ -198,31 +194,6 @@ export const Template2: React.FC<Props> = props => {
                       {end ? ` ~ ${end}` : ' 至今'}
                     </span>
                   </div>
-                </div>
-              );
-            })}
-          </Wrapper>
-        ) : null}
-        {workList?.length ? (
-          <Wrapper
-            // title=<FormattedMessage id="个人作品" />
-            title={titleNameMap.workList}
-            className="section section-work"
-            color={theme.color}
-          >
-            {workList.map((work, idx) => {
-              return (
-                <div key={idx.toString()}>
-                  <div>
-                    <CrownFilled
-                      style={{ color: '#ffc107', marginRight: '8px' }}
-                    />
-                    <b className="info-name">{work.work_name}</b>
-                    <a className="sub-info" href={work.visit_link}>
-                      <FormattedMessage id="访问链接" />
-                    </a>
-                  </div>
-                  {work.work_desc && <div>{work.work_desc}</div>}
                 </div>
               );
             })}

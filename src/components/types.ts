@@ -37,8 +37,6 @@ export type ResumeConfig = {
     skillList?: string;
     /** 默认: 更多信息 */
     awardList?: string;
-    /** 默认: 作品 */
-    workList?: string;
     /** 自我介绍 */
     aboutme?: string;
   };
@@ -92,13 +90,6 @@ export type ResumeConfig = {
     award_info: string;
     award_rank?: string;
     award_time?: string;
-  }>;
-
-  /** 作品 */
-  workList?: Array<{
-    work_name?: string;
-    work_desc?: string;
-    visit_link?: string;
   }>;
 
   /** 自我介绍 */

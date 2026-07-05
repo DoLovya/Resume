@@ -7,7 +7,6 @@ import {
   TagsTwoTone,
   RocketTwoTone,
   ProjectTwoTone,
-  ToolTwoTone,
   ScheduleTwoTone,
 } from '@ant-design/icons';
 import _ from 'lodash-es';
@@ -50,11 +49,6 @@ export const MODULES = ({
       name: intl.formatMessage({ id: '更多信息' }),
       icon: <TrophyTwoTone />,
       key: 'awardList',
-    },
-    {
-      name: intl.formatMessage({ id: '个人作品' }),
-      icon: <ToolTwoTone />,
-      key: 'workList',
     },
     {
       name: intl.formatMessage({ id: '专业技能' }),
@@ -262,23 +256,6 @@ export const CONTENT_OF_MODULE = ({ intl }) => {
         type: 'textArea',
         attributeId: 'work_desc',
         displayName: intl.formatMessage({ id: '职位或描述' }),
-      },
-    ],
-    workList: [
-      {
-        type: 'input',
-        attributeId: 'work_name',
-        displayName: intl.formatMessage({ id: '作品名称' }),
-      },
-      {
-        type: 'input',
-        attributeId: 'work_desc',
-        displayName: intl.formatMessage({ id: '作品描述' }),
-      },
-      {
-        type: 'input',
-        attributeId: 'visit_link',
-        displayName: intl.formatMessage({ id: '作品链接' }),
       },
     ],
     skillList: [
