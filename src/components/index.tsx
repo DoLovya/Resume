@@ -35,6 +35,9 @@ export const Page: React.FC = () => {
   const [currentTemplate, setCurrentTemplate] = useState(
     (query.template as string) || 'template1'
   );
+  const [printTitle, setPrintTitle] = useState(
+    typeof document !== 'undefined' ? document.title || 'Resume Generator' : 'Resume Generator'
+  );
   const [config, setConfig] = useState<ResumeConfig>();
   const [loading, updateLoading] = useState<boolean>(true);
   const [theme, setTheme] = useState<ThemeConfig>({
@@ -43,6 +46,10 @@ export const Page: React.FC = () => {
     skillIconColor: '#ffc107',
     awardIconColor: '#ffc107',
   });
+
+  useEffect(() => {
+    document.title = printTitle;
+  }, [printTitle]);
 
   useEffect(() => {
     const {
@@ -179,6 +186,9 @@ export const Page: React.FC = () => {
     };
   }, []);
 
+  const normalizeImportedFileName = (fileName: string) =>
+    fileName.replace(/\.json$/i, '').trim() || 'Resume Generator';
+
   const importConfig = (file: RcFile) => {
     if (window.FileReader) {
       const reader = new FileReader();
@@ -189,6 +199,7 @@ export const Page: React.FC = () => {
             const newConfig: ConfigProps = JSON.parse(reader.result);
             onThemeChange(newConfig.theme);
             onConfigChange(_.omit(newConfig, 'theme'));
+            setPrintTitle(normalizeImportedFileName(file.name));
           }
           message.success(intl.formatMessage({ id: '上传配置已应用' }));
         } catch (err) {
