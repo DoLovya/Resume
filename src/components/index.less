@@ -16,8 +16,24 @@
   src: url('https://dasstatic.alicdn.com/alisis3/fonts/Roboto-Light.ttf');
 }
 
+:root {
+  --resume-font-family: 'roboto-regular', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', sans-serif;
+  --resume-font-family-medium: 'roboto-medium', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --resume-font-family-light: 'roboto-light', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', sans-serif;
+}
+
 body {
-  font-family: roboto-regular;
+  font-family: var(
+    --resume-font-family,
+    'roboto-regular',
+    'PingFang SC',
+    'Hiragino Sans GB',
+    'Microsoft YaHei',
+    sans-serif
+  );
   font-size: 14px; // normal-font-size
 
   margin: 0 !important;
@@ -126,16 +142,41 @@ body {
 @media print {
   @page {
     size: A4;
+    margin: 0;
   }
 
   body {
-    font-family: 'roboto-regular', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    font-family: var(
+      --resume-font-family,
+      'roboto-regular',
+      'PingFang SC',
+      'Hiragino Sans GB',
+      'Microsoft YaHei',
+      sans-serif
+    ) !important;
+  }
+
+  html,
+  body,
+  #___gatsby,
+  #gatsby-focus-wrapper,
+  body .page,
+  body .page-content,
+  body .page-main {
+    background: #fff !important;
+    overflow: visible !important;
   }
 
   body,
   body .page {
     padding: 0;
     margin: 0;
+  }
+
+  body .page-content,
+  body .page-main {
+    display: block !important;
+    max-width: none !important;
   }
 
   .resume-alert,

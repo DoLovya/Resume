@@ -42,6 +42,7 @@ export const Page: React.FC = () => {
   const [loading, updateLoading] = useState<boolean>(true);
   const [theme, setTheme] = useState<ThemeConfig>({
     color: '#2f5785',
+    fontFamily: 'default',
     tagColor: '#8bc34a',
     skillIconColor: '#ffc107',
     awardIconColor: '#ffc107',

@@ -111,6 +111,8 @@ export type ResumeConfig = {
 export type ThemeConfig = {
   /** 主题色 */
   color: string;
+  /** 字体主题 */
+  fontFamily?: string;
   /** Tag 标签色 */
   tagColor: string;
   /** 个人技能图标颜色 */

@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 import React, { useEffect } from 'react';
-import { Input } from 'antd';
+import { Input, Select } from 'antd';
 import { ColorPicker } from '../../FormCreator/ColorPicker';
 import type { ThemeConfig } from '../../types';
 
@@ -14,6 +14,35 @@ const FormItemStyle = {
   minWidth: '100px',
 };
 
+const FONT_FAMILY_OPTIONS = [
+  {
+    value: 'default',
+    labelId: '默认字体',
+    cssFamily:
+      "'roboto-regular', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif",
+  },
+  {
+    value: 'pingfang',
+    labelId: '苹方',
+    cssFamily:
+      "'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif",
+  },
+  {
+    value: 'yahei',
+    labelId: '微软雅黑',
+    cssFamily: "'Microsoft YaHei', 'PingFang SC', sans-serif",
+  },
+  {
+    value: 'songti',
+    labelId: '宋体',
+    cssFamily: "'Songti SC', 'STSong', 'SimSun', serif",
+  },
+];
+
+const getFontFamilyCssValue = (fontFamily = 'default') =>
+  FONT_FAMILY_OPTIONS.find(option => option.value === fontFamily)?.cssFamily ||
+  FONT_FAMILY_OPTIONS[0].cssFamily;
+
 export const ConfigTheme: React.FC<Props> = props => {
   useEffect(() => {
     let $style = document.getElementById('dynamic');
@@ -22,16 +51,26 @@ export const ConfigTheme: React.FC<Props> = props => {
       $style.setAttribute('id', 'dynamic');
       document.head.insertBefore($style, null);
     }
+    const currentFontFamily = getFontFamilyCssValue(props.fontFamily);
     const styles = `
       :root {
         --primary-color: ${props.color};
+        --resume-font-family: ${currentFontFamily};
+        --resume-font-family-medium: ${currentFontFamily};
+        --resume-font-family-light: ${currentFontFamily};
         --tag-color: ${props.tagColor};
         --skill-icon-color: ${props.skillIconColor};
         --award-icon-color: ${props.awardIconColor};
       }
     `;
     $style.innerHTML = styles;
-  }, [props.color, props.tagColor, props.skillIconColor, props.awardIconColor]);
+  }, [
+    props.color,
+    props.fontFamily,
+    props.tagColor,
+    props.skillIconColor,
+    props.awardIconColor,
+  ]);
 
   return (
     <div
@@ -41,6 +80,24 @@ export const ConfigTheme: React.FC<Props> = props => {
         gap: '12px',
       }}
     >
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
+        <div style={FormItemStyle}>
+          <span style={{ marginRight: '4px' }}>
+            <FormattedMessage id="字体" />
+          </span>
+          <Select
+            value={props.fontFamily || 'default'}
+            onChange={value => props.onChange({ fontFamily: value })}
+            style={{ width: '180px' }}
+          >
+            {FONT_FAMILY_OPTIONS.map(option => (
+              <Select.Option key={option.value} value={option.value}>
+                <FormattedMessage id={option.labelId} />
+              </Select.Option>
+            ))}
+          </Select>
+        </div>
+      </div>
       <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
         <div style={FormItemStyle}>
           <span style={{ marginRight: '4px' }}>

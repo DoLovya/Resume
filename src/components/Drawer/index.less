@@ -110,7 +110,14 @@
   }
 
   .module-editor-title {
-    font-family: roboto-medium;
+    font-family: var(
+      --resume-font-family-medium,
+      'roboto-medium',
+      'PingFang SC',
+      'Hiragino Sans GB',
+      'Microsoft YaHei',
+      sans-serif
+    );
     font-size: 14px;
     color: rgba(0, 0, 0, 0.88);
   }
@@ -152,7 +159,14 @@
         margin-right: 8px;
       }
       .item-name {
-        font-family: roboto-medium;
+        font-family: var(
+          --resume-font-family-medium,
+          'roboto-medium',
+          'PingFang SC',
+          'Hiragino Sans GB',
+          'Microsoft YaHei',
+          sans-serif
+        );
       }
     }
   }
