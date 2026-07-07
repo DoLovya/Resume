@@ -21,17 +21,6 @@ const TEMPLATES = [
     description: '简易模板',
   },
   {
-    url: 'https://gw.alipayobjects.com/zos/antfincdn/Kn2jUKcBme/moban2.svg',
-    id: 'template3',
-    description: '简易模板(适用于多页)',
-    disabled: false,
-  },
-  {
-    url: '/images/template4-preview.svg',
-    id: 'template4',
-    description: '展示风格(专业双栏)',
-  },
-  {
     url: '/images/template5-preview.svg',
     id: 'template5',
     description: '紫韵专业模板',

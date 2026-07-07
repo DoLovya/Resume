@@ -124,37 +124,6 @@ export const Template5: React.FC<Props> = props => {
 
       <div className="template5-body">
         <aside className="template5-sidebar">
-          <SidebarBlock title="求职信息">
-            <div className="template5-intent-list">
-              {profile?.workExpYear && (
-                <div className="template5-intent-item">
-                  <span className="template5-intent-label">工作时长</span>
-                  <span className="template5-intent-value">{profile.workExpYear}</span>
-                </div>
-              )}
-              {profile?.positionTitle && (
-                <div className="template5-intent-item">
-                  <span className="template5-intent-label">求职意向</span>
-                  <span className="template5-intent-value">
-                    {profile.positionTitle}
-                  </span>
-                </div>
-              )}
-              {profile?.workPlace && (
-                <div className="template5-intent-item">
-                  <span className="template5-intent-label">期望城市</span>
-                  <span className="template5-intent-value">{profile.workPlace}</span>
-                </div>
-              )}
-              {profile?.mobile && (
-                <div className="template5-intent-item">
-                  <span className="template5-intent-label">联系方式</span>
-                  <span className="template5-intent-value">{profile.mobile}</span>
-                </div>
-              )}
-            </div>
-          </SidebarBlock>
-
           {!!_.trim(_.join(aboutme, '')) && (
             <SidebarBlock title="自我介绍">
               {aboutme.map((item, idx) => (

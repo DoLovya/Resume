@@ -57,40 +57,34 @@
       "company_name": "阿丘科技",
       "department_name": "软件产品部",
       "work_time": ["2022.12", "至今"],
-      "work_desc": "负责工业视觉平台客户端迭代与基础能力建设，主导智能图像生成系统和视觉应用开发平台架构设计；推动 QMake 向 CMake 迁移，将构建时间缩短 75%。",
+      "work_desc": "负责工业视觉平台客户端迭代、公共基础能力建设与版本交付，主导智能图像生成系统、视觉应用开发平台等产品的架构设计与核心模块推进，协同算法、测试等角色完成需求落地。",
       "dataIndex": 0
     }
   ],
   "skillList": [
     {
-      "skill_name": "图像与客户端",
+      "skill_name": "编程语言",
       "skill_level": null,
       "dataIndex": 0,
-      "skill_desc": "精通 Qt、WPF、WinForm，具备图像显示、标注交互与大图渲染优化经验"
+      "skill_desc": "精通 C++、C#，熟练使用 Python 开发自动化脚本与工具链"
     },
     {
-      "skill_name": "编程语言",
-      "skill_desc": "精通 C/C++、C#，熟练使用 Python 开发工具链与自动化脚本",
+      "skill_name": "框架/库",
+      "skill_desc": "熟练掌握 Qt、WPF、WinForm、OpenCV，具备图像显示、标注交互与大图渲染优化经验",
       "skill_level": null,
       "dataIndex": 1
     },
     {
-      "skill_name": "平台构建与交付",
+      "skill_name": "工具/平台",
       "skill_level": null,
       "dataIndex": 2,
-      "skill_desc": "熟悉 Linux/Windows、QMake/CMake 迁移、NuGet 包管理及 CI/CD 发布流程"
+      "skill_desc": "熟悉 Linux/Windows 开发环境，具备 CMake/QMake、NuGet、CI/CD、Git 协作与版本交付经验；有 1.5 年 Trae 国际版等 AI IDE 协同开发实践，能通过 Prompt 提升代码生成、重构、调试与文档整理效率"
     },
     {
-      "skill_name": "工程实践",
+      "skill_name": "算法/视觉",
       "skill_level": null,
       "dataIndex": 3,
-      "skill_desc": "熟练使用 Git 协作，具备多线程、内存排查、图像预处理与性能优化经验"
-    },
-    {
-      "skill_name": "计算机视觉",
-      "skill_level": null,
-      "dataIndex": 4,
-      "skill_desc": "掌握 OpenCV 与 PyTorch 基础使用，了解图像处理与深度学习流程"
+      "skill_desc": "熟悉 PyTorch 推理部署，了解 GAN/Diffusion 模型原理及其在工业缺陷生成场景中的应用"
     }
   ],
   "projectList": [
@@ -98,32 +92,23 @@
       "project_name": "视觉应用开发平台",
       "project_role": "负责人",
       "project_time": "2024.06 - 至今",
-      "project_desc": "面向视觉工程师的开发平台，支持 AI 算法接入、传统图像算法与硬件配置。",
-      "project_tech_stack": "C#, WPF, NuGet, Prism, NSIS, WinForm",
-      "project_content": "负责平台架构设计及 NuGet + CI/CD + NSIS 发布链路建设，开发 IO 接入、脚本、标定与图像预处理等核心模块。",
+      "project_desc": "面向视觉工程师的开发平台，需统一承载 AI 算法接入、传统图像算法配置与硬件协同，解决视觉应用开发流程分散、复用性不足的问题。",
+      "project_tech_stack": "C#, WPF, Prism, MVVM, WinForm, SDK，OpenCV",
+      "project_content": "针对旧版发布流程繁琐、人工操作易出错的问题，设计并落地基于 NuGet + CI/CD + NSIS 的自动化发布链路，完成 IO 接入、脚本、标定与图像预处理等核心模块建设，打通开发、打包与发布闭环，提升版本交付效率与平台复用能力。",
       "dataIndex": 0
     },
     {
       "project_name": "智能图像生成系统",
       "project_role": "负责人",
-      "project_time": "2023.09 - 2024.05",
-      "project_desc": "基于生成式 AI 的智能样本生成软件，用于解决工业检测缺陷数据不足问题。",
-      "project_tech_stack": "C++, Qt, QMake, CMake, Python, SQLite",
-      "project_content": "负责缺陷库、多语言等平台化能力与整体架构设计，主导 QMake 向 CMake 迁移，将构建时间缩短 75%。",
+      "project_time": "2023.06 - 2024.05",
+      "project_desc": "针对工业检测场景缺陷样本稀缺、采集成本高的问题，设计并落地基于生成式 AI 的智能样本生成软件，支撑缺陷数据构建与业务应用。",
+      "project_tech_stack": "C++, Qt, CMake, Python, AIGC, Diffusion/GAN, SQLite",
+      "project_content": "负责整体架构设计及缺陷库、多语言等平台化能力建设，支撑生成式样本构建流程落地；针对多模块依赖复杂、编译耗时长的痛点，主导构建体系从 QMake 向 CMake 迁移，重新梳理依赖关系与编译链路，将构建时间缩短 75%。",
       "dataIndex": 1
-    },
-    {
-      "project_name": "视觉算法平台",
-      "project_role": "核心开发",
-      "project_time": "2022.12 - 2023.08",
-      "project_desc": "工业视觉模型开发平台，集标注、训练、推理于一体。",
-      "project_tech_stack": "C++, Qt, QGraphicsView, Boost.Geometry",
-      "project_content": "负责 QGraphicsView 标注子系统和流程树控件开发，实现标注工具与算法流程可视化配置。",
-      "dataIndex": 2
     }
   ],
   "aboutme": {
-    "aboutme_desc": "3年工业视觉软件研发经验，专注 Qt/WPF 客户端与视觉平台基础能力建设，具备从 0 到 1 推动平台搭建与工业质检场景落地的经验。"
+    "aboutme_desc": "3年工业视觉软件开发经验，专注于 Qt/WPF 客户端架构，主导过 2 个从 0 到 1 的视觉平台落地。\n擅长解决大规模图像渲染卡顿、内存管理与构建效率等复杂工程问题，曾通过架构重构将构建效率提升 75%。\n具备全链路交付能力，熟悉从算法部署到客户端集成的完整流程，并有 1.5 年 Trae 国际版 AI IDE 协同开发实践，能有效协同算法与测试团队推动项目落地。"
   },
   "theme": {
     "color": "rgba(11, 55, 109, 1)",
