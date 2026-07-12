@@ -134,20 +134,25 @@ export const Template2: React.FC<Props> = props => {
               {profile?.email && (
                 <div className="email">
                   <MailFilled style={{ color: theme.color, opacity: 0.85 }} />
-                  {profile.email}
+                  <a
+                    href={`mailto:${profile.email}`}
+                    style={{ color: 'inherit', textDecoration: 'none' }}
+                  >
+                    {profile.email}
+                  </a>
                 </div>
               )}
               {profile?.github && (
                 <div className="github">
                   <GithubFilled style={{ color: theme.color, opacity: 0.85 }} />
-                  <span
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => {
-                      window.open(profile.github);
-                    }}
+                  <a
+                    href={profile.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ color: 'inherit', textDecoration: 'none' }}
                   >
                     {githubText}
-                  </span>
+                  </a>
                 </div>
               )}
               {profile?.zhihu && (
@@ -155,14 +160,14 @@ export const Template2: React.FC<Props> = props => {
                   <ZhihuCircleFilled
                     style={{ color: theme.color, opacity: 0.85 }}
                   />
-                  <span
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => {
-                      window.open(profile.zhihu);
-                    }}
+                  <a
+                    href={profile.zhihu}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ color: 'inherit', textDecoration: 'none' }}
                   >
                     {profile.zhihu}
-                  </span>
+                  </a>
                 </div>
               )}
               {profile?.workExpYear && (

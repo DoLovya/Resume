@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap');
+
 /*
 * 全局变量
 */
@@ -71,16 +73,43 @@ body {
 
     .btn-group {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      flex-wrap: nowrap;
+      gap: 12px;
+      width: 100%;
+
+      .ant-upload {
+        display: block;
+        flex: 1 1 0;
+      }
 
       .ant-btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 4px 8px;
-        width: 106px;
-        border-radius: 0 !important;
+        width: 100%;
+        min-width: 132px;
+        height: 44px;
+        padding: 0 16px;
+        border-radius: 8px !important;
+        font-family: var(
+          --resume-font-family-medium,
+          'roboto-medium',
+          'PingFang SC',
+          'Hiragino Sans GB',
+          'Microsoft YaHei',
+          sans-serif
+        );
+        font-size: 14px;
+      }
+
+      > .ant-btn {
+        flex: 1 1 0;
+      }
+
+      .btn-upload {
+        background: #fff;
+        border-color: rgba(47, 87, 133, 0.22);
+        color: #2f5785;
       }
     }
   }
@@ -105,9 +134,10 @@ body {
   @media (max-width: 768px) {
     .page {
       .btn-group {
+        gap: 8px;
+
         .ant-btn {
-          width: auto;
-          min-width: 106px;
+          min-width: 0;
         }
       }
     }

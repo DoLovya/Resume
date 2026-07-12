@@ -10,9 +10,7 @@ import { useModeSwitcher } from '@/hooks/useModeSwitcher';
 import { getDefaultTitleNameMap } from '@/data/constant';
 import { getSearchObj } from '@/helpers/location';
 import { customAssign } from '@/helpers/customAssign';
-import { copyToClipboard } from '@/helpers/copy-to-board';
 import { getDevice } from '@/helpers/detect-device';
-import { exportDataToLocal } from '@/helpers/export-to-local';
 import { getConfig, saveToLocalStorage } from '@/helpers/store-to-local';
 import { fetchResume } from '@/helpers/fetch-resume';
 import { Drawer } from './Drawer';
@@ -218,37 +216,6 @@ export const Page: React.FC = () => {
     return false;
   };
 
-  function getConfigJson(formatted = false) {
-    let fullConfig = config;
-    if (lang !== 'zh-CN') {
-      fullConfig = customAssign({}, originalConfig?.current, {
-        locales: { [lang]: config },
-      });
-    }
-    return formatted 
-      ? JSON.stringify({ ...fullConfig, theme }, null, 2)
-      : JSON.stringify({ ...fullConfig, theme });
-  }
-
-  const copyConfig = () => {
-    copyToClipboard(getConfigJson(true));
-  };
-
-  const exportConfig = () => {
-    exportDataToLocal(getConfigJson(true), `${user}'s resume info`);
-  };
-
-  const handleSharing = () => {
-    const fullConfig = getConfigJson();
-    codec.compress(fullConfig).then(data => {
-      const url = new URL(window.location.href);
-      url.searchParams.set('data', data);
-
-      console.log('sharing url', url.toString());
-      copyToClipboard(url.toString());
-    });
-  };
-
   return (
     <React.Fragment>
       <Spin spinning={loading}>
@@ -313,29 +280,20 @@ export const Page: React.FC = () => {
             </div>
             {mode === 'edit' && (
               <div className="editor-side">
-                <Button.Group className="btn-group">
-                  <Button type="primary" onClick={copyConfig}>
-                    <FormattedMessage id="复制配置" />
-                  </Button>
-                  <Button type="primary" onClick={exportConfig}>
-                    <FormattedMessage id="保存简历" />
-                  </Button>
+                <div className="btn-group">
                   <Upload
                     accept=".json"
                     showUploadList={false}
                     beforeUpload={importConfig}
                   >
-                    <Button className="btn-upload">
+                    <Button className="btn-upload" type="default">
                       <FormattedMessage id="导入配置" />
                     </Button>
                   </Upload>
                   <Button type="primary" onClick={() => window.print()}>
                     <FormattedMessage id="下载 PDF" />
                   </Button>
-                  <Button type="primary" onClick={handleSharing}>
-                    <FormattedMessage id="分享" />
-                  </Button>
-                </Button.Group>
+                </div>
                 <Drawer
                   value={config}
                   onValueChange={onConfigChange}

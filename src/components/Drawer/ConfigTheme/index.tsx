@@ -22,6 +22,12 @@ const FONT_FAMILY_OPTIONS = [
       "'roboto-regular', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif",
   },
   {
+    value: 'system-ui',
+    labelId: '系统无衬线',
+    cssFamily:
+      "system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif",
+  },
+  {
     value: 'pingfang',
     labelId: '苹方',
     cssFamily:
@@ -36,6 +42,29 @@ const FONT_FAMILY_OPTIONS = [
     value: 'songti',
     labelId: '宋体',
     cssFamily: "'Songti SC', 'STSong', 'SimSun', serif",
+  },
+  {
+    value: 'inter',
+    labelId: 'Inter',
+    cssFamily:
+      "'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif",
+  },
+  {
+    value: 'noto-sans-sc',
+    labelId: '思源黑体',
+    cssFamily:
+      "'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif",
+  },
+  {
+    value: 'noto-serif-sc',
+    labelId: '思源宋体',
+    cssFamily: "'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif",
+  },
+  {
+    value: 'serif-cn',
+    labelId: '中文衬线',
+    cssFamily:
+      "'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', 'Times New Roman', serif",
   },
 ];
 
@@ -88,7 +117,7 @@ export const ConfigTheme: React.FC<Props> = props => {
           <Select
             value={props.fontFamily || 'default'}
             onChange={value => props.onChange({ fontFamily: value })}
-            style={{ width: '180px' }}
+            style={{ width: '220px' }}
           >
             {FONT_FAMILY_OPTIONS.map(option => (
               <Select.Option key={option.value} value={option.value}>

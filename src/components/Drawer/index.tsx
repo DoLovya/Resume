@@ -7,12 +7,7 @@ import {
   Popover,
   Input,
 } from 'antd';
-import {
-  DeleteFilled,
-  InfoCircleFilled,
-  LeftOutlined,
-  RightOutlined,
-} from '@ant-design/icons';
+import { DeleteFilled } from '@ant-design/icons';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import _ from 'lodash-es';
@@ -88,7 +83,7 @@ const DragableRow = ({ index, moveRow, ...restProps }) => {
 export const Drawer: React.FC<Props> = props => {
   const intl = useIntl();
 
-  const [collapsed, setCollapsed] = useState(true);
+  const [panelVisible, setPanelVisible] = useState(false);
   const [childrenDrawer, setChildrenDrawer] = useState(null);
   const [currentContent, updateCurrentContent] = useState(null);
 
@@ -135,6 +130,15 @@ export const Drawer: React.FC<Props> = props => {
 
   const DEFAULT_TITLE_MAP = getDefaultTitleNameMap({ intl });
   const isList = _.endsWith(childrenDrawer, 'List');
+
+  const togglePanel = (nextType: string) => {
+    if (panelVisible && type === nextType) {
+      setPanelVisible(false);
+      return;
+    }
+    setType(nextType);
+    setPanelVisible(true);
+  };
 
   // #region 1 render: moduleContent
 
@@ -316,76 +320,71 @@ export const Drawer: React.FC<Props> = props => {
   // #endregion
 
   return (
-    <div
-      className={`resume-config-sidebar${
-        collapsed ? ' is-collapsed' : ''
-      }`}
-      style={props.style}
-    >
-      <div className="resume-config-sidebar__rail">
-        <Popover
-          content={
-            <FormattedMessage id="移动端模式下，只支持预览，不支持配置" />
-          }
-        >
-          <Button
-            type="primary"
-            className="resume-config-sidebar__trigger"
-            onClick={() => setCollapsed(v => !v)}
+    <div className="resume-config-entry" style={props.style}>
+      <Popover
+        trigger="click"
+        placement="bottomLeft"
+        overlayClassName="resume-config-popover"
+        visible={panelVisible}
+        onVisibleChange={visible => setPanelVisible(visible)}
+        content={
+          <div className="resume-config-panel">
+            <div className="resume-config-panel__header">
+              <Radio.Group value={type} onChange={e => setType(e.target.value)}>
+                <Radio.Button value="template">
+                  <FormattedMessage id="选择模板" />
+                </Radio.Button>
+                <Radio.Button value="module">
+                  <FormattedMessage id="配置简历" />
+                </Radio.Button>
+              </Radio.Group>
+            </div>
+            <div className="resume-config-panel__body">
+              {type === 'module' ? (
+                moduleContent
+              ) : (
+                <>
+                  <ConfigTheme
+                    {...props.theme}
+                    onChange={v => props.onThemeChange(v)}
+                  />
+                  <Templates
+                    template={props.template}
+                    onChange={v => props.onTemplateChange(v)}
+                  />
+                </>
+              )}
+            </div>
+          </div>
+        }
+      >
+        <div className="resume-config-trigger-group">
+          <button
+            type="button"
+            className={`resume-config-trigger${
+              type === 'template' ? ' is-active' : ''
+            }`}
+            onClick={e => {
+              e.stopPropagation();
+              togglePanel('template');
+            }}
           >
-            {collapsed ? (
-              <>
-                <RightOutlined />
-                <span className="resume-config-sidebar__trigger-text">
-                  <FormattedMessage id="进行配置" />
-                </span>
-              </>
-            ) : (
-              <>
-                <LeftOutlined />
-                <span className="resume-config-sidebar__trigger-text">
-                  <FormattedMessage id="收起" />
-                </span>
-                <InfoCircleFilled />
-              </>
-            )}
-          </Button>
-        </Popover>
-      </div>
-      <div className="resume-config-panel">
-        <div className="resume-config-panel__header">
-          <Radio.Group value={type} onChange={e => setType(e.target.value)}>
-            <Radio.Button value="template">
-              <FormattedMessage id="选择模板" />
-            </Radio.Button>
-            <Radio.Button value="module">
-              <FormattedMessage id="配置简历" />
-            </Radio.Button>
-          </Radio.Group>
-          <Button
-            type="text"
-            size="small"
-            icon={<LeftOutlined />}
-            onClick={() => setCollapsed(true)}
-          />
+            {intl.formatMessage({ id: '选择模板' })}
+          </button>
+          <button
+            type="button"
+            className={`resume-config-trigger${
+              type === 'module' ? ' is-active' : ''
+            }`}
+            onClick={e => {
+              e.stopPropagation();
+              togglePanel('module');
+            }}
+          >
+            {intl.formatMessage({ id: '配置简历' })}
+          </button>
         </div>
-        <div className="resume-config-panel__body">
-          {type === 'module' ? (
-            moduleContent
-          ) : (
-            <>
-              <ConfigTheme
-                {...props.theme}
-                onChange={v => props.onThemeChange(v)}
-              />
-              <Templates
-                template={props.template}
-                onChange={v => props.onTemplateChange(v)}
-              />
-            </>
-          )}
-        </div>
-      </div>
+      </Popover>
     </div>
   );
 };

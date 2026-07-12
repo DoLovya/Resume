@@ -111,8 +111,27 @@ export const Template5: React.FC<Props> = props => {
           <div className="template5-hero-contact">
             {profile?.age && <span>{profile.age}</span>}
             {profile?.mobile && <span>电话：{profile.mobile}</span>}
-            {profile?.email && <span>邮箱：{profile.email}</span>}
-            {profile?.github && <span>{githubText}</span>}
+            {profile?.email && (
+              <span>
+                邮箱：
+                <a
+                  href={`mailto:${profile.email}`}
+                  style={{ color: 'inherit', textDecoration: 'none' }}
+                >
+                  {profile.email}
+                </a>
+              </span>
+            )}
+            {profile?.github && (
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'inherit', textDecoration: 'none' }}
+              >
+                {githubText}
+              </a>
+            )}
           </div>
         </div>
         <div className="template5-hero-watermark">
