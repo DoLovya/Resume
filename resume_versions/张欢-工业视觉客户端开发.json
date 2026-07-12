@@ -28,7 +28,7 @@
   ],
   "awardList": [
     {
-      "award_info": "第十二届蓝桥杯软件类国赛",
+      "award_info": "蓝桥杯软件类国赛",
       "award_time": "",
       "dataIndex": 0,
       "award_rank": "一等奖"
@@ -40,13 +40,13 @@
       "award_rank": "二等奖"
     },
     {
-      "award_info": "ACM-CCPC程序设计竞赛",
+      "award_info": "ACM-CCPC 程序设计竞赛",
       "award_time": "",
       "dataIndex": 2,
       "award_rank": "铜牌"
     },
     {
-      "award_info": "全国大学生算法设计与编程挑战赛",
+      "award_info": "算法设计与编程挑战赛",
       "award_time": "",
       "dataIndex": 3,
       "award_rank": "银奖"
@@ -66,11 +66,11 @@
       "skill_name": "编程语言",
       "skill_level": null,
       "dataIndex": 0,
-      "skill_desc": "精通 C++、C#，熟练使用 Python 开发自动化脚本与工具链"
+      "skill_desc": "精通 C++、C#，熟练使用 Python 进行自动化脚本、数据处理与工具链开发"
     },
     {
       "skill_name": "框架/库",
-      "skill_desc": "熟练掌握 Qt、WPF、WinForm、OpenCV，具备图像显示、标注交互与大图渲染优化经验",
+      "skill_desc": "熟练掌握 Qt、WPF、OpenCV、WinForm，具备图像显示、标注交互、大图渲染与桌面客户端开发经验",
       "skill_level": null,
       "dataIndex": 1
     },
@@ -78,13 +78,13 @@
       "skill_name": "工具/平台",
       "skill_level": null,
       "dataIndex": 2,
-      "skill_desc": "熟悉 Linux/Windows 开发环境，具备 CMake/QMake、NuGet、CI/CD、Git 协作与版本交付经验；具备 1.5 年 AI IDE 协同开发实践，熟悉使用 Trae 等工具提升代码生成、重构、调试与文档整理效率"
+      "skill_desc": "熟悉 Linux/Windows、CMake/QMake、CI/CD、Git，具备构建迁移、版本交付与工程协作经验；具备 1.5 年 AI IDE 协同开发实践，熟悉使用 Trae 等工具提升代码生成、重构、调试与文档整理效率"
     },
     {
       "skill_name": "算法/视觉",
       "skill_level": null,
       "dataIndex": 3,
-      "skill_desc": "熟悉 PyTorch 推理部署，了解 GAN/Diffusion 模型原理及其在工业缺陷生成场景中的应用"
+      "skill_desc": "熟悉 PyTorch 推理部署与 AIGC 模型集成，了解 GAN/Diffusion 模型原理，具备工业缺陷生成场景中的数据构建与客户端落地经验"
     }
   ],
   "projectList": [
@@ -92,18 +92,18 @@
       "project_name": "视觉应用开发平台",
       "project_role": "负责人",
       "project_time": "2024.06 - 至今",
-      "project_desc": "面向视觉工程师的开发平台，需统一承载 AI 算法接入、传统图像算法配置与硬件协同，解决视觉应用开发流程分散、复用性不足的问题。",
+      "project_desc": "面向工业质检场景的视觉应用开发平台，统一承载 AI 算法接入、传统图像算法配置与硬件协同，解决视觉应用开发流程分散、模块复用不足与交付链路割裂的问题。",
       "project_tech_stack": "C#, WPF, Prism, MVVM, WinForm, SDK，OpenCV",
-      "project_content": "针对旧版发布流程繁琐、人工操作易出错的问题，设计并落地基于 NuGet + CI/CD + NSIS 的自动化发布链路，完成 IO 接入、脚本、标定与图像预处理等核心模块建设，打通开发、打包与发布闭环，提升版本交付效率与平台复用能力。",
+      "project_content": "负责平台架构设计与核心能力建设，围绕算法接入、硬件协同与应用复用，完成 IO 接入、脚本、标定与图像预处理等核心模块开发；针对旧版发布流程繁琐、人工操作易出错的问题，设计并落地基于 NuGet + CI/CD + NSIS 的自动化发布链路，打通开发、打包与发布闭环，提升版本交付效率与平台复用能力。",
       "dataIndex": 0
     },
     {
       "project_name": "智能图像生成系统",
       "project_role": "负责人",
       "project_time": "2023.06 - 2024.05",
-      "project_desc": "针对工业检测场景缺陷样本稀缺、采集成本高的问题，设计并落地基于生成式 AI 的智能样本生成软件，支撑缺陷数据构建与业务应用。",
+      "project_desc": "针对工业检测场景缺陷样本稀缺、采集成本高的问题，设计并落地面向工业缺陷生成的数据构建软件，统一承载缺陷库、属性配置、多语言与生成式样本构建流程，支撑业务应用落地。",
       "project_tech_stack": "C++, Qt, CMake, Python, AIGC, Diffusion/GAN, SQLite",
-      "project_content": "负责整体架构设计及缺陷库、多语言等平台化能力建设，支撑生成式样本构建流程落地；针对多模块依赖复杂、编译耗时长的痛点，主导构建体系从 QMake 向 CMake 迁移，重新梳理依赖关系与编译链路，将构建时间缩短 75%。",
+      "project_content": "负责整体架构设计及缺陷库、属性配置、多语言等平台化能力建设，打通工业缺陷数据构建与生成式样本生产流程；针对多模块依赖复杂、编译耗时长的工程痛点，主导构建体系从 QMake 向 CMake 迁移，重新梳理依赖关系与编译链路，将构建时间缩短 75%，提升系统可维护性与版本迭代效率。",
       "dataIndex": 1
     }
   ],

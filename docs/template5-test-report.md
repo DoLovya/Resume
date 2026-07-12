@@ -53,7 +53,7 @@
 执行命令：
 
 ```bash
-mkdir -p ./.tmp-gatsby-config && XDG_CONFIG_HOME='$(pwd)/.tmp-gatsby-config' npm run build
+npm run build
 ```
 
 结果：
@@ -63,8 +63,7 @@ mkdir -p ./.tmp-gatsby-config && XDG_CONFIG_HOME='$(pwd)/.tmp-gatsby-config' npm
 
 说明：
 
-- 默认 `gatsby build` 首次失败，原因是本机全局配置目录权限限制，不是模板代码问题
-- 切换到项目内临时 `XDG_CONFIG_HOME` 后构建通过
+- 当前项目脚本已内置项目级 `XDG_CONFIG_HOME`，直接执行 `npm run build` 即可构建通过
 
 ### 3.2 响应式与导出适配检查
 

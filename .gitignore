@@ -23,9 +23,15 @@ node_modules
 # gatsby files
 .cache/
 public
+.tmp-gatsby-config/
+$(pwd)/
 
 # package lock file
 package-lock.json
 
 # obsidian files
 .obsidian
+
+# local tooling
+.venv/
+.codegraph/
