@@ -106,16 +106,19 @@ export const Template5: React.FC<Props> = props => {
           />
         )}
         <div className="template5-hero-main">
-          <div className="template5-hero-greeting">Hello,I'm</div>
+          <div className="template5-hero-greeting">Hello, I&apos;m</div>
           <div className="template5-hero-name">{profile?.name}</div>
           <div className="template5-hero-contact">
-            {profile?.age && <span>{profile.age}</span>}
-            {profile?.mobile && <span>电话：{profile.mobile}</span>}
+            {profile?.age && <span className="template5-hero-contact-item">{profile.age}</span>}
+            {profile?.mobile && (
+              <span className="template5-hero-contact-item">电话：{profile.mobile}</span>
+            )}
             {profile?.email && (
-              <span>
+              <span className="template5-hero-contact-item">
                 邮箱：
                 <a
                   href={`mailto:${profile.email}`}
+                  className="template5-hero-contact-link"
                   style={{ color: 'inherit', textDecoration: 'none' }}
                 >
                   {profile.email}
@@ -127,6 +130,7 @@ export const Template5: React.FC<Props> = props => {
                 href={profile.github}
                 target="_blank"
                 rel="noreferrer"
+                className="template5-hero-contact-item template5-hero-contact-link"
                 style={{ color: 'inherit', textDecoration: 'none' }}
               >
                 {githubText}
@@ -202,10 +206,10 @@ export const Template5: React.FC<Props> = props => {
               {skillList.map((skill, idx) =>
                 skill ? (
                   <div className="template5-skill-item" key={idx.toString()}>
-                    <span>
-                      <b>{skill.skill_name}</b>
-                      {skill.skill_desc ? `：${skill.skill_desc}` : ''}
-                    </span>
+                    <span className="template5-skill-name">{skill.skill_name}</span>
+                    {skill.skill_desc ? (
+                      <span className="template5-skill-desc">{skill.skill_desc}</span>
+                    ) : null}
                   </div>
                 ) : null
               )}
