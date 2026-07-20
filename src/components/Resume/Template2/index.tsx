@@ -95,14 +95,14 @@ export const Template2: React.FC<Props> = props => {
           <div className="template2-contact">
             {profile?.mobile && (
               <span className="template2-contact-item">
-                <MobileFilled style={{ color: 'rgba(255,255,255,0.85)' }} />
+                <MobileFilled style={{ color: 'rgba(0,0,0,0.65)' }} />
                 <span className="template2-contact-label">电话：</span>
                 {profile.mobile}
               </span>
             )}
             {profile?.email && (
               <span className="template2-contact-item">
-                <MailFilled style={{ color: 'rgba(255,255,255,0.85)' }} />
+                <MailFilled style={{ color: 'rgba(0,0,0,0.65)' }} />
                 <span className="template2-contact-label">邮箱：</span>
                 <a
                   href={`mailto:${profile.email}`}
@@ -114,7 +114,7 @@ export const Template2: React.FC<Props> = props => {
             )}
             {profile?.github && (
               <span className="template2-contact-item">
-                <GithubFilled style={{ color: 'rgba(255,255,255,0.85)' }} />
+                <GithubFilled style={{ color: 'rgba(0,0,0,0.65)' }} />
                 <a
                   href={profile.github}
                   target="_blank"
@@ -127,14 +127,14 @@ export const Template2: React.FC<Props> = props => {
             )}
             {profile?.workExpYear && (
               <span className="template2-contact-item">
-                <ScheduleFilled style={{ color: 'rgba(255,255,255,0.85)' }} />
+                <ScheduleFilled style={{ color: 'rgba(0,0,0,0.65)' }} />
                 <span className="template2-contact-label">工作经验：</span>
                 {profile.workExpYear}
               </span>
             )}
             {profile?.positionTitle && (
               <span className="template2-contact-item">
-                <HeartFilled style={{ color: 'rgba(255,255,255,0.85)' }} />
+                <HeartFilled style={{ color: 'rgba(0,0,0,0.65)' }} />
                 <span className="template2-contact-label">职位：</span>
                 {profile.positionTitle}
               </span>

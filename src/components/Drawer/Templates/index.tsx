@@ -11,24 +11,24 @@ type Props = {
 
 const TEMPLATES = [
   {
-    url: 'https://gw.alipayobjects.com/zos/antfincdn/GLDkiGBSPl/moban1.svg',
+    url: '/images/template1-preview.svg',
     id: 'template1',
-    description: '默认模板(适用于单页)',
-  },
-  {
-    url: 'https://gw.alipayobjects.com/zos/antfincdn/RGxVcJ2O3q/moban2.svg',
-    id: 'template2',
-    description: '简易模板',
-  },
-  {
-    url: '/images/template5-preview.svg',
-    id: 'template5',
     description: '紫韵专业模板',
   },
   {
-    url: '/images/template6-preview.svg',
-    id: 'template6',
+    url: '/images/template2-preview.svg',
+    id: 'template2',
     description: '简洁专业模板',
+  },
+  {
+    url: '/images/template3-preview.svg',
+    id: 'template3',
+    description: '简易模板',
+  },
+  {
+    url: '/images/template4-preview.svg',
+    id: 'template4',
+    description: '默认模板(适用于单页)',
   },
 ];
 
