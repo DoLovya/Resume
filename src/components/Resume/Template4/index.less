@@ -1,0 +1,370 @@
+// 响应式布局
+// 内容
+.template4-resume {
+  width: 794px;
+  min-height: 1123px;
+  margin-bottom: 60px;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  box-sizing: border-box;
+
+  @media (max-width: 794px) {
+    width: 100%;
+
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+  }
+
+  .template4-resume {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    box-shadow: none;
+    height: auto;
+    margin-bottom: 0;
+    box-sizing: border-box;
+
+    font-family: var(
+      --resume-font-family,
+      'roboto-regular',
+      'PingFang SC',
+      'Hiragino Sans GB',
+      'Microsoft YaHei',
+      sans-serif
+    );
+    
+    .main-info {
+      height: auto;
+      min-height: 100%;
+    }
+    
+    .avatar.avatar-hidden {
+      display: none !important;
+    }
+  }
+}
+
+// 内容
+.template4-resume {
+  // 加点阴影
+  box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.15);
+
+  // 布局位置
+  .basic-info {
+    padding: 24px;
+  }
+
+  .main-info {
+    height: auto;
+    padding: 33px 24px 0px 20px;
+    background: #f2f2f2;
+  }
+
+  // 内容样式 通用
+  section {
+    &:not(:first-of-type) {
+      margin-top: 24px;
+    }
+
+    .section-title {
+      margin-bottom: 12px;
+      font-size: 24px;
+      line-height: 32px;
+      letter-spacing: 0;
+    }
+
+    .section-info {
+      font-size: 18px;
+      line-height: 24px;
+      color: rgba(0, 0, 0, 0.85);
+      margin-bottom: 8px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .basic-info section .section-info {
+    .info-name {
+      max-width: 198px;
+      padding-right: 4px;
+    }
+  }
+
+  // basic-info 内容样式
+  .basic-info .avatar {
+    margin: 12px auto;
+    display: block;
+    width: 84px;
+    height: 84px;
+  }
+
+  .basic-info .name {
+    margin: 8px auto 20px;
+    font-size: 24px;
+
+    text-align: center;
+  }
+
+  .basic-info .profile .profile-list {
+    margin-bottom: 20px;
+
+    > div{
+      display: flex;
+      align-items: center;
+    }
+    > div:not(:last-of-type) {
+      margin-bottom: 4px;
+    }
+
+    .anticon {
+      margin-right: 8px;
+    }
+  }
+
+  // 非通用，skill
+  .basic-info .section-skill {
+    .section-info {
+      margin-top: 12px;
+    }
+
+    .skill-rate {
+      font-size: 14px;
+      display: flex;
+
+      .ant-rate-star {
+        margin-right: 4px;
+      }
+    }
+
+    .skill-detail-item {
+      margin-top: 0px;
+      text-align: left;
+    }
+  }
+
+  // 非通用
+  .basic-info section .sub-info {
+    color: rgba(0, 0, 0, 0.45);
+  }
+
+  .basic-info section .section-title {
+    margin-bottom: 10px;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .basic-info .section-award {
+    .sub-info {
+      font-size: 14px;
+      margin-left: 8px;
+    }
+    
+    .award-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
+      padding: 0;
+      
+      th, td {
+        padding: 2px 0;
+        text-align: left;
+        border: none;
+        line-height: 1.2;
+        margin: 0;
+      }
+      
+      .icon-col {
+        width: auto;
+        text-align: left;
+        white-space: nowrap;
+        vertical-align: middle;
+        padding-right: 2px;
+      }
+      
+      .name-col {
+        min-width: 150px;
+        text-align: left;
+        vertical-align: middle;
+        white-space: normal;
+        word-break: break-all;
+      }
+      
+      .rank-col {
+        width: 100px;
+        text-align: right;
+        white-space: nowrap;
+      }
+      
+      .time-col {
+        width: 100px;
+        text-align: right;
+        white-space: nowrap;
+        color: rgba(0, 0, 0, 0.45);
+        font-size: 12px;
+        font-weight: 300;
+      }
+      
+      .rank-col-full {
+        text-align: right;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .basic-info .education-item {
+    &:not(:first-of-type) {
+      margin-top: 8px;
+    }
+    
+    > div {
+      overflow: hidden;
+    }
+  }
+
+  .basic-info .section-work {
+    > div {
+      line-height: 24px;
+      word-wrap: break-word;
+      word-break: break-word;
+    }
+  }
+
+  // main-info 内容样式
+  .main-info section {
+    margin-bottom: 16px;
+
+    .section-header {
+      display: flex;
+      margin-bottom: 10px;
+
+      img {
+        margin-right: 8px;
+      }
+
+      h1 {
+        position: relative;
+        font-size: 18px;
+        font-weight: bold;
+        color: #fff;
+        width: 200px;
+        width: max-content;
+        line-height: 26px;
+        padding: 0 68px 0 10px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+      }
+      h1:before {
+        content: '';
+        display: block;
+        width: 18.4px;
+        height: 18.4px;
+        background: #f2f2f2;
+        position: absolute;
+        right: -9px;
+        top: 4px;
+        transform: rotate(45deg);
+      }
+    }
+
+    .section-detail {
+      letter-spacing: 1.2px;
+
+      &:not(:first-of-type) {
+        margin-top: 4px;
+      }
+    }
+  }
+
+  // 非通用
+  .main-info .section-project,
+  .main-info .section-work-exp {
+    .section-info .ant-tag,
+    .section-info .project-role-text {
+      flex-shrink: 0;
+    }
+
+    .section-info .ant-tag {
+      line-height: 18px;
+      height: 18px;
+      padding: 0 6px;
+      border-radius: 9px;
+      border-width: 1px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-inline-end: 0;
+    }
+
+    .section-info .project-role-text {
+      color: rgba(0, 0, 0, 0.5);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 18px;
+    }
+
+    .section-item:not(:first-of-type) {
+      margin-top: 18px;
+    }
+
+    .section-item-primary,
+    .section-item-secondary {
+      .section-detail-compact {
+        margin-top: 2px;
+      }
+    }
+
+    .section-item-secondary {
+      .section-info {
+        margin-bottom: 6px;
+      }
+
+      .section-detail {
+        letter-spacing: 0.4px;
+      }
+    }
+
+    .section-item-supplemental {
+      margin-top: 14px;
+
+      .section-info {
+        margin-bottom: 4px;
+      }
+
+      .info-name {
+        font-size: 16px;
+      }
+
+      .section-detail-lite {
+        color: rgba(0, 0, 0, 0.72);
+        letter-spacing: 0;
+        line-height: 1.6;
+      }
+    }
+
+    .section-info .sub-info,
+    .section-info .info-time {
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 12px;
+      margin-left: 8px;
+      font-weight: 300;
+    }
+
+    .work-description,
+    .project-content {
+      white-space: pre-wrap;
+      text-align: left;
+    }
+  }
+
+  .section-aboutme > div {
+    margin: 6px 0;
+    text-align: left;
+    line-height: 1.6;
+  }
+}

@@ -25,6 +25,11 @@ const TEMPLATES = [
     id: 'template5',
     description: '紫韵专业模板',
   },
+  {
+    url: '/images/template6-preview.svg',
+    id: 'template6',
+    description: '简洁专业模板',
+  },
 ];
 
 export const Templates: React.FC<Props> = props => {

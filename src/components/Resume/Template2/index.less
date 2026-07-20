@@ -1,296 +1,319 @@
-// 响应式布局
-// 内容
 .template2-resume {
   width: 794px;
   min-height: 1123px;
   margin-bottom: 60px;
+  background: #fff;
+  box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
+  font-family: var(
+    --resume-font-family,
+    'roboto-regular',
+    'PingFang SC',
+    'Hiragino Sans GB',
+    'Microsoft YaHei',
+    sans-serif
+  );
 
   @media (max-width: 794px) {
     width: 100%;
   }
 }
 
+.template2-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 32px 40px 24px;
+  background: #fff;
+}
+
+.template2-header-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.template2-name {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.template2-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.template2-contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  .anticon {
+    font-size: 13px;
+  }
+}
+
+.template2-contact-label {
+  opacity: 0.7;
+}
+
+.template2-contact-link {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.template2-avatar {
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+  margin-left: 24px;
+  border-radius: 4px;
+}
+
+.template2-main {
+  padding: 24px 40px 32px;
+}
+
+.template2-section {
+  &:not(:first-of-type) {
+    margin-top: 20px;
+  }
+}
+
+.template2-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.template2-section-body {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #444;
+}
+
+.template2-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.template2-item-time {
+  flex-shrink: 0;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.45);
+  white-space: nowrap;
+}
+
+.template2-sub-info {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 400;
+}
+
+.template2-list {
+  margin: 0;
+  padding-left: 18px;
+  list-style-type: disc;
+
+  li {
+    margin-bottom: 4px;
+    line-height: 1.7;
+  }
+}
+
+.template2-education-item {
+  &:not(:first-of-type) {
+    margin-top: 8px;
+  }
+}
+
+.template2-experience-item {
+  &:not(:first-of-type) {
+    margin-top: 16px;
+  }
+}
+
+.template2-project-item {
+  &:not(:first-of-type) {
+    margin-top: 16px;
+  }
+}
+
+.template2-project-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.template2-project-desc {
+  margin-bottom: 6px;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.template2-project-desc-compact {
+  margin-bottom: 4px;
+}
+
+.template2-role-tag {
+  margin-inline-end: 0;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 999px;
+  padding: 0 8px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  color: #fff;
+  background: #1e3a5f;
+  border-color: #1e3a5f;
+}
+
+.template2-role-text {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.template2-skill-item {
+  display: flex;
+  align-items: flex-start;
+
+  &:not(:first-of-type) {
+    margin-top: 6px;
+  }
+}
+
+.template2-skill-check {
+  color: #f5a623;
+  font-weight: 700;
+  margin-right: 8px;
+  flex-shrink: 0;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.template2-award-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &:not(:first-of-type) {
+    margin-top: 6px;
+  }
+}
+
+.template2-award-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+}
+
+.template2-project-item-secondary {
+  margin-top: 14px;
+}
+
+.template2-project-item-supplemental {
+  margin-top: 12px;
+
+  .template2-project-title b {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 794px) {
+  .template2-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px 20px 20px;
+  }
+
+  .template2-avatar {
+    margin-left: 0;
+    margin-top: 16px;
+  }
+
+  .template2-contact {
+    justify-content: center;
+  }
+
+  .template2-main {
+    padding: 20px 20px 24px;
+  }
+
+  .template2-item-header {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .template2-item-time {
+    text-align: left;
+  }
+}
+
 @media print {
   @page {
     size: A4;
+    margin: 0;
   }
 
   .template2-resume {
-    width: 100%;
+    width: 100% !important;
+    min-height: auto !important;
+    margin-bottom: 0;
     box-shadow: none;
+    background: #fff !important;
     box-sizing: border-box;
-  }
-}
-
-// 内容
-.template2-resume {
-  // 加点阴影
-  box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.15);
-
-  // 布局位置
-  .basic-info {
-    padding: 18px 24px 10px 24px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
-  .main-info {
-    padding: 2px 24px 24px;
-    background: #fff;
+  .template2-header {
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    padding: 32px 40px 24px !important;
+    background: #fff !important;
   }
 
-  .section-title {
-    font-size: 16px;
-    line-height: 18px;
-    margin-bottom: 8px;
-    letter-spacing: 0;
-    position: relative;
-
-    display: flex;
-    .title {
-      width: auto;
-    }
-    .title-addon {
-      flex: 1;
-      position: relative;
-    }
-
-    .title-addon::after {
-      content: ' ';
-      position: absolute;
-      right: 0;
-      top: 50%;
-      left: 16px;
-      height: 1px;
-      transform: translateY(-1px);
-      background-color: currentColor;
-      opacity: 0.54;
-    }
+  .template2-avatar {
+    margin-left: 24px !important;
+    margin-top: 0 !important;
   }
 
-  .basic-info .section {
-    border-radius: 0;
+  .template2-contact {
+    justify-content: flex-start !important;
   }
 
-  // 内容样式 通用
-  .section {
-    &:not(:first-of-type) {
-      margin-top: 12px;
-    }
-
-    .section-info {
-      font-size: 14px;
-      line-height: 16px;
-      color: rgba(0, 0, 0, 0.85);
-      margin-bottom: 4px;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  .template2-main {
+    padding: 24px 40px 32px !important;
   }
 
-  .basic-info section .section-info {
-    .info-name {
-      max-width: 198px;
-      padding-right: 4px;
-    }
+  .template2-item-header {
+    flex-direction: row !important;
   }
 
-  // basic-info 内容样式
-  .basic-info .avatar {
-    margin: 0 auto;
-    display: block;
-    width: 78px;
-    height: 78px;
-  }
-
-  .basic-info .name {
-    margin: 0 0 8px 4px;
-    font-size: 24px;
-    line-height: 36px;
-  }
-
-  .basic-info .profile {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap-reverse;
-
-    margin-bottom: 10px;
-
-    > div:first-of-type {
-      flex: 1;
-    }
-    > div:nth-of-type(2) {
-      width: 150px;
-    }
-
-    .profile-list {
-      display: flex;
-      flex-wrap: wrap;
-      margin-left: 4px;
-
-      > div {
-        flex: 220px 1;
-      }
-
-      > div:not(:last-of-type) {
-        margin-bottom: 4px;
-      }
-
-      .anticon {
-        margin-right: 6px;
-      }
-    }
-  }
-
-  // 非通用，skill
-  .basic-info .section-skill {
-    .skill-item {
-      display: flex;
-      justify-content: space-between;
-
-      &:not(:first-of-type) {
-        margin-top: 2px;
-      }
-
-      span {
-        text-align: left;
-      }
-    }
-
-    .skill-rate {
-      font-size: 14px;
-      display: flex;
-
-      .ant-rate-star {
-        margin-right: 4px;
-      }
-    }
-
-    .skill-detail-item {
-      margin-top: 4px;
-    }
-  }
-
-  // 非通用
-  .basic-info section .sub-info {
-    color: rgba(0, 0, 0, 0.45);
-  }
-
-  .basic-info .section-award {
-    .sub-info {
-      font-size: 14px;
-      margin-left: 8px;
-    }
-  }
-
-  .basic-info .education-item {
-    &:not(:first-of-type) {
-      margin-top: 8px;
-    }
-  }
-
-  .basic-info .section-work {
-    > div {
-      line-height: 24px;
-    }
-
-    a.sub-info {
-      font-size: 12px;
-      margin-left: 8px;
-    }
-  }
-
-  // main-info 内容样式
-  .main-info section {
-    margin-bottom: 16px;
-
-    .section-detail {
-      letter-spacing: 1.2px;
-
-      &:not(:first-of-type) {
-        margin-top: 4px;
-      }
-    }
-  }
-
-  // 非通用
-  .main-info .section-project,
-  .main-info .section-work-exp {
-    .section-info .ant-tag,
-    .section-info .project-role-text {
-      flex-shrink: 0;
-    }
-
-    .section-info .ant-tag {
-      line-height: 18px;
-      height: 18px;
-      padding: 0 6px;
-      border-radius: 9px;
-      border-width: 1px;
-      border-style: solid;
-      font-size: 12px;
-      font-weight: 500;
-      margin-inline-end: 0;
-    }
-
-    .section-info .project-role-text {
-      color: rgba(0, 0, 0, 0.5);
-      font-size: 12px;
-      font-weight: 500;
-      line-height: 18px;
-    }
-
-    .section-item:not(:first-of-type) {
-      margin-top: 10px;
-    }
-
-    .section-item-secondary {
-      .section-info {
-        margin-bottom: 4px;
-      }
-    }
-
-    .section-item-supplemental {
-      margin-top: 8px;
-
-      .section-info {
-        margin-bottom: 2px;
-      }
-
-      .info-name {
-        font-size: 16px;
-      }
-
-      .section-detail-lite {
-        color: rgba(0, 0, 0, 0.72);
-        letter-spacing: 0;
-        line-height: 1.5;
-      }
-    }
-
-    .section-info .sub-info,
-    .section-info .info-time {
-      color: rgba(0, 0, 0, 0.45);
-      font-size: 12px;
-      margin-left: 8px;
-      font-weight: 300;
-    }
-
-    .work-description,
-    .project-content {
-      white-space: pre-wrap;
-    }
-  }
-}
-
-body[lang='en-US'] {
-  .template2-resume {
-    .section-title {
-      &::after {
-        left: 188px;
-      }
-    }
+  .template2-item-time {
+    text-align: right !important;
   }
 }

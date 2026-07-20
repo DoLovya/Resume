@@ -1,19 +1,8 @@
 import React from 'react';
-import { Rate, Tag } from 'antd';
+import { Tag } from 'antd';
 import {
-  MobileFilled,
-  MailFilled,
-  GithubFilled,
-  ZhihuCircleFilled,
-  TrophyFilled,
-  CheckCircleFilled,
-  ScheduleFilled,
-  EnvironmentFilled,
-  HeartFilled,
 } from '@ant-design/icons';
 import _ from 'lodash-es';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { getDefaultTitleNameMap } from '@/data/constant';
 import { Avatar } from '../../Avatar';
 import type { ResumeConfig, ThemeConfig } from '../../types';
 import './index.less';
@@ -28,7 +17,7 @@ const formatProfileLinkText = (url?: string, label?: string) => {
   try {
     const parsed = new URL(url);
     const segments = parsed.pathname.split('/').filter(Boolean);
-    if (segments[0]) return `${label} / ${segments[0]}`;
+    if (segments[0]) return `${label}: ${segments[0]}`;
     return label || url;
   } catch {
     return url;
@@ -66,61 +55,34 @@ const getProjectLevel = (index: number) => {
   return 'supplemental';
 };
 
-const wrapper = ({ id, title, color }) => WrappedComponent => {
-  return (
-    <section>
-      <div className="section-header">
-        {id && (
-          <img
-            src={`images/${id}.png`}
-            alt=""
-            width="22px"
-            height="22px"
-            style={{
-              position: 'relative',
-              top: '2px',
-            }}
-          />
-        )}
-        <h1 style={{ background: color }}>{title}</h1>
-      </div>
-      <div className="section-body">{WrappedComponent}</div>
-    </section>
-  );
-};
+const SidebarBlock: React.FC<{
+  title: React.ReactNode;
+  children: React.ReactNode;
+}> = ({ title, children }) => (
+  <section className="template1-block template1-block-sidebar">
+    <div className="template1-block-title">{title}</div>
+    <div className="template1-block-body">{children}</div>
+  </section>
+);
 
-/**
- * @description 简历内容区
- */
+const MainBlock: React.FC<{
+  title: React.ReactNode;
+  children: React.ReactNode;
+}> = ({ title, children }) => (
+  <section className="template1-block template1-block-main">
+    <div className="template1-block-title">{title}</div>
+    <div className="template1-block-body">{children}</div>
+  </section>
+);
+
 export const Template1: React.FC<Props> = props => {
-  const intl = useIntl();
   const { value, theme } = props;
-
-  /** 个人基础信息 */
   const profile = _.get(value, 'profile');
-  
-  const titleNameMap = _.get(
-    value,
-    'titleNameMap',
-    getDefaultTitleNameMap({ intl })
-  );
-
-  /** 教育背景 */
   const educationList = _.get(value, 'educationList');
-
-  /** 工作经历 */
   const workExpList = _.get(value, 'workExpList');
-
-  /** 项目经验 */
   const projectList = _.get(value, 'projectList');
-
-  /** 个人技能 */
   const skillList = _.get(value, 'skillList');
-
-  /** 更多信息 */
   const awardList = _.get(value, 'awardList');
-
-  /** 自我介绍 */
   const aboutme = _.split(_.get(value, ['aboutme', 'aboutme_desc']), '\n');
   const githubText = formatProfileLinkText(profile?.github, 'GitHub');
 
@@ -134,353 +96,251 @@ export const Template1: React.FC<Props> = props => {
         paddingLeft: theme.margin?.left,
       }}
     >
-      <div className="basic-info">
-        {/* 头像 */}
+      <header className="template1-hero">
         {!value?.avatar?.hidden && (
           <Avatar
             avatarSrc={value?.avatar?.src}
-            className="avatar"
+            className="template1-avatar"
             shape={value?.avatar?.shape}
             size={value?.avatar?.size}
           />
         )}
-        {/* 个人信息 */}
-        <div className="profile">
-          {profile?.name && <div className="name">{profile.name}</div>}
-          <div className="profile-list">
+        <div className="template1-hero-main">
+          <div className="template1-hero-greeting">Hello, I&apos;m</div>
+          <div className="template1-hero-name">{profile?.name}</div>
+          <div className="template1-hero-contact">
+            {profile?.age && <span className="template1-hero-contact-item">{profile.age}</span>}
             {profile?.mobile && (
-              <div className="email">
-                <MobileFilled style={{ color: theme.color, opacity: 0.85 }} />
-                {profile.mobile}
-              </div>
+              <span className="template1-hero-contact-item">电话：{profile.mobile}</span>
             )}
             {profile?.email && (
-              <div className="email">
-                <MailFilled style={{ color: theme.color, opacity: 0.85 }} />
+              <span className="template1-hero-contact-item">
+                邮箱：
                 <a
                   href={`mailto:${profile.email}`}
+                  className="template1-hero-contact-link"
                   style={{ color: 'inherit', textDecoration: 'none' }}
                 >
                   {profile.email}
                 </a>
-              </div>
-            )}
-            {profile?.age && (
-              <div className="age">
-                 <CheckCircleFilled style={{ color: theme.color, opacity: 0.85 }} />
-                {profile.age}
-              </div>
+              </span>
             )}
             {profile?.github && (
-              <div className="github">
-                <GithubFilled style={{ color: theme.color, opacity: 0.85 }} />
-                <a
-                  href={profile.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{ color: 'inherit', textDecoration: 'none' }}
-                >
-                  {githubText}
-                </a>
-              </div>
-            )}
-            {profile?.zhihu && (
-              <div className="github">
-                <ZhihuCircleFilled
-                  style={{ color: theme.color, opacity: 0.85 }}
-                />
-                <a
-                  href={profile.zhihu}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{ color: 'inherit', textDecoration: 'none' }}
-                >
-                  {profile.zhihu}
-                </a>
-              </div>
-            )}
-            {profile?.workExpYear && (
-              <div className="work-exp-year">
-                <ScheduleFilled style={{ color: theme.color, opacity: 0.85 }} />
-                <span>
-                  <FormattedMessage id="工作经验" />: {profile.workExpYear}
-                </span>
-              </div>
-            )}
-            {profile?.workPlace && (
-              <div className="work-place">
-                <EnvironmentFilled
-                  style={{ color: theme.color, opacity: 0.85 }}
-                />
-                <span>
-                  <FormattedMessage id="期望工作地" />: {profile.workPlace}
-                </span>
-              </div>
-            )}
-            {profile?.positionTitle && (
-              <div className="expect-job">
-                <HeartFilled style={{ color: theme.color, opacity: 0.85 }} />
-                <span>
-                  <FormattedMessage id="职位" />: {profile.positionTitle}
-                </span>
-              </div>
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
+                className="template1-hero-contact-item template1-hero-contact-link"
+                style={{ color: 'inherit', textDecoration: 'none' }}
+              >
+                {githubText}
+              </a>
             )}
           </div>
         </div>
-        {/* 自我介绍 */}
-        {!!_.trim(_.join(aboutme, '')) && (
-          <section className="section section-aboutme">
-            <div className="section-title" style={{ color: theme.color }}>
-              <FormattedMessage id="自我介绍" />
-            </div>
-            {aboutme.map((d, idx) => (
-              <div key={`${idx}`}>{d}</div>
-            ))}
-          </section>
-        )}
-        {/* 教育背景 */}
-        {educationList?.length ? (
-          <section className="section section-education">
-            <div className="section-title" style={{ color: theme.color }}>
-              {/* <FormattedMessage id="教育背景" /> */}
-              {titleNameMap?.educationList}
-            </div>
-            {educationList.map((education, idx) => {
-              const [start, end] = education.edu_time;
-              return (
-                <div key={idx.toString()} className="education-item">
-                  <div>
-                    <b>{education.school}</b>
-                    <span className="sub-info" style={{ float: 'right' }}>
-                      {start}
-                      {end ? ` ~ ${end}` : <FormattedMessage id=" 至今" />}
-                    </span>
-                  </div>
-                  <div>
-                    {education.major && <span>{education.major}</span>}
-                    {education.academic_degree && (
-                      <span className="sub-info" style={{ marginLeft: '4px' }}>
-                        ({education.academic_degree})
-                      </span>
-                    )}
-                  </div>
+        <div className="template1-hero-watermark">
+          BIOGRAPHICAL
+          <br />
+          NOTES
+        </div>
+      </header>
+
+      <div className="template1-body">
+        <aside className="template1-sidebar">
+          {!!_.trim(_.join(aboutme, '')) && (
+            <SidebarBlock title="自我介绍">
+              {aboutme.map((item, idx) => (
+                <div className="template1-summary" key={idx.toString()}>
+                  {item}
                 </div>
-              );
-            })}
-          </section>
-        ) : null}
-        {/* 专业技能 */}
-        {skillList?.length ? (
-          <section className="section section-skill">
-            <div className="section-title" style={{ color: theme.color }}>
-              {/* <FormattedMessage id="专业技能" /> */}
-              {titleNameMap?.skillList}
-            </div>
-            {skillList.map((skill, idx) => {
-              return skill ? (
-                <React.Fragment key={`${idx}`}>
-                  {_.split(skill.skill_desc, '\n').map((d, i) =>
-                    d ? (
-                      <div
-                        className="skill-detail-item"
-                        key={`${i}`}
-                        style={{ marginTop: i === 0 ? '8px' : '0px' }}
-                      >
-                        <CheckCircleFilled
-                          style={{
-                            color: theme.skillIconColor,
-                            marginRight: '4px',
-                          }}
-                        />
-                        {i === 0 && (
-                          <b
-                            className="info-name"
-                            style={{ marginRight: '4px' }}
-                          >
-                            {skill.skill_name}
-                            <span style={{ marginRight: '4px' }}>:</span>
-                          </b>
-                        )}
-                        {d}
+              ))}
+            </SidebarBlock>
+          )}
+
+          {educationList?.length ? (
+            <SidebarBlock title="教育经历">
+              {educationList.map((education, idx) => {
+                const [start = '', end = ''] = education.edu_time || [];
+                return (
+                  <div className="template1-education-item" key={idx.toString()}>
+                    <div className="template1-education-school">{education.school}</div>
+                    {education.academic_degree && (
+                      <div className="template1-education-degree">
+                        {education.academic_degree}
                       </div>
-                    ) : null
-                  )}
-                </React.Fragment>
-              ) : null;
-            })}
-          </section>
-        ) : null}
-        {/* 更多信息 */}
-        {awardList?.length ? (
-          <section className="section section-award">
-            <div className="section-title" style={{ color: theme.color }}>
-              {titleNameMap?.awardList}
-            </div>
-            <table className="award-table">
-              <tbody>
-                {awardList.map((award, idx) => (
-                  <tr key={idx.toString()}>
-                    <td className="icon-col">
-                      <TrophyFilled style={{ color: theme.awardIconColor }} />
-                    </td>
-                    <td className="name-col">
-                      <b>{award.award_info}</b>
-                    </td>
-                    {award.award_time ? (
-                      <>
-                        <td className="rank-col">{award.award_rank}</td>
-                        <td className="time-col">{`(${award.award_time})`}</td>
-                      </>
-                    ) : (
-                      <td
-                        className="rank-col-full"
-                        style={{ textAlign: 'right' }}
-                      >
-                        {award.award_rank}
-                      </td>
                     )}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </section>
-        ) : null}
-      </div>
-      <div className="main-info">
-        {workExpList?.length
-          ? wrapper({
-              id: 'work-experience',
-              title: titleNameMap?.workExpList,
-              color: theme.color,
-            })(
-              <div className="section section-work-exp">
-                {_.map(workExpList, (work, idx) => {
-                  const [start = null, end = null] =
-                    typeof work.work_time === 'string'
-                      ? `${work.work_time || ''}`.split(',')
-                      : work.work_time;
-                  return work ? (
-                    <div className="section-item" key={idx.toString()}>
-                      <div className="section-info">
-                        <b className="info-name">
-                          {work.company_name}
-                          <span className="sub-info">
-                            {work.department_name}
-                          </span>
-                        </b>
-                        <span className="info-time">
+                    {education.major && (
+                      <div className="template1-education-major">{education.major}</div>
+                    )}
+                    <div className="template1-education-time">
+                      {start}
+                      {end ? ` - ${end}` : ''}
+                    </div>
+                  </div>
+                );
+              })}
+            </SidebarBlock>
+          ) : null}
+
+          {awardList?.length ? (
+            <SidebarBlock title="证书荣誉">
+              {awardList.map((award, idx) =>
+                award ? (
+                  <div className="template1-award-item" key={idx.toString()}>
+                    <div>
+                      <div className="template1-award-name">{award.award_info}</div>
+                      {award.award_rank && (
+                        <div className="template1-award-rank">{award.award_rank}</div>
+                      )}
+                    </div>
+                  </div>
+                ) : null
+              )}
+            </SidebarBlock>
+          ) : null}
+        </aside>
+
+        <main className="template1-main">
+          {skillList?.length ? (
+            <MainBlock title="专业技能">
+              {skillList.map((skill, idx) =>
+                skill ? (
+                  <div className="template1-skill-item" key={idx.toString()}>
+                    <span className="template1-skill-name">{skill.skill_name}</span>
+                    {skill.skill_desc ? (
+                      <span className="template1-skill-desc">{skill.skill_desc}</span>
+                    ) : null}
+                  </div>
+                ) : null
+              )}
+            </MainBlock>
+          ) : null}
+
+          {workExpList?.length ? (
+            <MainBlock title="工作经历">
+              {workExpList.map((work, idx) => {
+                const [start = '', end = ''] =
+                  typeof work.work_time === 'string'
+                    ? `${work.work_time || ''}`.split(',')
+                    : work.work_time || [];
+                return (
+                  <div className="template1-experience-item" key={idx.toString()}>
+                    <div className="template1-item-timeline" />
+                    <div className="template1-item-content">
+                      <div className="template1-item-header">
+                        <div className="template1-item-title">
+                          <span className="template1-item-name">{work.company_name}</span>
+                          {work.department_name && (
+                            <span className="template1-item-role">
+                              {work.department_name}
+                            </span>
+                          )}
+                        </div>
+                        <span className="template1-item-time">
                           {start}
-                          {end ? ` ~ ${end}` : <FormattedMessage id=" 至今" />}
+                          {end ? `-${end}` : ''}
                         </span>
                       </div>
-                      <div className="work-description">{work.work_desc}</div>
+                      <div className="template1-item-text">{work.work_desc}</div>
                     </div>
-                  ) : null;
-                })}
-              </div>
-            )
-          : null}
+                  </div>
+                );
+              })}
+            </MainBlock>
+          ) : null}
 
-        {projectList?.length
-          ? wrapper({
-              id: 'skill',
-              title: titleNameMap?.projectList,
-              color: theme.color,
-            })(
-              <div className="section section-project">
-                {_.map(projectList, (project, idx) =>
-                  project ? (
-                    <div
-                      className={`section-item section-item-${getProjectLevel(
-                        idx
-                      )}`}
-                      key={idx.toString()}
-                    >
-                      <div className="section-info">
-                        <b className="info-name">
-                          {project.project_name}
-                          <span className="info-time">
+          {projectList?.length ? (
+            <MainBlock title="项目经历">
+              {projectList.map((project, idx) =>
+                project ? (
+                  <div
+                    className={`template1-project-item template1-project-item-${getProjectLevel(
+                      idx
+                    )}`}
+                    key={idx.toString()}
+                  >
+                    <div className="template1-item-timeline" />
+                    <div className="template1-item-content">
+                      <div className="template1-item-header">
+                        <div className="template1-item-title">
+                          <span className="template1-item-name">
+                            {project.project_name}
+                          </span>
+                          {project.project_role &&
+                            (idx < 3 ? (
+                              <Tag
+                                className="template1-role-tag"
+                                style={{
+                                  color: toAlphaColor(theme.tagColor, 0.95),
+                                  backgroundColor: toAlphaColor(
+                                    theme.tagColor,
+                                    0.12
+                                  ),
+                                  borderColor: toAlphaColor(theme.tagColor, 0.22),
+                                }}
+                              >
+                                {project.project_role}
+                              </Tag>
+                            ) : (
+                              <span className="template1-role-text">
+                                {project.project_role}
+                              </span>
+                            ))}
+                        </div>
+                        {project.project_time && (
+                          <span className="template1-item-time">
                             {project.project_time}
                           </span>
-                        </b>
-                        {project.project_role &&
-                          (idx < 3 ? (
-                            <Tag
-                              className="project-role-tag"
-                              style={{
-                                color: toAlphaColor(theme.tagColor, 0.95),
-                                backgroundColor: toAlphaColor(
-                                  theme.tagColor,
-                                  0.12
-                                ),
-                                borderColor: toAlphaColor(theme.tagColor, 0.22),
-                              }}
-                            >
-                              {project.project_role}
-                            </Tag>
-                          ) : (
-                            <span className="project-role-text">
-                              {project.project_role}
-                            </span>
-                          ))}
+                        )}
                       </div>
                       {idx < 2 ? (
                         <>
-                          <div className="section-detail">
-                            <b>
-                              <FormattedMessage id="项目描述" />：
-                            </b>
-                            <span>{project.project_desc}</span>
-                          </div>
+                          {project.project_desc && (
+                            <div className="template1-detail-row">
+                              <b>项目描述：</b>
+                              <span>{project.project_desc}</span>
+                            </div>
+                          )}
                           {project.project_tech_stack && (
-                            <div className="section-detail">
-                              <b>
-                                <FormattedMessage id="技术栈" />：
-                              </b>
+                            <div className="template1-detail-row template1-detail-tech">
+                              <b>技术栈：</b>
                               <span>{project.project_tech_stack}</span>
                             </div>
                           )}
-                          <div className="section-detail">
-                            <b>
-                              <FormattedMessage id="主要工作" />：
-                            </b>
-                            <span className="project-content">
-                              {project.project_content}
-                            </span>
-                          </div>
+                          {project.project_content && (
+                            <div className="template1-detail-row">
+                              <b>主要工作：</b>
+                              <span>{project.project_content}</span>
+                            </div>
+                          )}
                         </>
                       ) : idx === 2 ? (
                         <>
                           {project.project_tech_stack && (
-                            <div className="section-detail section-detail-compact">
-                              <b>
-                                <FormattedMessage id="技术栈" />：
-                              </b>
+                            <div className="template1-detail-row template1-detail-tech">
+                              <b>技术栈：</b>
                               <span>{project.project_tech_stack}</span>
                             </div>
                           )}
-                          <div className="section-detail section-detail-compact">
-                            <b>
-                              <FormattedMessage id="主要工作" />：
-                            </b>
-                            <span className="project-content">
-                              {project.project_content}
-                            </span>
-                          </div>
+                          {project.project_content && (
+                            <div className="template1-detail-row">
+                              <b>主要工作：</b>
+                              <span>{project.project_content}</span>
+                            </div>
+                          )}
                         </>
                       ) : (
-                        <div className="section-detail section-detail-lite">
-                          <span className="project-content">
-                            {project.project_content}
-                          </span>
+                        <div className="template1-detail-row template1-detail-lite">
+                          <span>{project.project_content || project.project_desc}</span>
                         </div>
                       )}
                     </div>
-                  ) : null
-                )}
-              </div>
-            )
-          : null}
+                  </div>
+                ) : null
+              )}
+            </MainBlock>
+          ) : null}
+        </main>
       </div>
     </div>
   );

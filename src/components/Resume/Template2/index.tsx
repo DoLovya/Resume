@@ -1,16 +1,12 @@
 import React from 'react';
-import { Rate, Tag } from 'antd';
+import { Tag } from 'antd';
 import {
-  PhoneFilled,
+  MobileFilled,
   MailFilled,
   GithubFilled,
-  ZhihuCircleFilled,
-  CheckCircleFilled,
   ScheduleFilled,
-  EnvironmentFilled,
   HeartFilled,
 } from '@ant-design/icons';
-import cx from 'classnames';
 import _ from 'lodash-es';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { getDefaultTitleNameMap } from '@/data/constant';
@@ -35,401 +31,286 @@ const formatProfileLinkText = (url?: string, label?: string) => {
   }
 };
 
-const toAlphaColor = (color?: string, alpha = 1) => {
-  if (!color) return undefined;
-  const hexMatch = color.match(/^#([\da-f]{3}|[\da-f]{6})$/i);
-  if (hexMatch) {
-    const hex = hexMatch[1];
-    const normalized =
-      hex.length === 3
-        ? hex
-            .split('')
-            .map(char => char + char)
-            .join('')
-        : hex;
-    const r = parseInt(normalized.slice(0, 2), 16);
-    const g = parseInt(normalized.slice(2, 4), 16);
-    const b = parseInt(normalized.slice(4, 6), 16);
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-  }
-  const rgbaMatch = color.match(
-    /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*[\d.]+)?\s*\)/i
-  );
-  if (!rgbaMatch) return color;
-  const [, r, g, b] = rgbaMatch;
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-};
-
 const getProjectLevel = (index: number) => {
   if (index < 2) return 'primary';
   if (index === 2) return 'secondary';
   return 'supplemental';
 };
 
-const Wrapper = ({ className, title, color, children }) => {
+const Section: React.FC<{
+  title: React.ReactNode;
+  children: React.ReactNode;
+}> = ({ title, children }) => (
+  <section className="template2-section">
+    <div className="template2-section-title">{title}</div>
+    <div className="template2-section-body">{children}</div>
+  </section>
+);
+
+const BulletList: React.FC<{ text?: string }> = ({ text }) => {
+  if (!text) return null;
+  const lines = text.split('\n').filter(line => _.trim(line));
+  if (lines.length === 0) return null;
   return (
-    <div className={cx('section', className)}>
-      <div className="section-title" style={{ color }}>
-        <span className="title">{title}</span>
-        <span className="title-addon" />
-      </div>
-      <div className="section-body">{children}</div>
-    </div>
+    <ul className="template2-list">
+      {lines.map((line, idx) => (
+        <li key={idx.toString()}>{line}</li>
+      ))}
+    </ul>
   );
 };
 
-/**
- * @description 简历内容区
- */
 export const Template2: React.FC<Props> = props => {
   const intl = useIntl();
   const { value, theme } = props;
 
-  /** 个人基础信息 */
   const profile = _.get(value, 'profile');
-
   const titleNameMap = _.get(
     value,
     'titleNameMap',
     getDefaultTitleNameMap({ intl })
   );
-
-  /** 教育背景 */
   const educationList = _.get(value, 'educationList');
-
-  /** 工作经历 */
   const workExpList = _.get(value, 'workExpList');
-
-  /** 项目经验 */
   const projectList = _.get(value, 'projectList');
-
-  /** 个人技能 */
   const skillList = _.get(value, 'skillList');
-
-  /** 更多信息 */
   const awardList = _.get(value, 'awardList');
-
-  /** 自我介绍 */
-  const aboutme = _.split(_.get(value, ['aboutme', 'aboutme_desc']), '\n');
   const githubText = formatProfileLinkText(profile?.github, 'GitHub');
 
   return (
-    <div className="template2-resume resume-content" style={{ 
-      paddingTop: theme.margin?.top,
-      paddingRight: theme.margin?.right,
-      paddingBottom: theme.margin?.bottom,
-      paddingLeft: theme.margin?.left
-    }}>
-      <div className="basic-info">
-        <div className="profile">
-          <div className="profile-info">
-            {profile?.name && <div className="name">{profile.name}</div>}
-            <div className="profile-list">
-              {profile?.mobile && (
-                <div className="mobile">
-                  <PhoneFilled style={{ color: theme.color, opacity: 0.85 }} />
-                  {profile.mobile}
-                </div>
-              )}
-              {profile?.email && (
-                <div className="email">
-                  <MailFilled style={{ color: theme.color, opacity: 0.85 }} />
-                  <a
-                    href={`mailto:${profile.email}`}
-                    style={{ color: 'inherit', textDecoration: 'none' }}
-                  >
-                    {profile.email}
-                  </a>
-                </div>
-              )}
-              {profile?.github && (
-                <div className="github">
-                  <GithubFilled style={{ color: theme.color, opacity: 0.85 }} />
-                  <a
-                    href={profile.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ color: 'inherit', textDecoration: 'none' }}
-                  >
-                    {githubText}
-                  </a>
-                </div>
-              )}
-              {profile?.zhihu && (
-                <div className="github">
-                  <ZhihuCircleFilled
-                    style={{ color: theme.color, opacity: 0.85 }}
-                  />
-                  <a
-                    href={profile.zhihu}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ color: 'inherit', textDecoration: 'none' }}
-                  >
-                    {profile.zhihu}
-                  </a>
-                </div>
-              )}
-              {profile?.workExpYear && (
-                <div className="work-exp-year">
-                  <ScheduleFilled
-                    style={{ color: theme.color, opacity: 0.85 }}
-                  />
-                  <span>
-                    <FormattedMessage id="工作经验" />: {profile.workExpYear}
-                  </span>
-                </div>
-              )}
-              {profile?.workPlace && (
-                <div className="work-place">
-                  <EnvironmentFilled
-                    style={{ color: theme.color, opacity: 0.85 }}
-                  />
-                  <span>
-                    <FormattedMessage id="期望工作地" />: {profile.workPlace}
-                  </span>
-                </div>
-              )}
-              {profile?.positionTitle && (
-                <div className="expect-job">
-                  <HeartFilled style={{ color: theme.color, opacity: 0.85 }} />
-                  <span>
-                    <FormattedMessage id="职位" />: {profile.positionTitle}
-                  </span>
-                </div>
-              )}
-            </div>
-          </div>
-          {/* 头像 */}
-          {!value?.avatar?.hidden && (
-            <Avatar
-              avatarSrc={value?.avatar?.src}
-              className="avatar"
-              shape={value?.avatar?.shape}
-              size={value?.avatar?.size}
-            />
+    <div
+      className="template2-resume resume-content"
+      style={{
+        paddingTop: theme.margin?.top,
+        paddingRight: theme.margin?.right,
+        paddingBottom: theme.margin?.bottom,
+        paddingLeft: theme.margin?.left,
+      }}
+    >
+      <header className="template2-header">
+        <div className="template2-header-info">
+          {profile?.name && (
+            <div className="template2-name">{profile.name}</div>
           )}
+          <div className="template2-contact">
+            {profile?.mobile && (
+              <span className="template2-contact-item">
+                <MobileFilled style={{ color: 'rgba(255,255,255,0.85)' }} />
+                <span className="template2-contact-label">电话：</span>
+                {profile.mobile}
+              </span>
+            )}
+            {profile?.email && (
+              <span className="template2-contact-item">
+                <MailFilled style={{ color: 'rgba(255,255,255,0.85)' }} />
+                <span className="template2-contact-label">邮箱：</span>
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="template2-contact-link"
+                >
+                  {profile.email}
+                </a>
+              </span>
+            )}
+            {profile?.github && (
+              <span className="template2-contact-item">
+                <GithubFilled style={{ color: 'rgba(255,255,255,0.85)' }} />
+                <a
+                  href={profile.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="template2-contact-link"
+                >
+                  {githubText}
+                </a>
+              </span>
+            )}
+            {profile?.workExpYear && (
+              <span className="template2-contact-item">
+                <ScheduleFilled style={{ color: 'rgba(255,255,255,0.85)' }} />
+                <span className="template2-contact-label">工作经验：</span>
+                {profile.workExpYear}
+              </span>
+            )}
+            {profile?.positionTitle && (
+              <span className="template2-contact-item">
+                <HeartFilled style={{ color: 'rgba(255,255,255,0.85)' }} />
+                <span className="template2-contact-label">职位：</span>
+                {profile.positionTitle}
+              </span>
+            )}
+          </div>
         </div>
-        {/* </Wrapper> */}
-        {/* 教育背景 */}
+        {!value?.avatar?.hidden && (
+          <Avatar
+            avatarSrc={value?.avatar?.src}
+            className="template2-avatar"
+            shape="square"
+            size={value?.avatar?.size}
+          />
+        )}
+      </header>
+
+      <main className="template2-main">
         {educationList?.length ? (
-          <Wrapper
-            // title=<FormattedMessage id="教育背景" />
-            title={titleNameMap.educationList}
-            className="section section-education"
-            color={theme.color}
-          >
+          <Section title={titleNameMap?.educationList}>
             {educationList.map((education, idx) => {
               const [start, end] = education.edu_time;
               return (
-                <div key={idx.toString()} className="education-item">
-                  <div>
-                    <span>
+                <div key={idx.toString()} className="template2-education-item">
+                  <div className="template2-item-header">
+                    <div>
                       <b>{education.school}</b>
-                      <span style={{ marginLeft: '8px' }}>
-                        {education.major && <span>{education.major}</span>}
-                        {education.academic_degree && (
-                          <span
-                            className="sub-info"
-                            style={{ marginLeft: '4px' }}
-                          >
-                            ({education.academic_degree})
-                          </span>
-                        )}
-                      </span>
-                    </span>
-                    <span className="sub-info" style={{ float: 'right' }}>
+                      {education.major && (
+                        <span style={{ marginLeft: '8px' }}>{education.major}</span>
+                      )}
+                      {education.academic_degree && (
+                        <span className="template2-sub-info" style={{ marginLeft: '4px' }}>
+                          {education.academic_degree}
+                        </span>
+                      )}
+                    </div>
+                    <span className="template2-item-time">
                       {start}
-                      {end ? ` ~ ${end}` : ' 至今'}
+                      {end ? ` ~ ${end}` : <FormattedMessage id=" 至今" />}
                     </span>
                   </div>
                 </div>
               );
             })}
-          </Wrapper>
+          </Section>
         ) : null}
-        <Wrapper
-          title={<FormattedMessage id="自我介绍" />}
-          className="section section-aboutme"
-          color={theme.color}
-        >
-          {aboutme.map((d, idx) => (
-            <div key={`${idx}`}>{d}</div>
-          ))}
-        </Wrapper>
-        {/* 专业技能 */}
-        {skillList?.length ? (
-          <Wrapper
-            // title=<FormattedMessage id="专业技能" />
-            title={titleNameMap.skillList}
-            className="section section-skill"
-            color={theme.color}
-          >
-            {skillList.map((skill, idx) => {
-              const skills = _.split(skill.skill_desc, '\n').join('；');
-              return skills ? (
-                <div className="skill-item" key={idx.toString()}>
-                  <span>
-                    <CheckCircleFilled
-                      style={{ color: theme.skillIconColor, marginRight: '8px' }}
-                    />
-                    {skills}
-                  </span>
-                  {skill.skill_level && (
-                    <Rate
-                      allowHalf
-                      disabled
-                      value={skill.skill_level / 20}
-                      className="skill-rate"
-                    />
-                  )}
+
+        {workExpList?.length ? (
+          <Section title={titleNameMap?.workExpList}>
+            {workExpList.map((work, idx) => {
+              const [start = null, end = null] =
+                typeof work.work_time === 'string'
+                  ? `${work.work_time || ''}`.split(',')
+                  : work.work_time;
+              return work ? (
+                <div
+                  className="template2-experience-item"
+                  key={idx.toString()}
+                >
+                  <div className="template2-item-header">
+                    <div>
+                      <b>{work.company_name}</b>
+                      {work.department_name && (
+                        <span className="template2-sub-info" style={{ marginLeft: '8px' }}>
+                          {work.department_name}
+                        </span>
+                      )}
+                    </div>
+                    <span className="template2-item-time">
+                      {start}
+                      {end ? ` ~ ${end}` : <FormattedMessage id=" 至今" />}
+                    </span>
+                  </div>
+                  <BulletList text={work.work_desc} />
                 </div>
               ) : null;
             })}
-          </Wrapper>
+          </Section>
         ) : null}
-        {/* {awardList?.length ? (
-          <Wrapper
-            // title="更多信息"
-            title={titleNameMap.awardList}
-            className="section section-award"
-            color={theme.color}
-          >
-            {awardList.map((award, idx) => {
-              return (
-                <div key={idx.toString()}>
-                  <TrophyFilled
-                    style={{ color: '#ffc107', marginRight: '8px' }}
-                  />
-                  <span className="info-name">{award.award_info}</span>
-                  {award.award_time && (
-                    <span className="sub-info award-time">
-                      ({award.award_time})
-                    </span>
-                  )}
-                </div>
-              );
-            })}
-          </Wrapper>
-        ) : null} */}
-      </div>
-      <div className="main-info">
-        {workExpList?.length ? (
-          <Wrapper
-            className="experience"
-            // title=<FormattedMessage id="工作经历" />
-            title={titleNameMap.workExpList}
-            color={theme.color}
-          >
-            <div className="section section-work-exp">
-              {_.map(workExpList, (work, idx) => {
-                const [start = null, end = null] =
-                  typeof work.work_time === 'string'
-                    ? `${work.work_time || ''}`.split(',')
-                    : work.work_time;
-                return work ? (
-                  <div className="section-item" key={idx.toString()}>
-                    <div className="section-info">
-                      <b className="info-name">
-                        {work.company_name}
-                        <span className="sub-info">{work.department_name}</span>
-                      </b>
-                      <span className="info-time">
-                        {start}
-                        {end ? ` ~ ${end}` : <FormattedMessage id=" 至今" />}
-                      </span>
-                    </div>
-                    <div className="work-description">{work.work_desc}</div>
-                  </div>
-                ) : null;
-              })}
-            </div>
-          </Wrapper>
-        ) : null}
+
         {projectList?.length ? (
-          <Wrapper
-            className="skill"
-            // title=<FormattedMessage id="项目经历" />
-            title={titleNameMap.projectList}
-            color={theme.color}
-          >
-            <div className="section section-project">
-              {_.map(projectList, (project, idx) =>
-                project ? (
-                  <div
-                    className={`section-item section-item-${getProjectLevel(
-                      idx
-                    )}`}
-                    key={idx.toString()}
-                  >
-                    <div className="section-info">
-                      <b className="info-name">
-                        {project.project_name}
-                        <span className="info-time">
-                          {project.project_time}
-                        </span>
-                      </b>
+          <Section title={titleNameMap?.projectList}>
+            {projectList.map((project, idx) =>
+              project ? (
+                <div
+                  className={`template2-project-item template2-project-item-${getProjectLevel(
+                    idx
+                  )}`}
+                  key={idx.toString()}
+                >
+                  <div className="template2-item-header">
+                    <div className="template2-project-title">
+                      <b>{project.project_name}</b>
                       {project.project_role &&
                         (idx < 3 ? (
                           <Tag
-                            className="project-role-tag"
-                            style={{
-                              color: toAlphaColor(theme.tagColor, 0.95),
-                              backgroundColor: toAlphaColor(
-                                theme.tagColor,
-                                0.12
-                              ),
-                              borderColor: toAlphaColor(theme.tagColor, 0.22),
-                            }}
+                            className="template2-role-tag"
                           >
                             {project.project_role}
                           </Tag>
                         ) : (
-                          <span className="project-role-text">
+                          <span className="template2-role-text">
                             {project.project_role}
                           </span>
                         ))}
                     </div>
-                    {idx < 2 ? (
-                      <>
-                        <div className="section-detail">
-                          <span>
-                            <FormattedMessage id="项目描述" />：
-                          </span>
-                          <span>{project.project_desc}</span>
-                        </div>
-                        <div className="section-detail">
-                          <span>
-                            <FormattedMessage id="主要工作" />：
-                          </span>
-                          <span className="project-content">
-                            {project.project_content}
-                          </span>
-                        </div>
-                      </>
-                    ) : idx === 2 ? (
-                      <div className="section-detail section-detail-compact">
-                        <span>
-                          <FormattedMessage id="主要工作" />：
-                        </span>
-                        <span className="project-content">
-                          {project.project_content}
-                        </span>
-                      </div>
-                    ) : (
-                      <div className="section-detail section-detail-lite">
-                        <span className="project-content">
-                          {project.project_content}
-                        </span>
-                      </div>
+                    {project.project_time && (
+                      <span className="template2-item-time">
+                        {project.project_time}
+                      </span>
                     )}
                   </div>
-                ) : null
-              )}
-            </div>
-          </Wrapper>
+                  {idx < 2 ? (
+                    <>
+                      {project.project_desc && (
+                        <div className="template2-project-desc">
+                          {project.project_desc}
+                        </div>
+                      )}
+                      <BulletList text={project.project_content} />
+                    </>
+                  ) : idx === 2 ? (
+                    <>
+                      {project.project_desc && (
+                        <div className="template2-project-desc template2-project-desc-compact">
+                          {project.project_desc}
+                        </div>
+                      )}
+                      <BulletList text={project.project_content} />
+                    </>
+                  ) : (
+                    <BulletList text={project.project_content || project.project_desc} />
+                  )}
+                </div>
+              ) : null
+            )}
+          </Section>
         ) : null}
-      </div>
+
+        {skillList?.length ? (
+          <Section title={titleNameMap?.skillList}>
+            {skillList.map((skill, idx) =>
+              skill ? (
+                <div className="template2-skill-item" key={idx.toString()}>
+                  <span className="template2-skill-check">✓</span>
+                  <span>
+                    {skill.skill_name && (
+                      <b style={{ marginRight: '4px' }}>{skill.skill_name}:</b>
+                    )}
+                    {skill.skill_desc}
+                  </span>
+                </div>
+              ) : null
+            )}
+          </Section>
+        ) : null}
+
+        {awardList?.length ? (
+          <Section title={titleNameMap?.awardList}>
+            {awardList.map((award, idx) =>
+              award ? (
+                <div className="template2-award-item" key={idx.toString()}>
+                  <span className="template2-award-dot" />
+                  <span>
+                    {award.award_info}
+                    {award.award_rank && (
+                      <span className="template2-sub-info" style={{ marginLeft: '8px' }}>
+                        {award.award_rank}
+                      </span>
+                    )}
+                  </span>
+                </div>
+              ) : null
+            )}
+          </Section>
+        ) : null}
+      </main>
     </div>
   );
 };
