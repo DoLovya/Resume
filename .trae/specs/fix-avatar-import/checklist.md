@@ -1,0 +1,8 @@
+- [x] `importConfig` 函数中已添加头像数据恢复逻辑，当 `avatar.src === 'indexeddb://avatar'` 时从 IndexedDB 读取头像
+- [x] 导入配置时，`getAvatar()` 异步调用完成后才更新配置
+- [x] `importConfig` 返回 Promise<boolean>，确保异步操作完成后才返回
+- [x] Avatar 组件的 useEffect 依赖改为 `[avatarSrc]`，确保配置更新时重新检查头像来源
+- [x] IndexedDB 无头像数据时，导入后显示占位符而非报错
+- [x] Avatar 组件在配置更新时能重新加载头像
+- [x] TypeScript 编译无新增错误
+- [x] 多次导入配置后头像显示正常

@@ -100,6 +100,7 @@ export const Template1: React.FC<Props> = props => {
         {!value?.avatar?.hidden && (
           <Avatar
             avatarSrc={value?.avatar?.src}
+            name={profile?.name}
             className="template1-avatar"
             shape={value?.avatar?.shape}
             size={value?.avatar?.size}

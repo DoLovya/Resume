@@ -1,9 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Input, InputNumber, Button, Checkbox, Select } from 'antd';
+import {
+  Form,
+  Input,
+  InputNumber,
+  Button,
+  Checkbox,
+  Select,
+  Upload,
+  Spin,
+  message,
+} from 'antd';
 import { FormItemProps } from 'antd/lib/form';
+import { UploadOutlined, DeleteOutlined } from '@ant-design/icons';
 import _ from 'lodash-es';
 import { ColorPicker } from './ColorPicker';
 import { FormattedMessage } from 'react-intl';
+import {
+  compressImage,
+  saveAvatar,
+  removeAvatar,
+} from '@/helpers/avatar-storage';
 
 type Props = {
   /** 表单配置 */
@@ -25,6 +41,94 @@ type Props = {
   isList: boolean;
 };
 
+type AvatarUploadProps = {
+  /** 当前值，indexeddb://avatar 表示已上传，空字符串表示未上传 */
+  value?: string;
+  /** 值变更回调 */
+  onChange?: (v: string) => void;
+};
+
+// 头像上传组件：使用 IndexedDB 本地存储，避免图片以 Base64 形式存在简历配置中
+const AvatarUpload: React.FC<AvatarUploadProps> = ({ value, onChange }) => {
+  const [uploading, setUploading] = useState<boolean>(false);
+
+  // 处理文件选择：压缩、保存到 IndexedDB、更新表单值
+  const handleBeforeUpload = async (
+    file: File
+  ): Promise<boolean> => {
+    // 只允许图片类型
+    if (!file.type.startsWith('image/')) {
+      message.error('请选择图片文件');
+      return false;
+    }
+
+    setUploading(true);
+    try {
+      // 压缩图片并转 Base64
+      const base64 = await compressImage(file);
+      // 保存到 IndexedDB
+      await saveAvatar(base64);
+      // 通过特殊协议标识头像来源
+      onChange?.('indexeddb://avatar');
+      message.success('头像上传成功');
+    } catch (error) {
+      message.error('头像上传失败');
+      // eslint-disable-next-line no-console
+      console.error(error);
+    } finally {
+      setUploading(false);
+    }
+
+    // 返回 false 阻止 antd 自动上传
+    return false;
+  };
+
+  // 清除头像：删除 IndexedDB 中的记录并清空表单值
+  const handleClear = async () => {
+    setUploading(true);
+    try {
+      await removeAvatar();
+      onChange?.('');
+      message.success('已清除头像');
+    } catch (error) {
+      message.error('清除头像失败');
+      // eslint-disable-next-line no-console
+      console.error(error);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const hasAvatar = !!value;
+
+  return (
+    <Spin spinning={uploading}>
+      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+        <Upload
+          accept="image/*"
+          showUploadList={false}
+          beforeUpload={handleBeforeUpload}
+          fileList={[]}
+        >
+          <Button icon={<UploadOutlined />} disabled={uploading}>
+            上传头像
+          </Button>
+        </Upload>
+        {hasAvatar && (
+          <Button
+            danger
+            icon={<DeleteOutlined />}
+            onClick={handleClear}
+            disabled={uploading}
+          >
+            清除头像
+          </Button>
+        )}
+      </div>
+    </Spin>
+  );
+};
+
 const FormItemComponentMap = (type: string) => (
   props: { value: any; onChange?: (v) => void } = { value: null }
 ) => {
@@ -41,6 +145,8 @@ const FormItemComponentMap = (type: string) => (
       return <Input.TextArea {...props} />;
     case 'color-picker':
       return <ColorPicker {...props} />;
+    case 'avatar-upload':
+      return <AvatarUpload {...props} />;
     default:
       return <Input />;
   }

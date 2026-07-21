@@ -1,6 +1,30 @@
 .avatar {
   position: relative;
 
+  .ant-avatar {
+    background-color: #f0f0f0;
+    color: #999;
+
+    & > * {
+      color: #999;
+    }
+
+    img {
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+
+  .avatar-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+  }
+
   .btn-upload {
     position: absolute;
     top: 50%;

@@ -1,0 +1,12 @@
+- [x] `src/helpers/avatar-storage.ts` 已创建，提供 saveAvatar/getAvatar/removeAvatar 三个方法
+- [x] 图片上传时有压缩处理（限制最大尺寸），避免存储过大
+- [x] Avatar 组件不再 import defaultAvatar，无本地静态资源依赖
+- [x] Avatar 组件从 IndexedDB 异步读取头像，显示加载状态
+- [x] 无头像时显示姓名首字母占位符（不依赖任何图片资源）
+- [x] 头像设置表单从 URL 输入框改为图片上传交互
+- [x] 上传头像后，简历配置 `avatar.src` 设为 `indexeddb://avatar`，实际数据存 IndexedDB
+- [x] 刷新页面后头像仍能正常显示（IndexedDB 持久化生效）
+- [x] 清除头像后 IndexedDB 对应记录被删除，显示占位符
+- [x] `static/images/defaultAvatar.jpg` 文件已删除
+- [x] 项目全局搜索无 `defaultAvatar` 引用残留
+- [x] TypeScript 编译无新增错误

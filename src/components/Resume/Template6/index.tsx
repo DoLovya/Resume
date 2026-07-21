@@ -41,9 +41,9 @@ const Section: React.FC<{
   title: React.ReactNode;
   children: React.ReactNode;
 }> = ({ title, children }) => (
-  <section className="template2-section">
-    <div className="template2-section-title">{title}</div>
-    <div className="template2-section-body">{children}</div>
+  <section className="template6-section">
+    <div className="template6-section-title">{title}</div>
+    <div className="template6-section-body">{children}</div>
   </section>
 );
 
@@ -52,7 +52,7 @@ const BulletList: React.FC<{ text?: string }> = ({ text }) => {
   const lines = text.split('\n').filter(line => _.trim(line));
   if (lines.length === 0) return null;
   return (
-    <ul className="template2-list">
+    <ul className="template6-list">
       {lines.map((line, idx) => (
         <li key={idx.toString()}>{line}</li>
       ))}
@@ -60,7 +60,7 @@ const BulletList: React.FC<{ text?: string }> = ({ text }) => {
   );
 };
 
-export const Template2: React.FC<Props> = props => {
+export const Template6: React.FC<Props> = props => {
   const intl = useIntl();
   const { value, theme } = props;
 
@@ -79,7 +79,7 @@ export const Template2: React.FC<Props> = props => {
 
   return (
     <div
-      className="template2-resume resume-content"
+      className="template6-resume resume-content"
       style={{
         paddingTop: theme.margin?.top,
         paddingRight: theme.margin?.right,
@@ -87,55 +87,55 @@ export const Template2: React.FC<Props> = props => {
         paddingLeft: theme.margin?.left,
       }}
     >
-      <header className="template2-header">
-        <div className="template2-header-info">
+      <header className="template6-header">
+        <div className="template6-header-info">
           {profile?.name && (
-            <div className="template2-name">{profile.name}</div>
+            <div className="template6-name">{profile.name}</div>
           )}
-          <div className="template2-contact">
+          <div className="template6-contact">
             {profile?.mobile && (
-              <span className="template2-contact-item">
-                <MobileFilled style={{ color: 'rgba(0,0,0,0.65)' }} />
-                <span className="template2-contact-label">电话：</span>
+              <span className="template6-contact-item">
+                <MobileFilled style={{ color: 'rgba(255,255,255,0.85)' }} />
+                <span className="template6-contact-label">电话：</span>
                 {profile.mobile}
               </span>
             )}
             {profile?.email && (
-              <span className="template2-contact-item">
-                <MailFilled style={{ color: 'rgba(0,0,0,0.65)' }} />
-                <span className="template2-contact-label">邮箱：</span>
+              <span className="template6-contact-item">
+                <MailFilled style={{ color: 'rgba(255,255,255,0.85)' }} />
+                <span className="template6-contact-label">邮箱：</span>
                 <a
                   href={`mailto:${profile.email}`}
-                  className="template2-contact-link"
+                  className="template6-contact-link"
                 >
                   {profile.email}
                 </a>
               </span>
             )}
             {profile?.github && (
-              <span className="template2-contact-item">
-                <GithubFilled style={{ color: 'rgba(0,0,0,0.65)' }} />
+              <span className="template6-contact-item">
+                <GithubFilled style={{ color: 'rgba(255,255,255,0.85)' }} />
                 <a
                   href={profile.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="template2-contact-link"
+                  className="template6-contact-link"
                 >
                   {githubText}
                 </a>
               </span>
             )}
             {profile?.workExpYear && (
-              <span className="template2-contact-item">
-                <ScheduleFilled style={{ color: 'rgba(0,0,0,0.65)' }} />
-                <span className="template2-contact-label">工作经验：</span>
+              <span className="template6-contact-item">
+                <ScheduleFilled style={{ color: 'rgba(255,255,255,0.85)' }} />
+                <span className="template6-contact-label">工作经验：</span>
                 {profile.workExpYear}
               </span>
             )}
             {profile?.positionTitle && (
-              <span className="template2-contact-item">
-                <HeartFilled style={{ color: 'rgba(0,0,0,0.65)' }} />
-                <span className="template2-contact-label">职位：</span>
+              <span className="template6-contact-item">
+                <HeartFilled style={{ color: 'rgba(255,255,255,0.85)' }} />
+                <span className="template6-contact-label">职位：</span>
                 {profile.positionTitle}
               </span>
             )}
@@ -144,34 +144,33 @@ export const Template2: React.FC<Props> = props => {
         {!value?.avatar?.hidden && (
           <Avatar
             avatarSrc={value?.avatar?.src}
-            name={profile?.name}
-            className="template2-avatar"
+            className="template6-avatar"
             shape="square"
             size={value?.avatar?.size}
           />
         )}
       </header>
 
-      <main className="template2-main">
+      <main className="template6-main">
         {educationList?.length ? (
           <Section title={titleNameMap?.educationList}>
             {educationList.map((education, idx) => {
               const [start, end] = education.edu_time;
               return (
-                <div key={idx.toString()} className="template2-education-item">
-                  <div className="template2-item-header">
+                <div key={idx.toString()} className="template6-education-item">
+                  <div className="template6-item-header">
                     <div>
                       <b>{education.school}</b>
                       {education.major && (
                         <span style={{ marginLeft: '8px' }}>{education.major}</span>
                       )}
                       {education.academic_degree && (
-                        <span className="template2-sub-info" style={{ marginLeft: '4px' }}>
+                        <span className="template6-sub-info" style={{ marginLeft: '4px' }}>
                           {education.academic_degree}
                         </span>
                       )}
                     </div>
-                    <span className="template2-item-time">
+                    <span className="template6-item-time">
                       {start}
                       {end ? ` ~ ${end}` : <FormattedMessage id=" 至今" />}
                     </span>
@@ -191,19 +190,19 @@ export const Template2: React.FC<Props> = props => {
                   : work.work_time;
               return work ? (
                 <div
-                  className="template2-experience-item"
+                  className="template6-experience-item"
                   key={idx.toString()}
                 >
-                  <div className="template2-item-header">
+                  <div className="template6-item-header">
                     <div>
                       <b>{work.company_name}</b>
                       {work.department_name && (
-                        <span className="template2-sub-info" style={{ marginLeft: '8px' }}>
+                        <span className="template6-sub-info" style={{ marginLeft: '8px' }}>
                           {work.department_name}
                         </span>
                       )}
                     </div>
-                    <span className="template2-item-time">
+                    <span className="template6-item-time">
                       {start}
                       {end ? ` ~ ${end}` : <FormattedMessage id=" 至今" />}
                     </span>
@@ -220,29 +219,29 @@ export const Template2: React.FC<Props> = props => {
             {projectList.map((project, idx) =>
               project ? (
                 <div
-                  className={`template2-project-item template2-project-item-${getProjectLevel(
+                  className={`template6-project-item template6-project-item-${getProjectLevel(
                     idx
                   )}`}
                   key={idx.toString()}
                 >
-                  <div className="template2-item-header">
-                    <div className="template2-project-title">
+                  <div className="template6-item-header">
+                    <div className="template6-project-title">
                       <b>{project.project_name}</b>
                       {project.project_role &&
                         (idx < 3 ? (
                           <Tag
-                            className="template2-role-tag"
+                            className="template6-role-tag"
                           >
                             {project.project_role}
                           </Tag>
                         ) : (
-                          <span className="template2-role-text">
+                          <span className="template6-role-text">
                             {project.project_role}
                           </span>
                         ))}
                     </div>
                     {project.project_time && (
-                      <span className="template2-item-time">
+                      <span className="template6-item-time">
                         {project.project_time}
                       </span>
                     )}
@@ -250,7 +249,7 @@ export const Template2: React.FC<Props> = props => {
                   {idx < 2 ? (
                     <>
                       {project.project_desc && (
-                        <div className="template2-project-desc">
+                        <div className="template6-project-desc">
                           {project.project_desc}
                         </div>
                       )}
@@ -259,7 +258,7 @@ export const Template2: React.FC<Props> = props => {
                   ) : idx === 2 ? (
                     <>
                       {project.project_desc && (
-                        <div className="template2-project-desc template2-project-desc-compact">
+                        <div className="template6-project-desc template6-project-desc-compact">
                           {project.project_desc}
                         </div>
                       )}
@@ -278,8 +277,8 @@ export const Template2: React.FC<Props> = props => {
           <Section title={titleNameMap?.skillList}>
             {skillList.map((skill, idx) =>
               skill ? (
-                <div className="template2-skill-item" key={idx.toString()}>
-                  <span className="template2-award-dot" />
+                <div className="template6-skill-item" key={idx.toString()}>
+                  <span className="template6-skill-check">✓</span>
                   <span>
                     {skill.skill_name && (
                       <b style={{ marginRight: '4px' }}>{skill.skill_name}:</b>
@@ -296,12 +295,12 @@ export const Template2: React.FC<Props> = props => {
           <Section title={titleNameMap?.awardList}>
             {awardList.map((award, idx) =>
               award ? (
-                <div className="template2-award-item" key={idx.toString()}>
-                  <span className="template2-award-dot" />
+                <div className="template6-award-item" key={idx.toString()}>
+                  <span className="template6-award-dot" />
                   <span>
                     {award.award_info}
                     {award.award_rank && (
-                      <span className="template2-sub-info" style={{ marginLeft: '8px' }}>
+                      <span className="template6-sub-info" style={{ marginLeft: '8px' }}>
                         {award.award_rank}
                       </span>
                     )}
