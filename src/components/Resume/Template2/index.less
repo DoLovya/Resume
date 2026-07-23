@@ -23,7 +23,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 32px 40px 24px;
+  padding: 32px 40px 16px;
   background: #fff;
 }
 
@@ -80,7 +80,7 @@
 }
 
 .template2-main {
-  padding: 24px 40px 32px;
+  padding: 8px 40px 32px;
 }
 
 .template2-section {
@@ -93,7 +93,7 @@
   font-size: 18px;
   font-weight: 700;
   color: #333;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 2px solid #333;
   padding-bottom: 6px;
   margin-bottom: 12px;
   line-height: 1.4;
@@ -125,14 +125,13 @@
   font-weight: 400;
 }
 
-.template2-list {
-  margin: 0;
-  padding-left: 18px;
-  list-style-type: disc;
+.template2-bullet-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
 
-  li {
-    margin-bottom: 4px;
-    line-height: 1.7;
+  &:not(:first-of-type) {
+    margin-top: 6px;
   }
 }
 
@@ -175,16 +174,14 @@
 
 .template2-role-tag {
   margin-inline-end: 0;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 999px;
-  padding: 0 8px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  padding: 0 6px;
   height: 20px;
   line-height: 20px;
   font-size: 12px;
-  color: #fff;
-  background: #1e3a5f;
-  border-color: #1e3a5f;
+  color: rgba(0, 0, 0, 0.45);
+  background: transparent;
 }
 
 .template2-role-text {
@@ -225,7 +222,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.35);
+  background: #333;
   flex-shrink: 0;
 }
 
@@ -293,7 +290,7 @@
     flex-direction: row !important;
     align-items: flex-start !important;
     text-align: left !important;
-    padding: 32px 40px 24px !important;
+    padding: 32px 40px 8px !important;
     background: #fff !important;
   }
 
@@ -307,7 +304,7 @@
   }
 
   .template2-main {
-    padding: 24px 40px 32px !important;
+    padding: 8px 40px 32px !important;
   }
 
   .template2-item-header {

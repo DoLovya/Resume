@@ -4,9 +4,6 @@ import { UserOutlined } from '@ant-design/icons';
 import { getAvatar } from '@/helpers/avatar-storage';
 import './index.less';
 
-// 表示头像数据存储于 IndexedDB 的特殊标识
-const INDEXEDDB_AVATAR_FLAG = 'indexeddb://avatar';
-
 // 从姓名中提取首字母作为占位符展示内容
 const getInitial = (name?: string): string => {
   if (!name) return '';
@@ -17,8 +14,6 @@ const getInitial = (name?: string): string => {
 };
 
 type AvatarProps = {
-  /** 头像地址；值为 'indexeddb://avatar' 时表示从 IndexedDB 异步读取 */
-  avatarSrc?: string;
   /** 姓名用于无头像时生成首字母占位符 */
   name?: string;
   /** 自定义样式类名 */
@@ -30,26 +25,16 @@ type AvatarProps = {
 };
 
 export const Avatar: React.FC<AvatarProps> = ({
-  avatarSrc,
   name,
   className,
   shape = 'circle',
   size = 'default',
 }) => {
-  // 是否需要从 IndexedDB 异步读取头像
-  const needLoadFromIndexedDB = avatarSrc === INDEXEDDB_AVATAR_FLAG;
-
   // 从 IndexedDB 读取到的头像 Base64 数据
   const [avatarData, setAvatarData] = useState<string | null>(null);
-  // 加载状态：仅在需要从 IndexedDB 读取时为 true
-  const [loading, setLoading] = useState<boolean>(needLoadFromIndexedDB);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // 仅当头像来源标记为 IndexedDB 时才发起读取
-    if (!needLoadFromIndexedDB) {
-      return;
-    }
-
     let cancelled = false;
     setLoading(true);
 
@@ -70,10 +55,7 @@ export const Avatar: React.FC<AvatarProps> = ({
     return () => {
       cancelled = true;
     };
-  }, [avatarSrc]);
-
-  // 真正用于展示的头像地址：IndexedDB 来源时使用读取到的数据，否则使用传入的 avatarSrc
-  const resolvedSrc = needLoadFromIndexedDB ? avatarData : avatarSrc;
+  }, []);
 
   // 占位符内容：优先显示姓名首字母，无 name 时显示默认用户图标
   const placeholder = name ? getInitial(name) : <UserOutlined />;
@@ -84,11 +66,11 @@ export const Avatar: React.FC<AvatarProps> = ({
         <div className="avatar-loading">
           <Spin />
         </div>
-      ) : resolvedSrc ? (
+      ) : avatarData ? (
         // @ts-ignore 透传给 antd Avatar 的 size 类型兼容
         <AntdAvatar
           className={className}
-          src={resolvedSrc}
+          src={avatarData}
           shape={shape as any}
           size={size as any}
         />

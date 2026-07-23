@@ -13,7 +13,6 @@ import { customAssign } from '@/helpers/customAssign';
 import { getDevice } from '@/helpers/detect-device';
 import { getConfig, saveToLocalStorage } from '@/helpers/store-to-local';
 import { fetchResume } from '@/helpers/fetch-resume';
-import { getAvatar } from '@/helpers/avatar-storage';
 import { Drawer } from './Drawer';
 import { Resume } from './Resume';
 import type { ResumeConfig, ThemeConfig } from './types';
@@ -198,12 +197,6 @@ export const Page: React.FC = () => {
             if (reader.result) {
               // @ts-ignore
               const newConfig: ConfigProps = JSON.parse(reader.result);
-              if (newConfig.avatar?.src === 'indexeddb://avatar') {
-                const avatarData = await getAvatar();
-                if (avatarData) {
-                  newConfig.avatar.src = avatarData;
-                }
-              }
               onThemeChange(newConfig.theme);
               onConfigChange(_.omit(newConfig, 'theme'));
               setPrintTitle(normalizeImportedFileName(file.name));

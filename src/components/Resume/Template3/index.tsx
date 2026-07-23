@@ -203,7 +203,6 @@ export const Template3: React.FC<Props> = props => {
           {/* 头像 */}
           {!value?.avatar?.hidden && (
             <Avatar
-              avatarSrc={value?.avatar?.src}
               name={profile?.name}
               className="avatar"
               shape={value?.avatar?.shape}

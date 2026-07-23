@@ -47,16 +47,19 @@ const Section: React.FC<{
   </section>
 );
 
-const BulletList: React.FC<{ text?: string }> = ({ text }) => {
+const BulletList: React.FC<{ text?: string; showDot?: boolean }> = ({ text, showDot = true }) => {
   if (!text) return null;
   const lines = text.split('\n').filter(line => _.trim(line));
   if (lines.length === 0) return null;
   return (
-    <ul className="template2-list">
+    <div>
       {lines.map((line, idx) => (
-        <li key={idx.toString()}>{line}</li>
+        <div className="template2-bullet-item" key={idx.toString()}>
+          {showDot && <span className="template2-award-dot" />}
+          <span>{line}</span>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 };
 
@@ -143,7 +146,6 @@ export const Template2: React.FC<Props> = props => {
         </div>
         {!value?.avatar?.hidden && (
           <Avatar
-            avatarSrc={value?.avatar?.src}
             name={profile?.name}
             className="template2-avatar"
             shape="square"
@@ -208,7 +210,7 @@ export const Template2: React.FC<Props> = props => {
                       {end ? ` ~ ${end}` : <FormattedMessage id=" 至今" />}
                     </span>
                   </div>
-                  <BulletList text={work.work_desc} />
+                  <BulletList text={work.work_desc} showDot={false} />
                 </div>
               ) : null;
             })}
