@@ -46,7 +46,7 @@ export const MODULES = ({
       key: 'aboutme',
     },
     {
-      name: intl.formatMessage({ id: '更多信息' }),
+      name: intl.formatMessage({ id: '竞赛奖项' }),
       icon: <TrophyTwoTone />,
       key: 'awardList',
     },
