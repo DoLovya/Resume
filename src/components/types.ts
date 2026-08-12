@@ -15,6 +15,8 @@ export type ResumeConfig = {
     email?: string;
     github?: string;
     zhihu?: string;
+    csdn?: string;
+    csdnName?: string;
     /** 工作经验 xx 年 */
     workExpYear?: string;
     /** 期望工作地 */

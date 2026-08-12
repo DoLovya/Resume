@@ -76,6 +76,7 @@ export const Template6: React.FC<Props> = props => {
   const skillList = _.get(value, 'skillList');
   const awardList = _.get(value, 'awardList');
   const githubText = formatProfileLinkText(profile?.github, 'GitHub');
+  const csdnText = profile?.csdnName ? `CSDN：${profile.csdnName}` : formatProfileLinkText(profile?.csdn, 'CSDN');
 
   return (
     <div
@@ -122,6 +123,18 @@ export const Template6: React.FC<Props> = props => {
                   className="template6-contact-link"
                 >
                   {githubText}
+                </a>
+              </span>
+            )}
+            {profile?.csdn && (
+              <span className="template6-contact-item">
+                <a
+                  href={profile.csdn}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="template6-contact-link"
+                >
+                  {csdnText}
                 </a>
               </span>
             )}

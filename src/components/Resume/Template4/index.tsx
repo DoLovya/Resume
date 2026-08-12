@@ -123,6 +123,7 @@ export const Template4: React.FC<Props> = props => {
   /** 自我介绍 */
   const aboutme = _.split(_.get(value, ['aboutme', 'aboutme_desc']), '\n');
   const githubText = formatProfileLinkText(profile?.github, 'GitHub');
+  const csdnText = profile?.csdnName ? `CSDN：${profile.csdnName}` : formatProfileLinkText(profile?.csdn, 'CSDN');
 
   return (
     <div
@@ -196,6 +197,18 @@ export const Template4: React.FC<Props> = props => {
                   style={{ color: 'inherit', textDecoration: 'none' }}
                 >
                   {profile.zhihu}
+                </a>
+              </div>
+            )}
+            {profile?.csdn && (
+              <div className="github">
+                <a
+                  href={profile.csdn}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ color: 'inherit', textDecoration: 'none' }}
+                >
+                  {csdnText}
                 </a>
               </div>
             )}
